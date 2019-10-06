@@ -13,12 +13,14 @@ let ListOptions = require('../enums/list_options.js').ListOptions;
 let MustList = require('../lists/moscow_lists/must_list.js').MustList;
 let ShouldList = require('../lists/moscow_lists/should_list.js').ShouldList;
 let CouldList = require('../lists/moscow_lists/could_list.js').CouldList;
+let WontList = require('../lists/moscow_lists/wont_list.js').WontList;
 
 class ListFactory {
   constructor() {
     this.mustList = new MustList();
     this.shouldList = new ShouldList();
     this.couldList = new CouldList();
+    this.wontList = new WontList();
   }
 
   /**
@@ -36,6 +38,8 @@ class ListFactory {
         return this.shouldList.generateList();
       case ListOptions.COULD:
         return this.couldList.generateList();
+      case ListOptions.WONT:
+        return this.wontList.generateList();
       default:
         return null;
     } // end switch
