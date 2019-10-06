@@ -5,7 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "test": "test",
-    "test_task_card": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_task_card.js"
+    "test_task_card": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_task_card.js",
+    "test_list": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_list.js"
   },
   "repository": {
     "type": "git",
