@@ -38,15 +38,15 @@ suite('Unit testing for test_list_factory.js', function() {
       assert(testList.tasks.length === 0, 'Should be empty');
     }); // end ListFactory.generateList(ListOptions.SHOULD) test
 
-    test('Testing ListFacotry.generateList(ListOptions.Could)', function() {
+    test('Testing ListFacotry.generateList(ListOptions.COULD)', function() {
       testList = listFactory.generateList(ListOptions.COULD);
       assert(testList.label === 'Could', 'Should be Could');
       assert(testList.color === Colors.ORANGE, 'Should be orange');
       assert(testList.tasks.length === 0, 'Should be empty');
     }); // end ListFactory.generateList(ListOptions.COULD) test
 
-    test('Testing ListFactory.generateList(ListOptions.Wont)', function() {
-      testList = listFactory.generateLIst(ListOptions.WONT);
+    test('Testing ListFactory.generateList(ListOptions.WONT)', function() {
+      testList = listFactory.generateList(ListOptions.WONT);
       assert(testList.label === 'Wont', 'Should be Wont');
       assert(testList.color === Colors.RED, 'Should be red');
       assert(testList.tasks.length === 0, 'Should be empty');
