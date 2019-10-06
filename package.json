@@ -1,0 +1,24 @@
+{
+  "name": "agiledevelopermentboard",
+  "version": "1.0.0",
+  "description": "A web application that will allow users to easily keep track of progress and goals in their software development projects",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "test",
+    "test_task_card": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_task_card.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chriswolfdesign/DeJesusWolfCapstoneMVC.git"
+  },
+  "author": "De Jesus, Wolf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chriswolfdesign/DeJesusWolfCapstoneMVC/issues"
+  },
+  "homepage": "https://github.com/chriswolfdesign/DeJesusWolfCapstoneMVC#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1"
+  }
+}
