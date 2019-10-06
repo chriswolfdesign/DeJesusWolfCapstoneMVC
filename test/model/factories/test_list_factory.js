@@ -11,6 +11,7 @@
 let assert = require('chai').assert;
 let ListFactory = require('../../../src/model/factories/list_factory.js').ListFactory;
 let ListOptions = require('../../../src/model/enums/list_options.js').ListOptions;
+let Colors = require('../../../src/model/enums/colors.js').Colors;
 
 suite('Unit testing for test_list_factory.js', function() {
   let listFactory = null;
