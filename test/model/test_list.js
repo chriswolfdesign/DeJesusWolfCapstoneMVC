@@ -48,4 +48,25 @@ suite('Unit testing for task-card.js', function() {
       assert(listTwoParam.tasks.length === 0, 'Should be empty list');
     }); // end ListB.tasks test
   }); // end constructor tests
+
+  // test List.addTask
+  suite('Testing List.addTask', function() {
+    test('Testing adding to an empty list', function() {
+      assert(listOneParam.tasks.length === 0, 'Should be empty list');
+      listOneParam.addTask('TA', 'Task A');
+      assert(listOneParam.tasks.length === 1, 'Should have one element');
+      assert(listOneParam.tasks[0].label === 'TA', 'Should be TA');
+      assert(listOneParam.tasks[0].text === 'Task A', 'Should be Task A');
+    }); // end adding to an empty list test
+
+    test('Testing adding to a nonempty list', function() {
+      assert(listOneParam.tasks.length === 1, 'Should have one element');
+      assert(listOneParam.tasks[0].label === 'TA', 'Should be TA');
+      assert(listOneParam.tasks[0].text === 'Task A', 'Should be Task A');
+      listOneParam.addTask('TB', 'Task B');
+      assert(listOneParam.tasks.length === 2, 'Should have two elements');
+      assert(listOneParam.tasks[1].label === 'TB', 'Should be TB');
+      assert(listOneParam.tasks[1].text === 'Task B', 'Should be Task B');
+    }); // end adding to a nonempty test list
+  }); // end List.addTask tests
 }); // end unit testing for list.js

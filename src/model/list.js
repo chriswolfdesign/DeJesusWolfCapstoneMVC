@@ -10,6 +10,7 @@
  */
 
 const Colors = require('./enums/colors.js').Colors;
+const TaskCard = require('./task_card.js').TaskCard;
 
 class List {
   /**
@@ -28,6 +29,16 @@ class List {
     this.color = color;
     this.tasks = [];
   } // end constructor
+
+  /**
+   * adds a new task card to the tasks field
+   *
+   * @param {string} label the label for the new task card
+   * @param {string} text the text for the new task card
+   */
+  addTask(label, text) {
+    this.tasks.push(new TaskCard(label, text));
+  } // end addTask
 } // end List
 
 // export this class
