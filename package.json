@@ -4,13 +4,13 @@
   "description": "A web application that will allow users to easily keep track of progress and goals in their software development projects",
   "main": "src/server.js",
   "scripts": {
-    "test": "mocha -R test",
-    "test_task_card": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_task_card.js",
-    "test_list": "./node_modules/.bin/mocha -u tdd -R spec test/model/lists/test_list.js",
-    "test_list_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/test_list_factory.js",
-    "test_board": "./node_modules/.bin/mocha -u tdd -R spec test/model/boards/test_board.js",
-    "test_board_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/test_board_factory.js",
-    "test_app": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_app.js"
+    "test": "./node_modules/.bin/mocha -u tdd -R spec test/**/*",
+    "test_task_card": "./node_modules/.bin/mocha -u tdd -R spec test/model/task_card_test.js",
+    "test_list": "./node_modules/.bin/mocha -u tdd -R spec test/model/lists/list_test.js",
+    "test_list_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/list_factory_test.js",
+    "test_board": "./node_modules/.bin/mocha -u tdd -R spec test/model/boards/board_test.js",
+    "test_board_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/board_factory_test.js",
+    "test_app": "./node_modules/.bin/mocha -u tdd -R spec test/model/app_test.js"
   },
   "repository": {
     "type": "git",
