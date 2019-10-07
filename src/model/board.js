@@ -9,6 +9,7 @@
  */
 
 List = require('./list.js').List;
+ListFactory = require('./factories/list_factory.js').ListFactory;
 
 class Board {
   /**
@@ -19,6 +20,7 @@ class Board {
   constructor(title) {
     this.title = title;
     this.lists = [];
+    this.listFactory = new ListFactory();
   } // end constructor
 
   /**
@@ -29,6 +31,15 @@ class Board {
    */
   addList(label, color) {
     this.lists.push(new List(label, color));
+  }
+
+  /** 
+   * adds a new list using the ListFactory
+   *
+   * @param {ListOption} option the type of list we want to generate
+   */
+  addListTemplate(option) {
+    this.lists.push(this.listFactory.generateList(option));
   }
 } // end Board
 
