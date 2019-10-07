@@ -9,7 +9,7 @@
  */
 
 let ListOptions = require('../enums/list_options.js').ListOptions;
-let Board = require('../board.js').Board;
+let Board = require('./board.js').Board;
 
 class MoscowBoard {
 

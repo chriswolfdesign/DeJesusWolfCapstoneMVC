@@ -9,7 +9,7 @@
  */
 
 let assert = require('chai').assert;
-let Board = require('../../src/model/board.js').Board;
+let Board = require('../../src/model/boards/board.js').Board;
 let Colors = require('../../src/model/enums/colors.js').Colors;
 let ListOptions = require('../../src/model/enums/list_options.js').ListOptions;
 
