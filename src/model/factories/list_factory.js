@@ -26,7 +26,7 @@ class ListFactory {
   /**
    * generates a list based on the parameter passed in
    *
-   * @param {ListOption} list the type of list the user wants generated
+   * @param {ListOption} option the type of list the user wants generated
    *
    * @return {List} a list set up based on user preference
    */
