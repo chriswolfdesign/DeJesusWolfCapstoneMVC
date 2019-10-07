@@ -9,8 +9,8 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-const Colors = require('./enums/colors.js').Colors;
-const TaskCard = require('./task_card.js').TaskCard;
+const Colors = require('../enums/colors.js').Colors;
+const TaskCard = require('../task_card.js').TaskCard;
 
 class List {
   /**

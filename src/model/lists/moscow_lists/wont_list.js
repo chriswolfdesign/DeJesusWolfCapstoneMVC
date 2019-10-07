@@ -8,7 +8,7 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-let List = require('../../list.js').List;
+let List = require('../list.js').List;
 let Colors = require('../../enums/colors.js').Colors;
 
 class WontList {

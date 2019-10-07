@@ -9,8 +9,8 @@
  */
 
 let assert = require('chai').assert;
-let List = require('../../src/model/list.js').List;
-let Colors = require('../../src/model/enums/colors.js').Colors;
+let List = require('../../../src/model/lists/list.js').List;
+let Colors = require('../../../src/model/enums/colors.js').Colors;
 
 suite('Unit testing for task-card.js', function() {
   let listOneParam = null;
