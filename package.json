@@ -9,7 +9,8 @@
     "test_list": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_list.js",
     "test_list_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/test_list_factory.js",
     "test_board": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_board.js",
-    "test_board_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/test_board_factory.js"
+    "test_board_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/test_board_factory.js",
+    "test_app": "./node_modules/.bin/mocha -u tdd -R spec test/model/test_app.js"
   },
   "repository": {
     "type": "git",
