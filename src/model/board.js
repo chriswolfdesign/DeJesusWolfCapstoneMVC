@@ -8,6 +8,8 @@
  * @version 2.0.0 (October 7 ,2019)
  */
 
+List = require('./list.js').List;
+
 class Board {
   /**
    * Generates the board object
@@ -18,6 +20,16 @@ class Board {
     this.title = title;
     this.lists = [];
   } // end constructor
+
+  /**
+   * adds a new list to our board
+   *
+   * @param {string} label the label for our new list
+   * @param {Colors} color the optional color value for our list
+   */
+  addList(label, color) {
+    this.lists.push(new List(label, color));
+  }
 } // end Board
 
 // export this class

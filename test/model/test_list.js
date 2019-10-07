@@ -17,7 +17,7 @@ suite('Unit testing for task-card.js', function() {
   let listTwoParam = null;
 
   // Set up our lists
-  suiteSetup(function() {
+  setup(function() {
     listOneParam = new List('ListA');
     listTwoParam = new List('ListB', Colors.RED);
   }); // end set up
@@ -60,6 +60,7 @@ suite('Unit testing for task-card.js', function() {
     }); // end adding to an empty list test
 
     test('Testing adding to a nonempty list', function() {
+      listOneParam.addTask('TA', 'Task A');
       assert(listOneParam.tasks.length === 1, 'Should have one element');
       assert(listOneParam.tasks[0].label === 'TA', 'Should be TA');
       assert(listOneParam.tasks[0].text === 'Task A', 'Should be Task A');
