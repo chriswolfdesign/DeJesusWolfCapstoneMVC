@@ -8,8 +8,8 @@
  * @version 2.0.0 (October 7 ,2019)
  */
 
-List = require('../lists/list.js').List;
-ListFactory = require('../factories/list_factory.js').ListFactory;
+let List = require('../lists/list.js').List;
+let ListFactory = require('../factories/list_factory.js').ListFactory;
 
 class Board {
   /**

@@ -10,7 +10,6 @@
  */
 
 let BoardFactory = require('./factories/board_factory.js').BoardFactory;
-let BoardOptions = require('./enums/board_options.js').BoardOptions;
 
 class App {
   /**
