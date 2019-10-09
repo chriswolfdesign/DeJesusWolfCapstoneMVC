@@ -10,6 +10,7 @@
  */
 
 let BoardFactory = require('./factories/board_factory.js').BoardFactory;
+let BoardOptions = require('./enums/board_options.js').BoardOptions;
 
 class App {
   /**
@@ -18,6 +19,7 @@ class App {
   constructor() {
     this.boards = [];
     this.boardFactory = new BoardFactory();
+    this.controller;
   } // end constructor
 
   /**
@@ -29,6 +31,18 @@ class App {
   generateBoardTemplate(option) {
     this.boards.push(this.boardFactory.generateBoard(option));
   }
+
+  /**
+   * Sets the controller of this app.
+   * 
+   * @param {controller} Controller the controller that will send commands to this app.
+   */
+  setController(controller) {
+    this.controller = controller;
+  }
+
+
+
 } // end App
 
 // export this class
