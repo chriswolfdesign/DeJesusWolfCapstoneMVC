@@ -22,6 +22,10 @@ class Controller{
         this.model.generateListTemplate(boardID, option);
     }
 
+    generateTaskCard(boardID, listID, label, text) {
+        this.model.generateTaskCard(boardID, listID, label, text);
+    }
+
     getModel() {
         return this.model;
     }

@@ -74,4 +74,17 @@ suite('Unit testing for controller.js', function() {
         })
     });
 
+    suite('Testing generateTaskCard method', function() {
+        test('App was able to create a task card within the list specified at the'+
+             ' request of the Controller', function() {
+            controller.generateBoardTemplate(BoardOptions.MOSCOW);
+            controller.generateTaskCard(0, 0, "Test", "This is a test.");
+            assert(app.boards[0].lists[0].tasks.length != 0, 'App should have created a task card within '+
+                                                          '"Must" in the first board.');
+            assert(app.boards[0].lists[0].tasks[0].label === "Test", 'The created task Card\'s label should be "Test"');
+            assert(app.boards[0].lists[0].tasks[0].text === "This is a test.", 'The created task card\'s text '
+                                                            + 'should be "This is a test."');
+        })
+    })
+
 });

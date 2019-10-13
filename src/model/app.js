@@ -56,6 +56,20 @@ class App {
   }
 
   /**
+   * Generates a card within a board's list
+   * 
+   * @param {integer} boardID
+   * @param {integer} listID
+   * @param {string} label
+   * @param {string} text
+   *  
+   */
+
+  generateTaskCard(boardID, listID, label, text) {
+    this.boards[boardID].lists[listID].addTask(label, text);
+  }
+
+  /**
    * Sets the controller of this app.
    * 
    * @param {controller} Controller the controller that will send commands to this app.
