@@ -1,16 +1,16 @@
 {
-  "name": "agiledevelopermentboard",
+  "name": "mbc",
   "version": "1.0.0",
   "description": "A web application that will allow users to easily keep track of progress and goals in their software development projects",
   "main": "src/server.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha -u tdd -R spec test/**/*",
-    "test_task_card": "./node_modules/.bin/mocha -u tdd -R spec test/model/task_card_test.js",
-    "test_list": "./node_modules/.bin/mocha -u tdd -R spec test/model/lists/list_test.js",
-    "test_list_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/list_factory_test.js",
-    "test_board": "./node_modules/.bin/mocha -u tdd -R spec test/model/boards/board_test.js",
-    "test_board_factory": "./node_modules/.bin/mocha -u tdd -R spec test/model/factories/board_factory_test.js",
-    "test_app": "./node_modules/.bin/mocha -u tdd -R spec test/model/app_test.js"
+    "test": "mocha -u tdd -R spec test/**/*",
+    "test_task_card": "mocha -u tdd -R spec test/model/task_card_test.js",
+    "test_list": "mocha -u tdd -R spec test/model/lists/list_test.js",
+    "test_list_factory": "mocha -u tdd -R spec test/model/factories/list_factory_test.js",
+    "test_board": "mocha -u tdd -R spec test/model/boards/board_test.js",
+    "test_board_factory": "mocha -u tdd -R spec test/model/factories/board_factory_test.js",
+    "test_app": "mocha -u tdd -R spec test/model/app_test.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,12 @@
   },
   "homepage": "https://github.com/chriswolfdesign/DeJesusWolfCapstoneMVC#readme",
   "dependencies": {
+    "express": "^4.17.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.2.1"
   }

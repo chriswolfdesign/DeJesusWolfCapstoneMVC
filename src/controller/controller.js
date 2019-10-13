@@ -8,8 +8,18 @@ class Controller{
         // this.view.setController(this);
     }
 
-    generateBoard(option) {
+    //generateBoard(label, color);
+
+    generateBoardTemplate(option) {
         this.model.generateBoardTemplate(option);
+    }
+
+    generateList(boardID, label, color) {
+        this.model.generateList(boardID, label, color);
+    }
+
+    generateListTemplate(boardID, option) {
+        this.model.generateListTemplate(boardID, option);
     }
 
     getModel() {

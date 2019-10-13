@@ -33,6 +33,29 @@ class App {
   }
 
   /**
+   * Generates a list with the title and color provided in the board specified by the Controller.
+   * 
+   * @param {integer} boardID the id of the board we are trying to add a list into.
+   * @param {string} label the name of the list being generated
+   * @param {colors} color the color of the list being generated
+   */
+
+  generateList(boardID, label, color) {
+    this.boards[boardID].addList(label, color);
+  }
+
+  /**
+   * Generates a list based on the template given, to the specified board
+   * 
+   * @param {integer} boardID the id of the baord we are trying to add a list into
+   * @param {option} option the type of list we are trying to create
+   */
+
+  generateListTemplate(boardID, option) {
+    this.boards[boardID].addListTemplate(option);
+  }
+
+  /**
    * Sets the controller of this app.
    * 
    * @param {controller} Controller the controller that will send commands to this app.
