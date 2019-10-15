@@ -51,14 +51,19 @@ suite('Unit testing for controller.js', function() {
         test('App was able to create a list at the specified board at the request'
              + '  of the controller', function() {
             controller.generateBoardTemplate(BoardOptions.MOSCOW);
+            controller.generateBoardTemplate(BoardOptions.MOSCOW);
+
             controller.generateList(0, "Test", Colors.RED);
+            controller.generateList(1, "Test2");
+
             assert(app.boards[0].lists.length != 4, 'App should have created a list at the'+
-                                                    'requested board');
+                                                    'requested board.');
             assert(app.boards[0].lists[4].label === "Test", 'App should have created a list with '+
                                                             'the label "Test"');
             assert(app.boards[0].lists[4].color  === Colors.RED, 'App should have created a list'+
                                                                ' at the requested board with the'+
                                                                ' color of red.');
+            assert(app.boards[1].lists.length != 4, 'App should have created a list in the 2nd board.');
         });
     });
 
@@ -66,7 +71,11 @@ suite('Unit testing for controller.js', function() {
         test('App was able to create a list with a template option at the specified '+
              'board at the request of the Controller', function() {
             controller.generateBoardTemplate(BoardOptions.MOSCOW);
+            controller.generateBoardTemplate(BoardOptions.MOSCOW);
+
             controller.generateListTemplate(0, ListOptions.MUST);
+            controller.generateListTemplate(1, ListOptions.MUST);
+
             assert(app.boards[0].lists.length != 4, 'App should have created a second list at the '+
                                                     'requested board');
             assert(app.boards[0].lists[4].label === "Must", 'App should have created a list with '+
@@ -74,20 +83,30 @@ suite('Unit testing for controller.js', function() {
             assert(app.boards[0].lists[4].color === Colors.GREEN, 'App should have created a list'+
                                                                ' at the requested board with the'+
                                                                ' color of green.');
-        })
+            assert(app.boards[1].lists.length != 4, 'App should have created a list in the 2nd board.');
+        });
     });
 
     suite('Testing generateTaskCard method', function() {
         test('App was able to create a task card within the list specified at the'+
              ' request of the Controller', function() {
             controller.generateBoardTemplate(BoardOptions.MOSCOW);
+            controller.generateBoardTemplate(BoardOptions.MOSCOW);
+
             controller.generateTaskCard(0, 0, "Test", "This is a test.");
+            controller.generateTaskCard(1, 0, "Test", "This is a test.");
+            controller.generateTaskCard(0, 1, "Test", "This is a test.");
+
             assert(app.boards[0].lists[0].tasks.length != 0, 'App should have created a task card within '+
                                                           '"Must" in the first board.');
             assert(app.boards[0].lists[0].tasks[0].label === "Test", 'The created task Card\'s label should be "Test"');
             assert(app.boards[0].lists[0].tasks[0].text === "This is a test.", 'The created task card\'s text '
                                                             + 'should be "This is a test."');
-        })
+            assert(app.boards[1].lists[0].tasks.length != 0, 'App should have created a task card within "Must" '+
+                                                             'in the second board.');
+            assert(app.boards[0].lists[1].tasks.length != 0, 'App should have created a task card within the "Should" list ' + 
+                                                             'of the first board.');
+        });
     });
 
     suite('Testing removeBoard method', function() {
@@ -109,9 +128,12 @@ suite('Unit testing for controller.js', function() {
     suite('Testing removeList method', function() {
         test('App was able to remove a list from a board at the request of the Controller', function() {
             app.boards.push(new Board("TestBoard"));
+            app.boards.push(new Board("TestBoard"));
+
             app.boards[0].lists.push(new List("One", Colors.GREEN));
             app.boards[0].lists.push(new List("Two", Colors.YELLOW));
             app.boards[0].lists.push(new List("Three", Colors.RED));
+            app.boards[1].lists.push(new List("Test"));
 
             controller.removeList(0, 0);
             assert(app.boards[0].length != 3, 'App should have removed a list from the specified board.');
@@ -120,6 +142,9 @@ suite('Unit testing for controller.js', function() {
             controller.removeList(0, 1);
             assert(app.boards[0].length != 2, 'App should have removed a 2nd list from the specified board.');
             assert(app.boards[0].lists[0].label === "Two", 'App should have removed the 2nd remaining list.');
+
+            controller.removeList(1, 0);
+            assert(app.boards[1].length != 1, 'App should have removed a list from the 2nd board.')
         });
     });
 
