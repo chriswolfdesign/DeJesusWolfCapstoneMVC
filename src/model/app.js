@@ -33,6 +33,16 @@ class App {
   }
 
   /**
+   * Removes a board from the list of boards.
+   * 
+   * @param {integer} boardID the id of the to be removed
+   */
+
+  removeBoard(boardID) {
+    this.boards.splice(boardID, 1);
+  }
+
+  /**
    * Generates a list with the title and color provided in the board specified by the Controller.
    * 
    * @param {integer} boardID the id of the board we are trying to add a list into.
@@ -56,6 +66,16 @@ class App {
   }
 
   /**
+   * Removes a list from a specified board.
+   * @param {integer} boardID the ID of the board from whom we want to remove a list from
+   * @param {integer} listID the ID of the list we are removing
+   */
+
+  removeList(boardID, listID) {
+    this.boards[boardID].removeList(listID);
+  }
+
+  /**
    * Generates a card within a board's list
    * 
    * @param {integer} boardID
@@ -67,6 +87,17 @@ class App {
 
   generateTaskCard(boardID, listID, label, text) {
     this.boards[boardID].lists[listID].addTask(label, text);
+  }
+
+  /**
+   * Remove a task card from the specified list from a specified board.
+   * @param {integer} boardID the ID of the board we're removing a card from.
+   * @param {integer} listID the ID of the list we're removing a card from.
+   * @param {integer} cardID the ID of the card we're removing.
+   */
+
+  removeTaskCard(boardID, listID, cardID) {
+    this.boards[boardID].removeTaskCard(listID, cardID);
   }
 
   /**

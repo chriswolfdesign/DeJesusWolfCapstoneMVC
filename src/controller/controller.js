@@ -14,8 +14,16 @@ class Controller{
         this.model.generateBoardTemplate(option);
     }
 
+    removeBoard(boardID) {
+        this.model.removeBoard(boardID);
+    }
+
     generateList(boardID, label, color) {
         this.model.generateList(boardID, label, color);
+    }
+
+    removeList(boardID, listID) {
+        this.model.removeList(boardID, listID);
     }
 
     generateListTemplate(boardID, option) {
@@ -24,6 +32,10 @@ class Controller{
 
     generateTaskCard(boardID, listID, label, text) {
         this.model.generateTaskCard(boardID, listID, label, text);
+    }
+
+    removeTaskCard(boardID, listID, cardID) {
+        this.model.removeTaskCard(boardID, listID, cardID);
     }
 
     getModel() {

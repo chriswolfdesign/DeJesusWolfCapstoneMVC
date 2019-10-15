@@ -33,6 +33,26 @@ class Board {
     this.lists.push(new List(label, color));
   }
 
+  /**
+   * Removes a task card from a specified list.
+   * @param {integer} listID the ID we are removing a card from.
+   * @param {integer} cardID the ID of the card we are removing. 
+   */
+
+  removeTaskCard(listID, cardID) {
+    this.lists[listID].removeTaskCard(cardID);
+  }
+
+  /**
+   * Removes the specified list.
+   * 
+   * @param {integer} listID the ID of a list we are trying to remove 
+   */
+
+  removeList(listID) {
+    this.lists.splice(listID, 1);
+  }
+
   /** 
    * adds a new list using the ListFactory
    *

@@ -39,6 +39,17 @@ class List {
   addTask(label, text) {
     this.tasks.push(new TaskCard(label, text));
   } // end addTask
+
+
+  /**
+   * Removes a task card from the tasks field
+   * @param {integer} cardID the ID of the being removed.
+   */
+
+  removeTaskCard(cardID) {
+    this.tasks.splice(cardID, 1);
+  }
+
 } // end List
 
 // export this class
