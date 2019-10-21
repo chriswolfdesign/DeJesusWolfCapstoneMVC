@@ -70,4 +70,25 @@ suite('Unit testing for task-card.js', function() {
       assert(listOneParam.tasks[1].text === 'Task B', 'Should be Task B');
     }); // end adding to a nonempty test list
   }); // end List.addTask tests
+
+  suite('Testing List.removeTaskCard', function() {
+    test('Removing the first task card from list.', function() {
+      listOneParam.addTask('TestA', '');
+      listOneParam.addTask('TestB', '');
+      listOneParam.removeTaskCard(0);
+
+      assert(listOneParam.tasks.length === 1, 'Should have removed a task card from a list.');
+      assert(listOneParam.tasks[0].label === 'TestB', 'Should have removed the first task card.');
+    });
+
+    test('Removing the second task card from list.', function() {
+      listOneParam.addTask('TestA', '');
+      listOneParam.addTask('TestB', '');
+      listOneParam.removeTaskCard(1);
+
+      assert(listOneParam.tasks.length === 1, 'Should have removed a task card from a list.');
+      assert(listOneParam.tasks[0].label === 'TestA', 'Should have removed the first task card.');
+    });
+  });
+
 }); // end unit testing for list.js

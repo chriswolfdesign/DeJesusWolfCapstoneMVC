@@ -4,8 +4,6 @@ class Controller{
     constructor() {
         this.model = new App();
         this.model.setController(this);
-        // this.view = ...
-        // this.view.setController(this);
     }
 
     //generateBoard(label, color);
