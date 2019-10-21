@@ -72,7 +72,9 @@ class View {
     // for every list, generate the HTML
     for(var i = 0; i < model.boards[0].lists.length; i++) {
       html += '<div style=' + this.generateListStyle(model.boards[0].lists[i]) 
-        + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1></div>';
+        + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' + 
+        this.generateIndividualListHTML(model.boards[0].lists[i]) + 
+        '</div>';
     } // end for loop
 
     return html;
@@ -87,10 +89,68 @@ class View {
    */
   generateIndividualListHTML(list) {
     let html = '<div>'
-    html += list.title;
+    html += this.generateTaskCardsHTML(list);
     html += '</div>';
     return html;
   } // end generateIndividualListHTML
+
+  /**
+   * generates the HTML for all of the task cards in a list
+   *
+   * @param {List} the list whose task cards we are generating
+   *
+   * @return {string} the HTML representation of all of the task cards in the
+   *                  list
+   */
+  generateTaskCardsHTML(list) {
+    let html = '<div>';
+    
+    // for each task card, generate the HTML
+    for(var i = 0; i < list.tasks.length; i++) {
+      html += this.generateIndividualTaskCardHTML(list.tasks[i]);
+    } // end for loop
+
+    html += '</div>';
+
+    return html;
+  } // end genereateTaskCardsHTML
+
+  /**
+   * generates the HTML for an individual task card
+   *
+   * @param {TaskCard} the task card we are generating HTML for
+   *
+   * @return {string} the HTML representation of the task card
+   */
+  generateIndividualTaskCardHTML(task) {
+    let html = '<div ' + this.generateTaskCardStyle() + '>';
+    
+    html += task.text;
+
+    html += '</div>';
+
+    return html;
+  } // end genereateIndividualTaskCardHTML
+
+  /**
+   * generates the style for a task card
+   *
+   * @return {string} the HTML representation of the style of a task card
+   */
+  generateTaskCardStyle() {
+    let style = 'style =\'';
+    style += 'background-color: grey;';
+    style += 'width: 80%;';
+    style += 'height: 15vh;';
+    style += 'margin-left: auto;';
+    style += 'margin-right: auto;';
+    style += 'margin-bottom: 10px;';
+    style += 'padding-top: 5px;';
+    style += 'border-radius: 5px;';
+    style += 'font-size: 24px;';
+    style += '\'';
+    return style;
+  }
 
   /**
    * generates the style for the individual list
