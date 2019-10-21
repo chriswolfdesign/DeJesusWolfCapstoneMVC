@@ -103,4 +103,96 @@ suite('Unit testing for board.js', function() {
       assert(testBoard.lists[0].color === Colors.RED, 'Should be Red');
     }); // end wont have list test
   }); // end Board.addListTemplate tests
+
+  suite('Testing Board.removeList', function() {
+    test('Remove the first list of Board', function() {
+      testBoard.addList('TestA');
+      testBoard.addList('TestB');
+      testBoard.removeList(0);
+      assert(testBoard.lists.length !== 0, 'A list should have been removed.');
+      assert(testBoard.lists[0].label === 'TestB', 'The first list should\'ve been removed.');
+    });//end of remove first list
+
+    test('Remove the first list of Board', function() {
+      testBoard.addList('TestA');
+      testBoard.addList('TestB');
+      testBoard.removeList(1);
+      assert(testBoard.lists.length !== 0, 'A list should have been removed.');
+      assert(testBoard.lists[0].label === 'TestA', 'The second list should\'ve been removed.');
+    });//end of remove first list
+  }); // end of Board.removeList tests
+
+  suite('Testing Board.generateTaskCard', function() {
+    test('Generated a task card within the first list', function() {
+      testBoard.addList('TestA');
+      testBoard.addList('TestB');
+      testBoard.generateTaskCard(0, 'TEST', 'This is a test.');
+      assert(testBoard.lists[0].tasks.length !== 0, 'A task card should have been created in the first list.');
+      assert(testBoard.lists[1].tasks.length === 0, 'A task card shouldn\'t have been created in the second list.');
+    }); // end of generating a card in the first list test
+
+    test('Generated a task card within the second list', function() {
+      testBoard.addList('TestA');
+      testBoard.addList('TestB');
+      testBoard.generateTaskCard(1, 'TEST', 'This is a test.');
+      assert(testBoard.lists[1].tasks.length !== 0, 'A task card should have been created in the second list.');
+      assert(testBoard.lists[0].tasks.length === 0, 'A task card shouldn\'t have been created in the first list.');
+    }); // end of generating a card in the second list test
+  });//end of Board.generateTaskCard tests
+
+  suite('Testing Board.removeTaskCard', function() {
+    test('Remove the first task card within the first list.', function() {
+      testBoard.addList('TestA');
+      testBoard.addList('TestB');
+      testBoard.lists[0].addTask('AA', '');
+      testBoard.lists[0].addTask('AB', '');
+      testBoard.lists[1].addTask('BA', '');
+      testBoard.removeTaskCard(0, 0);
+
+      assert(testBoard.lists[0].tasks.length === 1, 'A task card should have been removed from the first list.');
+      assert(testBoard.lists[0].tasks[0].label === 'AB', 'The first task card should have been removed from the first list.');
+      assert(testBoard.lists[1].tasks.length !== 0, 'A task card shouldn\'t haven been removed from the second list.');
+    });
+
+    test('Remove the second task card within the first list.', function() {
+      testBoard.addList('TestA');
+      testBoard.addList('TestB');
+      testBoard.lists[0].addTask('AA', '');
+      testBoard.lists[0].addTask('AB', '');
+      testBoard.lists[1].addTask('BA', '');
+      testBoard.removeTaskCard(0, 1);
+
+      assert(testBoard.lists[0].tasks.length === 1, 'A task card should have been removed from the first list.');
+      assert(testBoard.lists[0].tasks[0].label === 'AA', 'The first task card should have been removed from the first list.');
+      assert(testBoard.lists[1].tasks.length !== 0, 'A task card shouldn\'t haven been removed from the second list.');
+    });
+
+    test('Remove the first task card within the second list.', function() {
+      testBoard.addList('TestA');
+      testBoard.addList('TestB');
+      testBoard.lists[1].addTask('AA', '');
+      testBoard.lists[1].addTask('AB', '');
+      testBoard.lists[0].addTask('BA', '');
+      testBoard.removeTaskCard(1, 0);
+
+      assert(testBoard.lists[1].tasks.length === 1, 'A task card should have been removed from the second list.');
+      assert(testBoard.lists[1].tasks[0].label === 'AB', 'The first task card should have been removed from the second list.');
+      assert(testBoard.lists[0].tasks.length !== 0, 'A task card shouldn\'t haven been removed from the first list.');
+    });
+
+    test('Remove the second task card within the second list.', function() {
+      testBoard.addList('TestA');
+      testBoard.addList('TestB');
+      testBoard.lists[1].addTask('AA', '');
+      testBoard.lists[1].addTask('AB', '');
+      testBoard.lists[0].addTask('BA', '');
+      testBoard.removeTaskCard(1, 1);
+
+      assert(testBoard.lists[1].tasks.length === 1, 'A task card should have been removed from the second list.');
+      assert(testBoard.lists[1].tasks[0].label === 'AA', 'The second task card should have been removed from the second list.');
+      assert(testBoard.lists[0].tasks.length !== 0, 'A task card shouldn\'t haven been removed from the first list.');
+    });
+
+  });
+
 }); // end board.js tests
