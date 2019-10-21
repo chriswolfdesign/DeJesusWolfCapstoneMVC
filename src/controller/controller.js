@@ -1,9 +1,11 @@
 let App = require('../model/app.js').App;
+let View = require('../view/view.js').View;
 
 class Controller{
     constructor() {
         this.model = new App();
         this.model.setController(this);
+        this.view = new View();
     }
 
     //generateBoard(label, color);
@@ -38,6 +40,15 @@ class Controller{
 
     getModel() {
         return this.model;
+    }
+
+    /**
+     * Calls the view class to generate HTML based on the given model
+     *
+     * @return {String} html based off of model
+     */
+    generateHTML() {
+        return this.view.generateHTML(this.model);
     }
 }
 

@@ -9,11 +9,14 @@
  */
 
 let express = require('express');
+Controller = require('./controller/controller.js').Controller;
 
 // Define the port number
 const PORT = 5000;
 
 const app = express();
+
+let controller = new Controller();
 
 // have the server start listening on PORT
 app.listen(PORT, function() {
@@ -22,5 +25,5 @@ app.listen(PORT, function() {
 
 // send some default HTML
 app.get('/', function(req, res) {
-  res.send('<h1>Testing</h1>');
+  res.send(controller.generateHTML());
 }); // end app.get
