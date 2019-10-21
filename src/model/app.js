@@ -86,7 +86,7 @@ class App {
    */
 
   generateTaskCard(boardID, listID, label, text) {
-    this.boards[boardID].lists[listID].addTask(label, text);
+    this.boards[boardID].generateTaskCard(listID, label, text);
   }
 
   /**

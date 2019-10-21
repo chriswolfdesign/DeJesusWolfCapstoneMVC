@@ -34,6 +34,18 @@ class Board {
   }
 
   /**
+   * Creates a task card within the specified list.
+   * 
+   * @param {integer} listID 
+   * @param {string} label
+   * @param {string} text 
+   */
+
+   generateTaskCard(listID, label, text) {
+     this.lists[listID].addTask(label, text);
+   }
+
+  /**
    * Removes a task card from a specified list.
    * @param {integer} listID the ID we are removing a card from.
    * @param {integer} cardID the ID of the card we are removing. 
