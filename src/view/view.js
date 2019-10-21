@@ -10,6 +10,8 @@
 class View {
   // Intentionally no constructor
 
+  // FIXME: There must be a better way of generating style into this CSS
+
   /**
    * generates HTML based on the current model
    *
@@ -19,10 +21,26 @@ class View {
    */
   generateHTML(model) {
     let html = '<html>';
+    html += this.generateStyle();
     html += this.generateHeaderHTML(model);
     html += '</html>';
+    console.log(html);
     return html;
   } // end generateHTML
+
+  /**
+   * Generates the style for this HTML page
+   *
+   * @return {string} the HTML that specifies the style
+   */
+  generateStyle() {
+    let style = '<style> body {';
+    style += 'background-color: purple;';
+    style += 'color: white;';
+    style += '}';
+    style += '</style>';
+    return style;
+  }
 
   /**
    * generates the header based on the current model
