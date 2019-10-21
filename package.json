@@ -4,6 +4,7 @@
   "description": "A web application that will allow users to easily keep track of progress and goals in their software development projects",
   "main": "src/server.js",
   "scripts": {
+    "serve": "node src/server.js",
     "test": "mocha -u tdd -R spec test/**/*",
     "test_task_card": "mocha -u tdd -R spec test/model/task_card_test.js",
     "test_list": "mocha -u tdd -R spec test/model/lists/list_test.js",
