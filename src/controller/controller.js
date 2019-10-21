@@ -3,7 +3,7 @@ let View = require('../view/view.js').View;
 
 class Controller{
     constructor() {
-        this.model = new App();
+        this.model = new App('Demo');
         this.model.setController(this);
         this.view = new View();
     }

@@ -18,8 +18,26 @@ class View {
    * @return {string} the HTML for model
    */
   generateHTML(model) {
-    return '<h1>TODO: Implement</h1>'
+    let html = '<html>';
+    html += this.generateHeaderHTML(model);
+    html += '</html>';
+    return html;
   } // end generateHTML
+
+  /**
+   * generates the header based on the current model
+   *
+   * @param {Model} the model we are generating the header HTML for
+   *
+   * @return {String} the HTML for the header of the model
+   */
+  generateHeaderHTML(model)  {
+    let html = '<div style=text-align:center;>'
+    html += '<h1><u>'
+    html += model.title;
+    html += '</u></h1></div>';
+    return html;
+  }; // end generateHeaderHTML
 } // end View
 
 // export this class

@@ -15,8 +15,11 @@ let BoardOptions = require('./enums/board_options.js').BoardOptions;
 class App {
   /**
    * Generates the foundation for the app
+   *
+   * @param {String} the title of this board
    */
-  constructor() {
+  constructor(title) {
+    this.title = title;
     this.boards = [];
     this.boardFactory = new BoardFactory();
     this.controller;
