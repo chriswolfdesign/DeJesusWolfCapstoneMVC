@@ -24,7 +24,6 @@ class View {
     html += this.generateStyle();
     html += this.generateHeaderHTML(model);
     html += '</html>';
-    console.log(html);
     return html;
   } // end generateHTML
 
