@@ -7,28 +7,7 @@ class Controller{
     this.model = new App('MoSCoW Board');
     this.model.setController(this);
     this.view = new View();
-    this.generateBoardTemplate(BoardOptions.MOSCOW);
-
-    /**
-    * DEMO CODE
-    * Simply for demonstration purposes
-    * Remove after sprint review
-    */
-    this.model.boards[0].lists[0].addTask('MT1', 'Must Task 1');
-    this.model.boards[0].lists[0].addTask('MT2', 'Must Task 2');
-
-    this.model.boards[0].lists[1].addTask('CT1', 'Could Task 1');
-    this.model.boards[0].lists[1].addTask('CT2', 'Could Task 2');
-
-    this.model.boards[0].lists[2].addTask('ST1', 'Should Task 1');
-    this.model.boards[0].lists[2].addTask('ST2', 'Should Task 2');
-
-    this.model.boards[0].lists[3].addTask('WT1', 'Wont Task 1');
-    this.model.boards[0].lists[3].addTask('WT2', 'Wont Task 2');
-    /**
-    * END DEMO CODE
-    */
-
+    // this.generateBoardTemplate(BoardOptions.MOSCOW);
   } // end constructor
 
   /**

@@ -9,7 +9,17 @@
  */
 
 let express = require('express');
-Controller = require('./controller/controller.js').Controller;
+let Controller = require('./controller/controller.js').Controller;
+
+/**
+ * DEMO CODE
+ * Simply for demonstration purposes
+ * Remove after sprint review
+ */
+let BoardOptions = require('./model/enums/board_options.js').BoardOptions;
+/**
+ * END DEMO CODE
+ */
 
 // Define the port number
 const PORT = 5000;
@@ -17,6 +27,29 @@ const PORT = 5000;
 const app = express();
 
 let controller = new Controller();
+
+
+/**
+* DEMO CODE
+* Simply for demonstration purposes
+* Remove after sprint review
+*/
+controller.generateBoardTemplate(BoardOptions.MOSCOW);
+
+controller.model.boards[0].lists[0].addTask('MT1', 'Must Task 1');
+controller.model.boards[0].lists[0].addTask('MT2', 'Must Task 2');
+
+controller.model.boards[0].lists[1].addTask('CT1', 'Could Task 1');
+controller.model.boards[0].lists[1].addTask('CT2', 'Could Task 2');
+
+controller.model.boards[0].lists[2].addTask('ST1', 'Should Task 1');
+controller.model.boards[0].lists[2].addTask('ST2', 'Should Task 2');
+
+controller.model.boards[0].lists[3].addTask('WT1', 'Wont Task 1');
+controller.model.boards[0].lists[3].addTask('WT2', 'Wont Task 2');
+/**
+* END DEMO CODE
+*/
 
 // have the server start listening on PORT
 app.listen(PORT, function() {
