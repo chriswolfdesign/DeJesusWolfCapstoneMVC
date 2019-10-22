@@ -15,7 +15,7 @@ let MoscowBoard = require('../boards/moscow_board.js').MoscowBoard;
 class BoardFactory {
   constructor() {
     this.moscowBoard = new MoscowBoard();
-  }
+  } // end constructor
 
   /**
    * generates a board based on the parameter passed in

@@ -21,7 +21,7 @@ class ListFactory {
     this.shouldList = new ShouldList();
     this.couldList = new CouldList();
     this.wontList = new WontList();
-  }
+  } // end constructor
 
   /**
    * generates a list based on the parameter passed in

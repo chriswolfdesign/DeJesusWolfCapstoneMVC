@@ -2,7 +2,7 @@
  * colors.js
  *
  * A JavaScript object that will act as an enumeration to represent
- * colors 
+ * colors
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -15,7 +15,7 @@ const Colors = {
   YELLOW: 'yellow',
   ORANGE: 'orange',
   RED: 'red'
-};
+}; // end Colors
 
 // export Colors
 module.exports.Colors = Colors;

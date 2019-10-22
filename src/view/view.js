@@ -17,7 +17,7 @@ class View {
   /**
    * generates HTML based on the current model
    *
-   * @param {Model} the model we are generating HTML for
+   * @param {Model} model the model we are generating HTML for
    *
    * @return {string} the HTML for model
    */
@@ -47,7 +47,7 @@ class View {
   /**
    * generates the header based on the current model
    *
-   * @param {Model} the model we are generating the header HTML for
+   * @param {Model} model the model we are generating the header HTML for
    *
    * @return {String} the HTML for the header of the model
    */
@@ -62,18 +62,18 @@ class View {
   /**
    * generates all of the lists inside of the model
    *
-   * @param {Model} the model we are displaying the lists for
+   * @param {Model} model the model we are displaying the lists for
    *
    * @return {string} the HTML for the lists
    */
   generateListsHTML(model)  {
     let html = '<div style=\'height: 80vh;\'>';
-    
+
     // for every list, generate the HTML
     for(var i = 0; i < model.boards[0].lists.length; i++) {
-      html += '<div style=' + this.generateListStyle(model.boards[0].lists[i]) 
-        + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' + 
-        this.generateIndividualListHTML(model.boards[0].lists[i]) + 
+      html += '<div style=' + this.generateListStyle(model.boards[0].lists[i])
+        + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
+        this.generateIndividualListHTML(model.boards[0].lists[i]) +
         '</div>';
     } // end for loop
 
@@ -83,7 +83,7 @@ class View {
   /**
    * generates the list passed in
    *
-   * @param {List} the list whose HTML is being generated
+   * @param {List} list the list whose HTML is being generated
    *
    * @return {string} the HTML representation of the given list
    */
@@ -97,14 +97,14 @@ class View {
   /**
    * generates the HTML for all of the task cards in a list
    *
-   * @param {List} the list whose task cards we are generating
+   * @param {List} list the list whose task cards we are generating
    *
    * @return {string} the HTML representation of all of the task cards in the
    *                  list
    */
   generateTaskCardsHTML(list) {
     let html = '<div>';
-    
+
     // for each task card, generate the HTML
     for(var i = 0; i < list.tasks.length; i++) {
       html += this.generateIndividualTaskCardHTML(list.tasks[i]);
@@ -118,13 +118,13 @@ class View {
   /**
    * generates the HTML for an individual task card
    *
-   * @param {TaskCard} the task card we are generating HTML for
+   * @param {TaskCard} task the task card we are generating HTML for
    *
    * @return {string} the HTML representation of the task card
    */
   generateIndividualTaskCardHTML(task) {
     let html = '<div ' + this.generateTaskCardStyle() + '>';
-    
+
     html += task.text;
 
     html += '</div>';
@@ -155,9 +155,9 @@ class View {
   /**
    * generates the style for the individual list
    *
-   * @param {List} the list we are trying to generate style for
+   * @param {List} list the list we are trying to generate style for
    *
-   * @return {string} the HTML for the style of this 
+   * @return {string} the HTML for the style of this
    */
   generateListStyle(list) {
     let style = '\'';
@@ -166,7 +166,7 @@ class View {
     style += 'text-align: center;'
     style += 'border: 5px solid black;';
     style += 'border-radius: 5px;';
-    style += 'background-color: ' + this.generateListBackgroundColor(list) + 
+    style += 'background-color: ' + this.generateListBackgroundColor(list) +
       ';';
     style += 'color: black;';
     style += 'margin-left: 5px;';
@@ -178,7 +178,7 @@ class View {
   /**
    * generates the background color based on the list's color property
    *
-   * @param {List} the list whose color we are calculating
+   * @param {List} list the list whose color we are calculating
    *
    * @return {string} string representation of the list's color
    */

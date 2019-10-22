@@ -12,7 +12,6 @@ let ListOptions = require('../enums/list_options.js').ListOptions;
 let Board = require('./board.js').Board;
 
 class MoscowBoard {
-
   /**
    * genereates a MoSCoW Board
    *
@@ -27,8 +26,8 @@ class MoscowBoard {
     board.addListTemplate(ListOptions.WONT);
 
     return board;
-  }
-}
+  } // end generateBoard
+} // end MoscowBoard
 
 // export this class
 module.exports.MoscowBoard = MoscowBoard;

@@ -11,7 +11,7 @@
 
 const BoardOptions = {
   MOSCOW: 'Moscow'
-};
+}; // end BoardOptions
 
 // export BoardOptions
 module.exports.BoardOptions = BoardOptions;

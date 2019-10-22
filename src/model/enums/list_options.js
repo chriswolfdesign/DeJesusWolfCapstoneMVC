@@ -14,7 +14,7 @@ const ListOptions = {
   SHOULD: 'Should',
   COULD: 'Could',
   WONT: 'Wont'
-};
+}; // end ListOptions
 
 // export ListOptions
 module.exports.ListOptions = ListOptions;
