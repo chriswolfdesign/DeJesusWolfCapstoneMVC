@@ -68,12 +68,14 @@ class View {
    */
   generateListsHTML(model)  {
     let html = '<div style=\'height: 80vh;\'>';
+    var boardNum = this.idGenerate(0); //Replace 0 with the index of board
 
     // for every list, generate the HTML
     for(var i = 0; i < model.boards[0].lists.length; i++) {
-      html += '<div style=' + this.generateListStyle(model.boards[0].lists[i])
+      html += '<div id=\'' + boardNum + this.idGenerate(i+1) + '000'+ '\' style=' 
+        + this.generateListStyle(model.boards[0].lists[i])
         + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
-        this.generateIndividualListHTML(model.boards[0].lists[i]) +
+        this.generateIndividualListHTML(model.boards[0].lists[i], 0, i) +
         '</div>';
     } // end for loop
 
@@ -87,9 +89,9 @@ class View {
    *
    * @return {string} the HTML representation of the given list
    */
-  generateIndividualListHTML(list) {
+  generateIndividualListHTML(list, boardNum, listNum) {
     let html = '<div>'
-    html += this.generateTaskCardsHTML(list);
+    html += this.generateTaskCardsHTML(list, boardNum, listNum);
     html += '</div>';
     return html;
   } // end generateIndividualListHTML
@@ -102,12 +104,12 @@ class View {
    * @return {string} the HTML representation of all of the task cards in the
    *                  list
    */
-  generateTaskCardsHTML(list) {
+  generateTaskCardsHTML(list, boardNum, listNum) {
     let html = '<div>';
 
     // for each task card, generate the HTML
     for(var i = 0; i < list.tasks.length; i++) {
-      html += this.generateIndividualTaskCardHTML(list.tasks[i]);
+      html += this.generateIndividualTaskCardHTML(list.tasks[i], boardNum, listNum, i);
     } // end for loop
 
     html += '</div>';
@@ -122,10 +124,19 @@ class View {
    *
    * @return {string} the HTML representation of the task card
    */
-  generateIndividualTaskCardHTML(task) {
-    let html = '<div ' + this.generateTaskCardStyle() + '>';
+  generateIndividualTaskCardHTML(task, boardNum, listNum, taskNum) {
+    var boardID = this.idGenerate(boardNum);
+    var listID = this.idGenerate(listNum+1);
+    var taskID = this.idGenerate(taskNum+1);
+    var id = boardID + listID + taskID;
+    let html = '<div id=\'' + id + '\' ' + this.generateTaskCardStyle() + '>';
 
-    html += task.text;
+    html += '<h>' + task.title + '</h>';
+    html += '<p>' + task.text + '</p>';
+    html += '<div style=\'position:absolute;right: 0px;bottom: 0px;\'>';
+    html += '<button>+</button>';
+    html += '<button>++</button>';
+    html += '</div>'
 
     html += '</div>';
 
@@ -139,6 +150,7 @@ class View {
    */
   generateTaskCardStyle() {
     let style = 'style =\'';
+    style += 'position: relative;';
     style += 'background-color: grey;';
     style += 'width: 80%;';
     style += 'height: 15vh;';
@@ -196,6 +208,37 @@ class View {
         return 'grey'
     } // end switch case
   } // end generateListBackgroundColor
+
+  /**
+   * Generates an id based on the index of board and list that the card is in, as well
+   * as the card's index. Made with the assumption that the entire HTML will be regenerated
+   * if changes are made to Model.
+   * 
+   * Format:
+   *    000 | 000 | 000
+   *     1     2     3
+   * 1) Signifies Board
+   * 2) Signifies List
+   * 3) Signifies Text Card
+   * 
+   *  * The 000 is reserved in section 2 and 3 to be used as the ID
+   *    for the board and list respectively (ex. 001000000 is the ID of
+   *    the second board)
+   * 
+   * @param {*} board 
+   * @param {*} list 
+   * @param {*} card 
+   */
+  idGenerate(number){
+    let num = Number(number);
+    var id = num.toString(16);
+    while(id.length < 3){
+        id = '0' + id;
+    }
+    return id;
+  }
+
+
 } // end View
 
 // export this class
