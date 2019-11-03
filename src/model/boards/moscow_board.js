@@ -13,7 +13,7 @@ let Board = require('./board.js').Board;
 
 class MoscowBoard {
   /**
-   * genereates a MoSCoW Board
+   * generates a MoSCoW Board
    *
    * @return {Board} a MoSCoW Board
    */
