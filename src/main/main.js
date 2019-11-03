@@ -40,4 +40,16 @@ window.onload = function() {
   /**
    * END DEBUG CODE
    */
-} // end window.onload
+
+  // draw the HTML to the page
+  render(controller);
+}; // end window.onload
+
+/**
+ * Causes the HTML to be drawn, or redrawn, to the screen
+ *
+ * @param {Controller} controller responsible for generating the HTML
+ */
+function render(controller) {
+  document.getElementById('main').innerHTML = controller.generateHTML();
+} // end render
