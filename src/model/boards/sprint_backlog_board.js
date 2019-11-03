@@ -8,8 +8,10 @@
  * @version 2.0.0 (November 3, 2019)
  */
 
-let ListOptions = require('../enums/list_options.js').ListOptions;
+// let ListOptions = require('../enums/list_options.js').ListOptions;
 let Board = require('./board.js').Board;
+let SprintBacklogListOptions = require('../enums/sprint_backlog_list_options.js').SprintBacklogListOptions;
+let SprintBacklogListFactory = require('../factories/sprint_backlog_list_factory.js').SprintBacklogListFactory;
 
 class SprintBacklogBoard {
   /**
@@ -19,11 +21,12 @@ class SprintBacklogBoard {
    */
   generateBoard() {
     let board = new Board('Sprint Backlog');
+    board.setListFactory(new SprintBacklogListFactory());
 
-    board.addListTemplate(ListOptions.BACKLOG);
-    board.addListTemplate(ListOptions.INPROGRESS);
-    board.addListTemplate(ListOptions.INREVIEW);
-    board.addListTemplate(ListOptions.COMPLETE);
+    board.addListTemplate(SprintBacklogListOptions.BACKLOG);
+    board.addListTemplate(SprintBacklogListOptions.INPROGRESS);
+    board.addListTemplate(SprintBacklogListOptions.INREVIEW);
+    board.addListTemplate(SprintBacklogListOptions.COMPLETE);
 
     return board;
   } // end generateBoard

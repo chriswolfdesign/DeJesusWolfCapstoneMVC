@@ -26,7 +26,9 @@ window.onload = function() {
     generateMoSCoWController(controller);
   } else {
     controller = new Controller('Sprint Backlog');
+    console.log('About to generate controller');
     generateSprintController(controller);
+    console.log('Finished generating controller');
   }
 
   // draw the HTML to the page
@@ -35,7 +37,11 @@ window.onload = function() {
 }; // end window.onload
 
 function generateSprintController(controller) {
+
+
   controller.generateBoardTemplate(BoardOptions.SPRINT);
+
+  console.log(controller);
 
   // add backlog items
   controller.generateTaskCard(0, 0, 'BL1', 'Backlog Task 1');

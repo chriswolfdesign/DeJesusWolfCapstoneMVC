@@ -16,7 +16,10 @@ class Controller{
    * @param {BoardOption} the template we are using to build a new board
    */
   generateBoardTemplate(option) {
+    console.log('About to generate board templates');
+    console.log(option);
     this.model.generateBoardTemplate(option);
+    console.log('Complete generating board template');
   } // end generateBoardTemplate
 
   /**
