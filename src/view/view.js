@@ -78,7 +78,7 @@ class View {
       html += '<div id=\'' + model.boards[0].lists[i].label + '\' style=' + this.generateListStyle(model.boards[0].lists[i])
         + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
         this.generateIndividualListHTML(model.boards[0].lists[i]) +
-          this.generateButtonHTML() +
+          this.generateButtonHTML(model.boards[0].lists[i].label) +
         '</div>';
     } // end for loop
 
@@ -208,8 +208,9 @@ class View {
     }
   }
 
-  generateButtonHTML() {
-    return "<button onclick=addButtonClicked() style=\'background-color: blue;color: white;\'> + </button>";
+  generateButtonHTML(parentID) {
+    let thisID = parentID + 'AddButton';
+    return "<button id=\'" + thisID + "\' style=\'background-color: blue;color: white;\'> + </button>";
   } // end generateButtonHTML
 } // end View
 

@@ -36,7 +36,26 @@ window.onload = function() {
 
   // draw the HTML to the page
   render(controller);
+
 }; // end window.onload
+
+/**
+ * Adds the event listener to each of the buttons as they are rendered
+ *
+ * @param controller the controller holding each of the buttons
+ */
+function addClickListeners(controller) {
+  for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
+    let buttonID = controller.model.boards[0].lists[i].label + "AddButton";
+    console.log(document.getElementById(buttonID).innerText);
+    document.getElementById(buttonID).addEventListener("click", function(event) {
+      let newTaskID = prompt('Please enter the new task label: ');
+      let newTaskText = prompt('Please enter the new task text: ');
+        controller.model.boards[0].lists[i].addTask(newTaskID, newTaskText);
+        render(controller);
+    });
+  }
+}
 
 /**
  * Causes the HTML to be drawn, or redrawn, to the screen
@@ -45,7 +64,5 @@ window.onload = function() {
  */
 function render(controller) {
   document.getElementById('main').innerHTML = controller.generateHTML();
+  addClickListeners(controller);
 } // end render
-
-// export addButtonClicked
-module.exports.addButtonClicked = addButtonClicked;
