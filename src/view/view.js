@@ -71,7 +71,7 @@ class View {
 
     // for every list, generate the HTML
     for(var i = 0; i < model.boards[0].lists.length; i++) {
-      html += '<div style=' + this.generateListStyle(model.boards[0].lists[i])
+      html += '<div id=\'' + model.boards[0].lists[i].label + '\' style=' + this.generateListStyle(model.boards[0].lists[i])
         + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
         this.generateIndividualListHTML(model.boards[0].lists[i]) +
         '</div>';
@@ -113,7 +113,7 @@ class View {
     html += '</div>';
 
     return html;
-  } // end genereateTaskCardsHTML
+  } // end generateTaskCardsHTML
 
   /**
    * generates the HTML for an individual task card
@@ -123,14 +123,14 @@ class View {
    * @return {string} the HTML representation of the task card
    */
   generateIndividualTaskCardHTML(task) {
-    let html = '<div ' + this.generateTaskCardStyle() + '>';
+    let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + '>';
 
     html += task.text;
 
     html += '</div>';
 
     return html;
-  } // end genereateIndividualTaskCardHTML
+  } // end generateIndividualTaskCardHTML
 
   /**
    * generates the style for a task card

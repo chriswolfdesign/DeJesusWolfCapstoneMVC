@@ -53,3 +53,7 @@ window.onload = function() {
 function render(controller) {
   document.getElementById('main').innerHTML = controller.generateHTML();
 } // end render
+
+function addButtonClicked(event, controller) {
+  // TODO: Implement
+} // end addTaskCard
