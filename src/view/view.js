@@ -9,6 +9,10 @@
 
 let Color = require('../model/enums/colors.js').Colors;
 
+function addButtonClicked() {
+  console.log('Button clicked!');
+}
+
 class View {
   // Intentionally no constructor
 
@@ -74,6 +78,7 @@ class View {
       html += '<div id=\'' + model.boards[0].lists[i].label + '\' style=' + this.generateListStyle(model.boards[0].lists[i])
         + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
         this.generateIndividualListHTML(model.boards[0].lists[i]) +
+          this.generateButtonHTML() +
         '</div>';
     } // end for loop
 
@@ -196,6 +201,16 @@ class View {
         return 'grey'
     } // end switch case
   } // end generateListBackgroundColor
+
+  addButtonClicked() {
+    return function() {
+      alert('Do something!  Please!');
+    }
+  }
+
+  generateButtonHTML() {
+    return "<button onclick=addButtonClicked() style=\'background-color: blue;color: white;\'> + </button>";
+  } // end generateButtonHTML
 } // end View
 
 // export this class

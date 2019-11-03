@@ -10,6 +10,7 @@
 
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 let Controller = require("../controller/controller").Controller;
+let View = require('../view/view.js').View;
 
 window.onload = function() {
   let controller = new Controller();
@@ -33,14 +34,6 @@ window.onload = function() {
   controller.generateTaskCard(0, 3, 'WT1', 'Wont Task 1');
   controller.generateTaskCard(0, 3, 'WT2', 'Wont Task 2');
 
-  /**
-   * DEBUG CODE
-   */
-  console.log(controller);
-  /**
-   * END DEBUG CODE
-   */
-
   // draw the HTML to the page
   render(controller);
 }; // end window.onload
@@ -54,6 +47,5 @@ function render(controller) {
   document.getElementById('main').innerHTML = controller.generateHTML();
 } // end render
 
-function addButtonClicked(event, controller) {
-  // TODO: Implement
-} // end addTaskCard
+// export addButtonClicked
+module.exports.addButtonClicked = addButtonClicked;
