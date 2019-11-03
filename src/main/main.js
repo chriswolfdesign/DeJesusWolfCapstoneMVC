@@ -13,10 +13,21 @@ let Controller = require("../controller/controller").Controller;
 let View = require('../view/view.js').View;
 
 window.onload = function() {
-  let controller = new Controller();
+  let controller;
 
-  // generate a MoSCoW board
-  generateSprintController(controller);
+  // ask the user which board they would like
+  let decision = '';
+  while (decision != 'moscow' && decision != 'sprint') {
+    decision = prompt('Which board would you like? (moscow/sprint)');
+  }
+
+  if (decision == 'moscow') {
+    controller = new Controller('MoSCoW Board');
+    generateMoSCoWController(controller);
+  } else {
+    controller = new Controller('Sprint Backlog');
+    generateSprintController(controller);
+  }
 
   // draw the HTML to the page
   render(controller);

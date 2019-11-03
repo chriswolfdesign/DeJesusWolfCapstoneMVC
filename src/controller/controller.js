@@ -3,8 +3,8 @@ let View = require('../view/view.js').View;
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 
 class Controller{
-  constructor() {
-    this.model = new App('MoSCoW Board');
+  constructor(boardName) {
+    this.model = new App(boardName);
     this.model.setController(this);
     this.view = new View();
     // this.generateBoardTemplate(BoardOptions.MOSCOW);
