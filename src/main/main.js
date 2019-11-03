@@ -16,6 +16,19 @@ window.onload = function() {
   let controller = new Controller();
 
   // generate a MoSCoW board
+  generateMoSCoWController(controller);
+
+  // draw the HTML to the page
+  render(controller);
+
+}; // end window.onload
+
+/**
+ * Forces the controller to generate a MoSCoW Board demonstration
+ *
+ * @param controller the controller generating the board
+ */
+function generateMoSCoWController(controller) {
   controller.generateBoardTemplate(BoardOptions.MOSCOW);
 
   // add Must Have Items
@@ -33,11 +46,7 @@ window.onload = function() {
   // add Wont Have Items
   controller.generateTaskCard(0, 3, 'WT1', 'Wont Task 1');
   controller.generateTaskCard(0, 3, 'WT2', 'Wont Task 2');
-
-  // draw the HTML to the page
-  render(controller);
-
-}; // end window.onload
+}
 
 /**
  * Adds the event listener to each of the buttons as they are rendered
