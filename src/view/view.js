@@ -9,10 +9,6 @@
 
 let Color = require('../model/enums/colors.js').Colors;
 
-function addButtonClicked() {
-  console.log('Button clicked!');
-}
-
 class View {
   // Intentionally no constructor
 

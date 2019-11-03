@@ -108,4 +108,4 @@ class Model {
 } // end App
 
 // export this class
-module.exports.App = Model;
+module.exports.Model = Model;

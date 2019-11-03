@@ -1,10 +1,10 @@
-let App = require('../model/model.js').App;
+let Model = require('../model/model.js').Model;
 let View = require('../view/view.js').View;
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 
 class Controller{
   constructor(boardName) {
-    this.model = new App(boardName);
+    this.model = new Model(boardName);
     this.model.setController(this);
     this.view = new View();
     // this.generateBoardTemplate(BoardOptions.MOSCOW);
@@ -16,10 +16,7 @@ class Controller{
    * @param {BoardOption} the template we are using to build a new board
    */
   generateBoardTemplate(option) {
-    console.log('About to generate board templates');
-    console.log(option);
     this.model.generateBoardTemplate(option);
-    console.log('Complete generating board template');
   } // end generateBoardTemplate
 
   /**

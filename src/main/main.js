@@ -26,9 +26,7 @@ window.onload = function() {
     generateMoSCoWController(controller);
   } else {
     controller = new Controller('Sprint Backlog');
-    console.log('About to generate controller');
     generateSprintController(controller);
-    console.log('Finished generating controller');
   }
 
   // draw the HTML to the page
@@ -40,8 +38,6 @@ function generateSprintController(controller) {
 
 
   controller.generateBoardTemplate(BoardOptions.SPRINT);
-
-  console.log(controller);
 
   // add backlog items
   controller.generateTaskCard(0, 0, 'BL1', 'Backlog Task 1');
@@ -93,7 +89,6 @@ function generateMoSCoWController(controller) {
 function addClickListeners(controller) {
   for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
     let buttonID = controller.model.boards[0].lists[i].label + "AddButton";
-    console.log(document.getElementById(buttonID).innerText);
     document.getElementById(buttonID).addEventListener("click", function(event) {
       let newTaskID = prompt('Please enter the new task label: ');
       let newTaskText = prompt('Please enter the new task text: ');
