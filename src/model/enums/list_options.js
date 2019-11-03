@@ -13,7 +13,11 @@ const ListOptions = {
   MUST: 'Must',
   SHOULD: 'Should',
   COULD: 'Could',
-  WONT: 'Wont'
+  WONT: 'Wont',
+  BACKLOG: 'Backlog',
+  INPROGRESS: 'InProgress',
+  INREVIEW: 'InReview',
+  COMPLETE: 'Complete'
 }; // end ListOptions
 
 // export ListOptions

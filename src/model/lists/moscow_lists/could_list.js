@@ -12,7 +12,7 @@ let List = require('../list.js').List;
 let Colors = require('../../enums/colors.js').Colors;
 
 class CouldList {
-  // Constructor delibrately left out
+  // Constructor deliberately left out
 
   /**
    * generates a Could Have List for MoSCoW board
