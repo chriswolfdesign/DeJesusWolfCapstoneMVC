@@ -17,11 +17,11 @@ window.onload = function() {
 
   // ask the user which board they would like
   let decision = '';
-  while (decision != 'moscow' && decision != 'sprint') {
+  while (decision !== 'moscow' && decision !== 'sprint') {
     decision = prompt('Which board would you like? (moscow/sprint)');
   }
 
-  if (decision == 'moscow') {
+  if (decision === 'moscow') {
     controller = new Controller('MoSCoW Board');
     generateMoSCoWController(controller);
   } else {
