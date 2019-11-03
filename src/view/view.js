@@ -128,10 +128,18 @@ class View {
 
     html += task.text;
 
+    html += this.generateEditButtonHTML(task);
+
     html += '</div>';
 
     return html;
   } // end generateIndividualTaskCardHTML
+
+  generateEditButtonHTML(task) {
+    let buttonID = task.label + "EditButton";
+    return '</br><button id=' + buttonID + ' style=\'background-color: blue; color: white\'>' +
+      '...</button>';
+  }
 
   /**
    * generates the style for a task card
