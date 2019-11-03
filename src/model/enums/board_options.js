@@ -10,7 +10,8 @@
  */
 
 const BoardOptions = {
-  MOSCOW: 'Moscow'
+  MOSCOW: 'Moscow',
+  SPRINT: 'Sprint Backlog'
 }; // end BoardOptions
 
 // export BoardOptions

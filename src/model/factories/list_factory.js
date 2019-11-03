@@ -14,6 +14,10 @@ let MustList = require('../lists/moscow_lists/must_list.js').MustList;
 let ShouldList = require('../lists/moscow_lists/should_list.js').ShouldList;
 let CouldList = require('../lists/moscow_lists/could_list.js').CouldList;
 let WontList = require('../lists/moscow_lists/wont_list.js').WontList;
+let BacklogList = require('../lists/sprint_backlog_lists/backlog_list.js').BacklogList;
+let InProgressList = require('../lists/sprint_backlog_lists/in_progress_list.js').InProgressList;
+let InReviewList = require('../lists/sprint_backlog_lists/in_review_list.js').InReviewList;
+let CompleteList = require('../lists/sprint_backlog_lists/complete_list.js').CompleteList;
 
 class ListFactory {
   constructor() {
@@ -21,7 +25,11 @@ class ListFactory {
     this.shouldList = new ShouldList();
     this.couldList = new CouldList();
     this.wontList = new WontList();
-  } // end constructor
+    this.backlogList = new BacklogList();
+    this.inProgressList = new InProgressList();
+    this.inReviewList = new InReviewList();
+    this.completeList = new CompleteList();
+} // end constructor
 
   /**
    * generates a list based on the parameter passed in
@@ -40,6 +48,14 @@ class ListFactory {
         return this.couldList.generateList();
       case ListOptions.WONT:
         return this.wontList.generateList();
+      case ListOptions.BACKLOG:
+        return this.backlogList.generateList();
+      case ListOptions.INPROGRESS:
+        return this.inProgressList.generateList();
+      case ListOptions.INREVIEW:
+        return this.inReviewList.generateList();
+      case ListOptions.COMPLETE:
+        return this.completeList.generateList();
       default:
         return null;
     } // end switch

@@ -11,10 +11,12 @@
 
 let BoardOptions = require('../enums/board_options.js').BoardOptions;
 let MoscowBoard = require('../boards/moscow_board.js').MoscowBoard;
+let SprintBacklogBoard = require('../boards/sprint_backlog_board.js').SprintBacklogBoard;
 
 class BoardFactory {
   constructor() {
     this.moscowBoard = new MoscowBoard();
+    this.sprintBoard = new SprintBacklogBoard();
   } // end constructor
 
   /**
@@ -28,6 +30,8 @@ class BoardFactory {
     switch (option) {
       case BoardOptions.MOSCOW:
         return this.moscowBoard.generateBoard();
+      case BoardOptions.SPRINT:
+        return this.sprintBoard.generateBoard();
       default:
         return null;
     } // end switch case

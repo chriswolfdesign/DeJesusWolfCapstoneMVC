@@ -16,12 +16,32 @@ window.onload = function() {
   let controller = new Controller();
 
   // generate a MoSCoW board
-  generateMoSCoWController(controller);
+  generateSprintController(controller);
 
   // draw the HTML to the page
   render(controller);
 
 }; // end window.onload
+
+function generateSprintController(controller) {
+  controller.generateBoardTemplate(BoardOptions.SPRINT);
+
+  // add backlog items
+  controller.generateTaskCard(0, 0, 'BL1', 'Backlog Task 1');
+  controller.generateTaskCard(0, 0, 'BL2', 'Backlog Task 2');
+
+  // add in progress items
+  controller.generateTaskCard(0, 1, 'IP1', 'In Progress Task 1');
+  controller.generateTaskCard(0, 1, 'IP2', 'In Progress Task 2');
+
+  // add in review items
+  controller.generateTaskCard(0, 2, 'IR1', 'In Review Task 1');
+  controller.generateTaskCard(0, 2, 'IR2', 'In Review Task 2');
+
+  // add complete items
+  controller.generateTaskCard(0, 3, 'CT1', 'Complete Task 1');
+  controller.generateTaskCard(0, 3, 'CT2', 'Complete Task 2');
+}
 
 /**
  * Forces the controller to generate a MoSCoW Board demonstration
