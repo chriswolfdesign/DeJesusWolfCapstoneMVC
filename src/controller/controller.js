@@ -1,4 +1,4 @@
-let App = require('../model/app.js').App;
+let App = require('../model/model.js').App;
 let View = require('../view/view.js').View;
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 

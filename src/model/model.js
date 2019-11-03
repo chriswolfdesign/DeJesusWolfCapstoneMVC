@@ -1,5 +1,5 @@
 /**
- * app.js
+ * model.js
  *
  * The JavaScript class that will wrap the entirity of our Agile Development
  * Board
@@ -12,7 +12,7 @@
 let BoardFactory = require('./factories/board_factory.js').BoardFactory;
 let BoardOptions = require('./enums/board_options.js').BoardOptions;
 
-class App {
+class Model {
   /**
    * Generates the foundation for the app
    *
@@ -108,4 +108,4 @@ class App {
 } // end App
 
 // export this class
-module.exports.App = App;
+module.exports.App = Model;

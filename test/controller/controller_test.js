@@ -10,7 +10,7 @@
 
 let assert = require('chai').assert;
 let Controller = require('../../src/controller/controller.js').Controller;
-let App = require('../../src/model/app.js').App;
+let App = require('../../src/model/model.js').App;
 let BoardOptions = require('../../src/model/enums/board_options.js').BoardOptions;
 let ListOptions = require('../../src/model/enums/list_options.js').ListOptions;
 let Colors = require('../../src/model/enums/colors.js').Colors;

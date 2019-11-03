@@ -1,7 +1,7 @@
 /**
  * test_app.js
  *
- * Unit testing for app.js
+ * Unit testing for model.js
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -9,13 +9,13 @@
  */
 
 let assert = require('chai').assert;
-let App = require('../../src/model/app.js').App;
+let App = require('../../src/model/model.js').App;
 let BoardOptions = require('../../src/model/enums/board_options.js').BoardOptions;
 let Board = require('../../src/model/boards/board.js').Board
 let Colors = require('../../src/model/enums/colors.js').Colors
 let ListOptions = require('../../src/model/enums/list_options.js').ListOptions
 
-suite('Unit testing for app.js', function() {
+suite('Unit testing for model.js', function() {
   let app = null;
 
   // Set up our app
@@ -263,6 +263,6 @@ suite('Unit testing for app.js', function() {
     })
   });
 
-}); // end unit testing for app.js
+}); // end unit testing for model.js
 
 
