@@ -20,6 +20,19 @@ class Controller{
   } // end generateBoardTemplate
 
   /**
+   * Changes the text in a task card
+   *
+   * @param listIndex which list the task card is in
+   * @param taskIndex which task card we are changing
+   * @param newTaskText the text to change the task card to
+   */
+  editTaskText(listIndex, taskIndex, newTaskText) {
+    if (newTaskText !== '' && newTaskText !== null) {
+      this.model.boards[0].lists[listIndex].tasks[taskIndex].text = newTaskText;
+    } // end if
+  } // end editTaskText
+
+  /**
    * removes a board from our model
    *
    * @param {string} boardID the id for the board we are removing
@@ -102,4 +115,4 @@ class Controller{
 } // end Controller
 
 // export this class
-module.exports.Controller = Controller
+module.exports.Controller = Controller;

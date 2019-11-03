@@ -19,7 +19,7 @@ window.onload = function() {
   let decision = '';
   while (decision !== 'moscow' && decision !== 'sprint') {
     decision = prompt('Which board would you like? (moscow/sprint)');
-  }
+  } // end while
 
   if (decision === 'moscow') {
     controller = new Controller('MoSCoW Board');
@@ -27,7 +27,7 @@ window.onload = function() {
   } else {
     controller = new Controller('Sprint Backlog');
     generateSprintController(controller);
-  }
+  } // end if-else
 
   // draw the HTML to the page
   render(controller);
@@ -35,8 +35,6 @@ window.onload = function() {
 }; // end window.onload
 
 function generateSprintController(controller) {
-
-
   controller.generateBoardTemplate(BoardOptions.SPRINT);
 
   // add backlog items
@@ -54,7 +52,7 @@ function generateSprintController(controller) {
   // add complete items
   controller.generateTaskCard(0, 3, 'CT1', 'Complete Task 1');
   controller.generateTaskCard(0, 3, 'CT2', 'Complete Task 2');
-}
+} // end generateSprintController
 
 /**
  * Forces the controller to generate a MoSCoW Board demonstration
@@ -79,7 +77,7 @@ function generateMoSCoWController(controller) {
   // add Wont Have Items
   controller.generateTaskCard(0, 3, 'WT1', 'Wont Task 1');
   controller.generateTaskCard(0, 3, 'WT2', 'Wont Task 2');
-}
+} // end generateMoscowController
 
 /**
  * Adds the event listener to each of the buttons as they are rendered
@@ -87,6 +85,7 @@ function generateMoSCoWController(controller) {
  * @param controller the controller holding each of the buttons
  */
 function addClickListeners(controller) {
+  // generate the add button listeners
   for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
     let buttonID = controller.model.boards[0].lists[i].label + "AddButton";
     document.getElementById(buttonID).addEventListener("click", function(event) {
@@ -94,9 +93,22 @@ function addClickListeners(controller) {
       let newTaskText = prompt('Please enter the new task text: ');
         controller.model.boards[0].lists[i].addTask(newTaskID, newTaskText);
         render(controller);
-    });
-  }
-}
+    }); // end Event Listener
+  } // end for
+
+  // generate the edit button listeners
+  for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
+    for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
+      console.log(controller);
+      let buttonID = controller.model.boards[0].lists[i].tasks[j].label + 'EditButton';
+      document.getElementById(buttonID).addEventListener('click', function(event) {
+        let newTaskText = prompt('Please enter the new text');
+        controller.editTaskText(i, j, newTaskText);
+        render(controller);
+      }); // end Event Listener
+    } // end for each task
+  } // end for each list
+} // end addClickListeners
 
 /**
  * Causes the HTML to be drawn, or redrawn, to the screen

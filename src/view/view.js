@@ -206,12 +206,6 @@ class View {
     } // end switch case
   } // end generateListBackgroundColor
 
-  addButtonClicked() {
-    return function() {
-      alert('Do something!  Please!');
-    }
-  }
-
   generateButtonHTML(parentID) {
     let thisID = parentID + 'AddButton';
     return "<button id=\'" + thisID + "\' style=\'background-color: blue;color: white;\'> + </button>";
