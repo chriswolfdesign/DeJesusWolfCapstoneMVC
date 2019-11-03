@@ -8,8 +8,10 @@
  * @version 2.0.0 (October 7, 2019)
  */
 
-let ListOptions = require('../enums/list_options.js').ListOptions;
+// let ListOptions = require('../enums/list_options.js').ListOptions;
 let Board = require('./board.js').Board;
+let MoscowListOptions = require('../enums/moscow_list_options.js').MoscowListOptions;
+let MoscowListFactory = require('../factories/moscow_list_factory.js').MoscowListFactory;
 
 class MoscowBoard {
   /**
@@ -19,11 +21,12 @@ class MoscowBoard {
    */
   generateBoard() {
     let board = new Board('MoSCoW Board');
+    board.setListFactory(new MoscowListFactory());
 
-    board.addListTemplate(ListOptions.MUST);
-    board.addListTemplate(ListOptions.SHOULD);
-    board.addListTemplate(ListOptions.COULD);
-    board.addListTemplate(ListOptions.WONT);
+    board.addListTemplate(MoscowListOptions.MUST);
+    board.addListTemplate(MoscowListOptions.SHOULD);
+    board.addListTemplate(MoscowListOptions.COULD);
+    board.addListTemplate(MoscowListOptions.WONT);
 
     return board;
   } // end generateBoard

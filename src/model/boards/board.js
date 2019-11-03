@@ -24,6 +24,15 @@ class Board {
   } // end constructor
 
   /**
+   * sets listFactory to something more specific
+   *
+   * @param {ListFactory} factory the new factory
+   */
+  setListFactory(factory) {
+    this.factory = factory;
+  }
+
+  /**
    * adds a new list to our board
    *
    * @param {string} label the label for our new list
