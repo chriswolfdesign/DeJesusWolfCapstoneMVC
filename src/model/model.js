@@ -89,12 +89,11 @@ class Model {
 
   /**
    * Remove a task card from the specified list from a specified board.
-   * @param {integer} boardID the ID of the board we're removing a card from.
    * @param {integer} listID the ID of the list we're removing a card from.
-   * @param {integer} cardID the ID of the card we're removing.
+   * @param {integer} taskID the ID of the card we're removing.
    */
-  removeTaskCard(boardID, listID, cardID) {
-    this.boards[boardID].removeTaskCard(listID, cardID);
+  removeTaskCard(listID, taskID) {
+    this.boards[0].removeTaskCard(listID, taskID);
   } // end removeTaskCard
 
   /**

@@ -126,19 +126,19 @@ class View {
   generateIndividualTaskCardHTML(task) {
     let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + '>';
 
-    html += task.text;
+    html += '<div id=' + task.label + 'Text>' + task.text + '</div>';
 
-    html += this.generateEditButtonHTML(task);
+    html += this.generateRemoveButtonHTML(task);
 
     html += '</div>';
 
     return html;
   } // end generateIndividualTaskCardHTML
 
-  generateEditButtonHTML(task) {
-    let buttonID = task.label + "EditButton";
-    return '</br><button id=' + buttonID + ' style=\'background-color: blue; color: white\'>' +
-      '...</button>';
+  generateRemoveButtonHTML(task) {
+    let buttonID = task.label + "RemoveButton";
+    return '</br><button id=' + buttonID + ' style=\'background-color: red; color: white\'>' +
+      'X</button>';
   }
 
   /**

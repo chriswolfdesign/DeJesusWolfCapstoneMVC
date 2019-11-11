@@ -100,7 +100,8 @@ function addClickListeners(controller) {
   for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
     for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
       // console.log(controller);
-      let taskID = controller.model.boards[0].lists[i].tasks[j].label;
+      let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'Text';
+      console.log(taskID);
       document.getElementById(taskID).addEventListener('click', function(event) {
         let newTaskText = prompt('Please enter the new text');
         controller.editTaskText(i, j, newTaskText);
@@ -108,6 +109,20 @@ function addClickListeners(controller) {
       }); // end Event Listener
     } // end for each task
   } // end for each list
+  
+  // generate the listener for removing task cards
+  for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
+    for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
+      let buttonID = controller.model.boards[0].lists[i].tasks[j].label + 'RemoveButton';
+      document.getElementById(buttonID).addEventListener('click', function(event){
+        let choice = prompt('Are you sure you would like to remove this card?');
+        if (choice.toLowerCase() == 'yes') {
+          controller.removeTaskCard(i, j);
+          render(controller);
+        }
+      });
+    }
+  }
 } // end addClickListeners
 
 /**

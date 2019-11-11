@@ -92,8 +92,8 @@ class Controller{
    * @param {string} listID the list from which we are removing a task card
    * @param {string} cardID the task we are removing
    */
-  removeTaskCard(boardID, listID, cardID) {
-    this.model.removeTaskCard(boardID, listID, cardID);
+  removeTaskCard(list, task) {
+    this.model.removeTaskCard(list, task);
   } // end removeTaskCard
 
   /**
@@ -217,11 +217,12 @@ function addClickListeners(controller) {
     }); // end Event Listener
   } // end for
 
-  // generate the edit button listeners
+  // generate the listeners for editting task cards
   for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
     for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
       // console.log(controller);
-      let taskID = controller.model.boards[0].lists[i].tasks[j].label;
+      let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'Text';
+      console.log(taskID);
       document.getElementById(taskID).addEventListener('click', function(event) {
         let newTaskText = prompt('Please enter the new text');
         controller.editTaskText(i, j, newTaskText);
@@ -229,6 +230,20 @@ function addClickListeners(controller) {
       }); // end Event Listener
     } // end for each task
   } // end for each list
+  
+  // generate the listener for removing task cards
+  for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
+    for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
+      let buttonID = controller.model.boards[0].lists[i].tasks[j].label + 'RemoveButton';
+      document.getElementById(buttonID).addEventListener('click', function(event){
+        let choice = prompt('Are you sure you would like to remove this card?');
+        if (choice.toLowerCase() == 'yes') {
+          controller.removeTaskCard(i, j);
+          render(controller);
+        }
+      });
+    }
+  }
 } // end addClickListeners
 
 /**
@@ -1114,12 +1129,11 @@ class Model {
 
   /**
    * Remove a task card from the specified list from a specified board.
-   * @param {integer} boardID the ID of the board we're removing a card from.
    * @param {integer} listID the ID of the list we're removing a card from.
-   * @param {integer} cardID the ID of the card we're removing.
+   * @param {integer} taskID the ID of the card we're removing.
    */
-  removeTaskCard(boardID, listID, cardID) {
-    this.boards[boardID].removeTaskCard(listID, cardID);
+  removeTaskCard(listID, taskID) {
+    this.boards[0].removeTaskCard(listID, taskID);
   } // end removeTaskCard
 
   /**
@@ -1292,19 +1306,19 @@ class View {
   generateIndividualTaskCardHTML(task) {
     let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + '>';
 
-    html += task.text;
+    html += '<div id=' + task.label + 'Text>' + task.text + '</div>';
 
-    html += this.generateEditButtonHTML(task);
+    html += this.generateRemoveButtonHTML(task);
 
     html += '</div>';
 
     return html;
   } // end generateIndividualTaskCardHTML
 
-  generateEditButtonHTML(task) {
-    let buttonID = task.label + "EditButton";
-    return '</br><button id=' + buttonID + ' style=\'background-color: blue; color: white\'>' +
-      '...</button>';
+  generateRemoveButtonHTML(task) {
+    let buttonID = task.label + "RemoveButton";
+    return '</br><button id=' + buttonID + ' style=\'background-color: red; color: white\'>' +
+      'X</button>';
   }
 
   /**

@@ -91,8 +91,8 @@ class Controller{
    * @param {string} listID the list from which we are removing a task card
    * @param {string} cardID the task we are removing
    */
-  removeTaskCard(boardID, listID, cardID) {
-    this.model.removeTaskCard(boardID, listID, cardID);
+  removeTaskCard(list, task) {
+    this.model.removeTaskCard(list, task);
   } // end removeTaskCard
 
   /**
