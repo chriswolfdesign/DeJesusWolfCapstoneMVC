@@ -72,7 +72,7 @@ class View {
     // for every list, generate the HTML
     for(var i = 0; i < model.boards[0].lists.length; i++) {
       html += '<div id=\'' + model.boards[0].lists[i].label + '\' style=' + this.generateListStyle(model.boards[0].lists[i])
-        + '><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
+        + '; position: fixed;><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
         this.generateIndividualListHTML(model.boards[0].lists[i]) +
           this.generateButtonHTML(model.boards[0].lists[i].label) +
         '</div>';
@@ -171,6 +171,7 @@ class View {
   generateListStyle(list) {
     let style = '\'';
     style += 'display: inline-block;';
+    style += 'vertical-align: top;';
     style += 'height: 80vh;';
     style += 'text-align: center;'
     style += 'border: 5px solid black;';
