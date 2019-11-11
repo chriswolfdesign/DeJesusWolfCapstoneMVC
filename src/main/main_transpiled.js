@@ -220,9 +220,9 @@ function addClickListeners(controller) {
   // generate the edit button listeners
   for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
     for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
-      console.log(controller);
-      let buttonID = controller.model.boards[0].lists[i].tasks[j].label + 'EditButton';
-      document.getElementById(buttonID).addEventListener('click', function(event) {
+      // console.log(controller);
+      let taskID = controller.model.boards[0].lists[i].tasks[j].label;
+      document.getElementById(taskID).addEventListener('click', function(event) {
         let newTaskText = prompt('Please enter the new text');
         controller.editTaskText(i, j, newTaskText);
         render(controller);
