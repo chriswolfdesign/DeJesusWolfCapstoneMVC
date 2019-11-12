@@ -34,6 +34,11 @@ window.onload = function() {
 
 }; // end window.onload
 
+/**
+ * sets up a basic Sprint Backlog Board
+ *
+ * @return {board} a Sprint Backlog board with predefined tasks
+ */
 function generateSprintController(controller) {
   controller.generateBoardTemplate(BoardOptions.SPRINT);
 
