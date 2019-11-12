@@ -132,9 +132,10 @@ module.exports.Controller = Controller;
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 let Controller = require("../controller/controller").Controller;
 let View = require('../view/view.js').View;
+// let interact = require('interact');
+let controller;
 
 window.onload = function() {
-  let controller;
 
   // ask the user which board they would like
   let decision = '';
@@ -155,6 +156,11 @@ window.onload = function() {
 
 }; // end window.onload
 
+/**
+ * sets up a basic Sprint Backlog Board
+ *
+ * @return {board} a Sprint Backlog board with predefined tasks
+ */
 function generateSprintController(controller) {
   controller.generateBoardTemplate(BoardOptions.SPRINT);
 
@@ -222,7 +228,6 @@ function addClickListeners(controller) {
     for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
       // console.log(controller);
       let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'Text';
-      console.log(taskID);
       document.getElementById(taskID).addEventListener('click', function(event) {
         let newTaskText = prompt('Please enter the new text');
         controller.editTaskText(i, j, newTaskText);
@@ -255,6 +260,31 @@ function render(controller) {
   document.getElementById('main').innerHTML = controller.generateHTML();
   addClickListeners(controller);
 } // end render
+
+// Set up interact
+interact('.draggable').draggable({
+  inertia: true,
+  autoscroll: true,
+  onmove: dragMoveListener,
+  onend: dropped
+}); // end interact-draggable
+
+function dragMoveListener(event) {
+  let target = event.target;
+  let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+  let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+  target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' +  + y + 
+    'px)';
+
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+
+} // end dragMoveListener
+
+function dropped() {
+  render(controller);
+}
 
 },{"../controller/controller":1,"../model/enums/board_options.js":6,"../view/view.js":26}],3:[function(require,module,exports){
 /**
@@ -1192,8 +1222,6 @@ let Color = require('../model/enums/colors.js').Colors;
 class View {
   // Intentionally no constructor
 
-  // FIXME: There must be a better way of generating style into this CSS
-
   /**
    * generates HTML based on the current model
    *
@@ -1304,7 +1332,8 @@ class View {
    * @return {string} the HTML representation of the task card
    */
   generateIndividualTaskCardHTML(task) {
-    let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + '>';
+    let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + 
+          'class=draggable>';
 
     html += '<div id=' + task.label + 'Text>' + task.text + '</div>';
 

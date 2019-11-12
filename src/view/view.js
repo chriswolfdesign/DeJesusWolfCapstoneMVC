@@ -12,8 +12,6 @@ let Color = require('../model/enums/colors.js').Colors;
 class View {
   // Intentionally no constructor
 
-  // FIXME: There must be a better way of generating style into this CSS
-
   /**
    * generates HTML based on the current model
    *
@@ -124,7 +122,8 @@ class View {
    * @return {string} the HTML representation of the task card
    */
   generateIndividualTaskCardHTML(task) {
-    let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + '>';
+    let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + 
+          'class=draggable>';
 
     html += '<div id=' + task.label + 'Text>' + task.text + '</div>';
 

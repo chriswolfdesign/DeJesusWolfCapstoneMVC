@@ -11,9 +11,10 @@
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 let Controller = require("../controller/controller").Controller;
 let View = require('../view/view.js').View;
+// let interact = require('interact');
+let controller;  // I really don't like that this is global, look into other options
 
 window.onload = function() {
-  let controller;
 
   // ask the user which board they would like
   let decision = '';
@@ -106,7 +107,6 @@ function addClickListeners(controller) {
     for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
       // console.log(controller);
       let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'Text';
-      console.log(taskID);
       document.getElementById(taskID).addEventListener('click', function(event) {
         let newTaskText = prompt('Please enter the new text');
         controller.editTaskText(i, j, newTaskText);
@@ -139,3 +139,36 @@ function render(controller) {
   document.getElementById('main').innerHTML = controller.generateHTML();
   addClickListeners(controller);
 } // end render
+
+// Set up interact
+interact('.draggable').draggable({
+  inertia: true,
+  autoscroll: true,
+  onmove: dragMoveListener,
+  onend: dropped
+}); // end interact-draggable
+
+/**
+ * Describes what to do when a task card is being dragged
+ *
+ * @param {event} event -- the drag motion we are using to define movement
+ */
+function dragMoveListener(event) {
+  let target = event.target;
+  let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+  let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+  target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' +  + y + 
+    'px)';
+
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+
+} // end dragMoveListener
+
+/**
+ * Describes what to do when a task card is dropped
+ */
+function dropped() {
+  render(controller);
+}
