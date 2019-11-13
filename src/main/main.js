@@ -124,10 +124,10 @@ function addClickListeners(controller) {
         if (choice.toLowerCase() == 'yes') {
           controller.removeTaskCard(i, j);
           render(controller);
-        }
-      });
-    }
-  }
+        } // end if
+      }); // end buttonID
+    } // end inner for loop
+  } // end outer for loop
 } // end addClickListeners
 
 /**
@@ -171,4 +171,4 @@ function dragMoveListener(event) {
  */
 function dropped() {
   render(controller);
-}
+} // end dropped
