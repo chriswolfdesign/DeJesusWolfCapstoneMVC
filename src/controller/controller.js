@@ -96,6 +96,75 @@ class Controller{
   } // end removeTaskCard
 
   /**
+   * Moves a task card from one list to another
+   *
+   * @param {HTML} newList -- the HTML representation of the new list we're moving the task card to
+   * @param {HTML} movedTaskCard -- the HTML representation of the task card we're moving
+   */
+  moveTaskCard(newList, movedTaskCard) {
+    let listIndex = this.findListIndex(newList.id);
+    let taskIndices = this.getTaskIndices(movedTaskCard.id);
+
+    // store the data that was in the moved task card
+    let tempData = this.getTaskData(taskIndices[0], taskIndices[1]);
+
+    // remove the old task card
+    this.removeTaskCard(taskIndices[0], taskIndices[1]);
+
+    // add a new task card with the same data to the new list
+    this.model.boards[0].lists[listIndex].addTask(tempData[0], tempData[1]);
+  }
+
+  /**
+   * Finds the list index of a list by its label
+   *
+   * @param {string} listLabel -- the list label we are searching for
+   *
+   * @return {int} the list index of the requested list if it exists
+   *               -1 otherwise
+   */
+  findListIndex(listLabel) {
+    for (let i = 0; i < this.model.boards[0].lists.length; i++) {
+      if (this.model.boards[0].lists[i].label === listLabel) {
+        return i;
+      } // end if
+    } // end for
+
+    // if the list does not exist
+    return -1;
+  } // end findListIndex
+
+  /**
+   * Gets the board indices of the task card we are looking for
+   *
+   * @param {string} taskID -- the label of the task card we are looking for
+   *
+   * @return {list} -- [the list index of the task card, the task index of the task card]
+   */
+  getTaskIndices(taskID) {
+    for (let i = 0; i < this.model.boards[0].lists.length; i++) {
+      for (let j = 0; j < this.model.boards[0].lists[i].tasks.length; j++) {
+        if (taskID === this.model.boards[0].lists[i].tasks[j].label) {
+          return [i, j];
+        } // end if
+      } // end inner-for
+    } // end outer-for
+  } // end getTaskIndices
+
+  /**
+   * Gets the data held inside the task card
+   *
+   * @param {int} -- the list index of the task card we're looking for
+   * @param {int} -- the task index of the task card we're looking for
+   *
+   * @return {list} -- [task card's label, task card's text]
+   */
+  getTaskData(listIndex, taskIndex) {
+    return [this.model.boards[0].lists[listIndex].tasks[taskIndex].label,
+            this.model.boards[0].lists[listIndex].tasks[taskIndex].text];
+  }
+
+  /**
    * getter for model
    *
    * @return {App} the model this controller controls

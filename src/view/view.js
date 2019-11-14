@@ -69,7 +69,7 @@ class View {
 
     // for every list, generate the HTML
     for(var i = 0; i < model.boards[0].lists.length; i++) {
-      html += '<div id=\'' + model.boards[0].lists[i].label + '\' style=' + this.generateListStyle(model.boards[0].lists[i])
+      html += '<div id=\'' + model.boards[0].lists[i].label + '\' class=\'dropzone\' style=' + this.generateListStyle(model.boards[0].lists[i])
         + '; position: fixed;><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
         this.generateIndividualListHTML(model.boards[0].lists[i]) +
           this.generateButtonHTML(model.boards[0].lists[i].label) +

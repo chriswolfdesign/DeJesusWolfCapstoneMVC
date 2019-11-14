@@ -11,7 +11,6 @@
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 let Controller = require("../controller/controller").Controller;
 let View = require('../view/view.js').View;
-// let interact = require('interact');
 let controller;  // I really don't like that this is global, look into other options
 
 window.onload = function() {
@@ -147,6 +146,15 @@ interact('.draggable').draggable({
   onmove: dragMoveListener,
   onend: dropped
 }); // end interact-draggable
+
+interact('.dropzone').dropzone({
+  accept: '.draggable',
+  overlap: 0.5,
+  ondrop: function(event) {
+    controller.moveTaskCard(event.target, event.relatedTarget);
+    render(controller);
+  } // end ondrop
+}); // end interact-dropzone
 
 /**
  * Describes what to do when a task card is being dragged

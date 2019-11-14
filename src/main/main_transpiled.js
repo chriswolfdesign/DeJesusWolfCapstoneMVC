@@ -97,6 +97,75 @@ class Controller{
   } // end removeTaskCard
 
   /**
+   * Moves a task card from one list to another
+   *
+   * @param {HTML} newList -- the HTML representation of the new list we're moving the task card to
+   * @param {HTML} movedTaskCard -- the HTML representation of the task card we're moving
+   */
+  moveTaskCard(newList, movedTaskCard) {
+    let listIndex = this.findListIndex(newList.id);
+    let taskIndices = this.getTaskIndices(movedTaskCard.id);
+
+    // store the data that was in the moved task card
+    let tempData = this.getTaskData(taskIndices[0], taskIndices[1]);
+
+    // remove the old task card
+    this.removeTaskCard(taskIndices[0], taskIndices[1]);
+
+    // add a new task card with the same data to the new list
+    this.model.boards[0].lists[listIndex].addTask(tempData[0], tempData[1]);
+  }
+
+  /**
+   * Finds the list index of a list by its label
+   *
+   * @param {string} listLabel -- the list label we are searching for
+   *
+   * @return {int} the list index of the requested list if it exists
+   *               -1 otherwise
+   */
+  findListIndex(listLabel) {
+    for (let i = 0; i < this.model.boards[0].lists.length; i++) {
+      if (this.model.boards[0].lists[i].label === listLabel) {
+        return i;
+      } // end if
+    } // end for
+
+    // if the list does not exist
+    return -1;
+  } // end findListIndex
+
+  /**
+   * Gets the board indices of the task card we are looking for
+   *
+   * @param {string} taskID -- the label of the task card we are looking for
+   *
+   * @return {list} -- [the list index of the task card, the task index of the task card]
+   */
+  getTaskIndices(taskID) {
+    for (let i = 0; i < this.model.boards[0].lists.length; i++) {
+      for (let j = 0; j < this.model.boards[0].lists[i].tasks.length; j++) {
+        if (taskID === this.model.boards[0].lists[i].tasks[j].label) {
+          return [i, j];
+        } // end if
+      } // end inner-for
+    } // end outer-for
+  } // end getTaskIndices
+
+  /**
+   * Gets the data held inside the task card
+   *
+   * @param {int} -- the list index of the task card we're looking for
+   * @param {int} -- the task index of the task card we're looking for
+   *
+   * @return {list} -- [task card's label, task card's text]
+   */
+  getTaskData(listIndex, taskIndex) {
+    return [this.model.boards[0].lists[listIndex].tasks[taskIndex].label,
+            this.model.boards[0].lists[listIndex].tasks[taskIndex].text];
+  }
+
+  /**
    * getter for model
    *
    * @return {App} the model this controller controls
@@ -132,8 +201,7 @@ module.exports.Controller = Controller;
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 let Controller = require("../controller/controller").Controller;
 let View = require('../view/view.js').View;
-// let interact = require('interact');
-let controller;
+let controller;  // I really don't like that this is global, look into other options
 
 window.onload = function() {
 
@@ -245,10 +313,10 @@ function addClickListeners(controller) {
         if (choice.toLowerCase() == 'yes') {
           controller.removeTaskCard(i, j);
           render(controller);
-        }
-      });
-    }
-  }
+        } // end if
+      }); // end buttonID
+    } // end inner for loop
+  } // end outer for loop
 } // end addClickListeners
 
 /**
@@ -269,6 +337,20 @@ interact('.draggable').draggable({
   onend: dropped
 }); // end interact-draggable
 
+interact('.dropzone').dropzone({
+  accept: '.draggable',
+  overlap: 0.5,
+  ondrop: function(event) {
+    controller.moveTaskCard(event.target, event.relatedTarget);
+    render(controller);
+  } // end ondrop
+}); // end interact-dropzone
+
+/**
+ * Describes what to do when a task card is being dragged
+ *
+ * @param {event} event -- the drag motion we are using to define movement
+ */
 function dragMoveListener(event) {
   let target = event.target;
   let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
@@ -282,9 +364,12 @@ function dragMoveListener(event) {
 
 } // end dragMoveListener
 
+/**
+ * Describes what to do when a task card is dropped
+ */
 function dropped() {
   render(controller);
-}
+} // end dropped
 
 },{"../controller/controller":1,"../model/enums/board_options.js":6,"../view/view.js":26}],3:[function(require,module,exports){
 /**
@@ -1279,7 +1364,7 @@ class View {
 
     // for every list, generate the HTML
     for(var i = 0; i < model.boards[0].lists.length; i++) {
-      html += '<div id=\'' + model.boards[0].lists[i].label + '\' style=' + this.generateListStyle(model.boards[0].lists[i])
+      html += '<div id=\'' + model.boards[0].lists[i].label + '\' class=\'dropzone\' style=' + this.generateListStyle(model.boards[0].lists[i])
         + '; position: fixed;><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
         this.generateIndividualListHTML(model.boards[0].lists[i]) +
           this.generateButtonHTML(model.boards[0].lists[i].label) +
