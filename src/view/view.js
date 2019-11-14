@@ -26,6 +26,9 @@ class View {
     html += this.generateStyle();
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
+    html += "<div>"
+    html += "<button id=\"save\"> Save </button>";
+    html += "</div>"
     html += '</html>';
     return html;
   } // end generateHTML

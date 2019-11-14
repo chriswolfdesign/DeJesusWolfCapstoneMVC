@@ -155,6 +155,11 @@ window.onload = function() {
 
 }; // end window.onload
 
+/**
+ * sets up a basic Sprint Backlog Board
+ *
+ * @return {board} a Sprint Backlog board with predefined tasks
+ */
 function generateSprintController(controller) {
   controller.generateBoardTemplate(BoardOptions.SPRINT);
 
@@ -244,6 +249,27 @@ function addClickListeners(controller) {
       });
     }
   }
+
+  // generate the listener for saving
+
+  document.getElementById("save").addEventListener('click', function(event){
+    var temp = controller;
+    controller.model.controller = null;
+
+    var name = prompt("Enter the file name:");
+    const data = JSON.stringify(controller.model)
+    const blob = new Blob([data], {type: 'text/plain'})
+    const e = document.createEvent('MouseEvents'),
+    a = document.createElement('a');
+    a.download = name + ".json";
+    a.href = window.URL.createObjectURL(blob);
+    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+    e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    a.dispatchEvent(e);
+    controller.model.controller = temp;
+  });
+  
+
 } // end addClickListeners
 
 /**
@@ -1206,6 +1232,9 @@ class View {
     html += this.generateStyle();
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
+    html += "<div>"
+    html += "<button id=\"save\"> Save </button>";
+    html += "</div>"
     html += '</html>';
     return html;
   } // end generateHTML
