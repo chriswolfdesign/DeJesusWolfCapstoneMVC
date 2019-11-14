@@ -343,7 +343,14 @@ interact('.dropzone').dropzone({
   ondrop: function(event) {
     controller.moveTaskCard(event.target, event.relatedTarget);
     render(controller);
-  } // end ondrop
+  }, // end ondrop
+  ondragenter: function(event) {
+    console.log(event.target);
+    event.target.style.border = '5px solid white';
+  }, // end ondragenter
+  ondragleave: function(event) {
+    event.target.style.border = '5px solid black';
+  } // end ondragleave
 }); // end interact-dropzone
 
 /**
