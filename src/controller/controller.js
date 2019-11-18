@@ -181,6 +181,16 @@ class Controller{
   generateHTML() {
     return this.view.generateHTML(this.model);
   } // end generateHTML
+
+  /**
+   * Sets the values within model to the values loaded from a JSON file. 
+   * 
+   * @param {object} model the board we are trying to load into model
+   */
+
+  loadBoards(model){
+    this.model.loadBoards(model);
+  }
 } // end Controller
 
 // export this class

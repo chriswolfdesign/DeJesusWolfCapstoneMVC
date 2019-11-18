@@ -9,6 +9,7 @@
  * @version 2.0.0 (October 7, 2019)
  */
 
+let Board = require('../boards/board.js').Board;
 let BoardOptions = require('../enums/board_options.js').BoardOptions;
 let MoscowBoard = require('../boards/moscow_board.js').MoscowBoard;
 let SprintBacklogBoard = require('../boards/sprint_backlog_board.js').SprintBacklogBoard;
@@ -32,6 +33,8 @@ class BoardFactory {
         return this.moscowBoard.generateBoard();
       case BoardOptions.SPRINT:
         return this.sprintBoard.generateBoard();
+      case "empty":
+        return new Board("");
       default:
         return null;
     } // end switch case

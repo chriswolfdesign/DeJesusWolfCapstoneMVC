@@ -11,6 +11,7 @@
 let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 let Controller = require("../controller/controller").Controller;
 let View = require('../view/view.js').View;
+let interact = require('interactjs');
 let controller;  // I really don't like that this is global, look into other options
 
 window.onload = function() {
@@ -127,6 +128,40 @@ function addClickListeners(controller) {
       }); // end buttonID
     } // end inner for loop
   } // end outer for loop
+
+  document.getElementById("save").addEventListener('click', function(event){
+    var temp = controller;
+    controller.model.controller = null;
+    var name = prompt("Enter the file name:");
+    const data = JSON.stringify(controller.model)
+    const blob = new Blob([data], {type: 'text/plain'})
+    const e = document.createEvent('MouseEvents'),
+    a = document.createElement('a');
+    a.download = name + ".json";
+    a.href = window.URL.createObjectURL(blob);
+    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+    e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    a.dispatchEvent(e);
+    controller.model.controller = temp;
+  });
+
+  document.getElementById("submit").addEventListener('click', function(event){
+    var file = document.getElementById("file-input").files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = function (event) {
+        var new_model = JSON.parse(event.target.result);
+        controller.loadBoards(new_model);
+        render(controller);
+      };
+      reader.onerror = function(event){
+        alert("Error reading file.");
+      };
+    }
+  });
+
+
 } // end addClickListeners
 
 /**

@@ -79,6 +79,21 @@ class Board {
   addListTemplate(option) {
     this.lists.push(this.listFactory.generateList(option));
   } // end addListTemplate
+
+  /**
+   * Loads in a list of lists into the 'lists' attribute in board.
+   * @param {lists[]} lists an array of lists to load into board.
+   */
+  loadLists(lists){
+    var nlist;
+    this.lists = []
+    for(var list of lists){
+      nlist = new List(list.label, list.color);
+      nlist.loadTasks(list.tasks);
+      this.lists.push(nlist);
+    }
+  }
+
 } // end Board
 
 // export this class
