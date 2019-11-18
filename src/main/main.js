@@ -155,13 +155,10 @@ function addClickListeners(controller) {
         var new_model = JSON.parse(event.target.result);
         controller.loadBoards(new_model);
         render(controller);
-        controller.model.controller = null;
       };
       reader.onerror = function(event){
         alert("Error reading file.");
       };
-
-
     }
     
   });
