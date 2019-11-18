@@ -113,7 +113,21 @@ class Controller{
   generateHTML() {
     return this.view.generateHTML(this.model);
   } // end generateHTML
+
+  /**
+   * Sets the values within model to the values loaded from a JSON file. 
+   * 
+   * @param {object} board the board we are trying to load into model
+   */
+
+  loadBoards(model){
+    this.model.loadBoards(model);
+  }
+
+
 } // end Controller
+
+
 
 // export this class
 module.exports.Controller = Controller;
@@ -251,11 +265,9 @@ function addClickListeners(controller) {
   }
 
   // generate the listener for saving
-
   document.getElementById("save").addEventListener('click', function(event){
     var temp = controller;
     controller.model.controller = null;
-
     var name = prompt("Enter the file name:");
     const data = JSON.stringify(controller.model)
     const blob = new Blob([data], {type: 'text/plain'})
@@ -267,6 +279,26 @@ function addClickListeners(controller) {
     e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e);
     controller.model.controller = temp;
+  });
+
+  document.getElementById("submit").addEventListener('click', function(event){
+    var file = document.getElementById("file-input").files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = function (event) {
+        var new_model = JSON.parse(event.target.result);
+        controller.loadBoards(new_model);
+        render(controller);
+        controller.model.controller = null;
+      };
+      reader.onerror = function(event){
+        alert("Error reading file.");
+      };
+
+
+    }
+    
   });
   
 
@@ -364,6 +396,16 @@ class Board {
   addListTemplate(option) {
     this.lists.push(this.listFactory.generateList(option));
   } // end addListTemplate
+
+  loadLists(lists){
+    var nlist;
+    this.lists = []
+    for(var list of lists){
+      nlist = new List(list.label, list.color);
+      nlist.loadTasks(list.tasks);
+      this.lists.push(nlist);
+    }
+  }
 } // end Board
 
 // export this class
@@ -568,6 +610,7 @@ module.exports.SprintBacklogListOptions = SprintBacklogListOptions;
  * @version 2.0.0 (October 7, 2019)
  */
 
+let Board = require('../boards/board.js').Board;
 let BoardOptions = require('../enums/board_options.js').BoardOptions;
 let MoscowBoard = require('../boards/moscow_board.js').MoscowBoard;
 let SprintBacklogBoard = require('../boards/sprint_backlog_board.js').SprintBacklogBoard;
@@ -591,6 +634,8 @@ class BoardFactory {
         return this.moscowBoard.generateBoard();
       case BoardOptions.SPRINT:
         return this.sprintBoard.generateBoard();
+      case "empty":
+        return new Board("");
       default:
         return null;
     } // end switch case
@@ -600,7 +645,7 @@ class BoardFactory {
 // export this class
 module.exports.BoardFactory = BoardFactory;
 
-},{"../boards/moscow_board.js":4,"../boards/sprint_backlog_board.js":5,"../enums/board_options.js":6}],12:[function(require,module,exports){
+},{"../boards/board.js":3,"../boards/moscow_board.js":4,"../boards/sprint_backlog_board.js":5,"../enums/board_options.js":6}],12:[function(require,module,exports){
 /**
  * list_factory.js
  *
@@ -822,6 +867,15 @@ class List {
   removeTaskCard(cardID) {
     this.tasks.splice(cardID, 1);
   } // end removeTaskCard
+
+  loadTasks(tasks){
+    var ntask;
+    this.tasks = [];
+    for(var task of tasks){
+      ntask = new TaskCard(task.label, task.text);
+      this.tasks.push(ntask);
+    }
+  }
 } // end List
 
 // export this class
@@ -1170,6 +1224,24 @@ class Model {
   setController(controller) {
     this.controller = controller;
   } // end setController
+
+  /**
+   * Loads a board given to it by the controller.
+   * 
+   */
+
+   loadBoards(model){
+     this.title = model.title;
+     var nboard;
+     this.boards = [];
+     for(var board of model.boards){
+      nboard = this.boardFactory.generateBoard("empty")
+      nboard.title = board.title;
+      nboard.loadLists(board.lists);
+      this.boards.push(nboard);
+     }
+   }
+
 } // end App
 
 // export this class
@@ -1234,6 +1306,8 @@ class View {
     html += this.generateListsHTML(model);
     html += "<div>"
     html += "<button id=\"save\"> Save </button>";
+    html += "<input id=\"file-input\" type=\"file\" name=\"test\" />";
+    html += "<button id=\"submit\"> Submit </button>"
     html += "</div>"
     html += '</html>';
     return html;

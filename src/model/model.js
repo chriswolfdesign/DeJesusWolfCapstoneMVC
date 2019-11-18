@@ -104,6 +104,24 @@ class Model {
   setController(controller) {
     this.controller = controller;
   } // end setController
+
+  /**
+   * Loads a board given to it by the controller.
+   * 
+   */
+
+   loadBoards(model){
+     this.title = model.title;
+     var nboard;
+     this.boards = [];
+     for(var board of model.boards){
+      nboard = this.boardFactory.generateBoard("empty")
+      nboard.title = board.title;
+      nboard.loadLists(board.lists);
+      this.boards.push(nboard);
+     }
+   }
+
 } // end App
 
 // export this class

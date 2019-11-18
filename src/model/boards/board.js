@@ -79,6 +79,16 @@ class Board {
   addListTemplate(option) {
     this.lists.push(this.listFactory.generateList(option));
   } // end addListTemplate
+
+  loadLists(lists){
+    var nlist;
+    this.lists = []
+    for(var list of lists){
+      nlist = new List(list.label, list.color);
+      nlist.loadTasks(list.tasks);
+      this.lists.push(nlist);
+    }
+  }
 } // end Board
 
 // export this class

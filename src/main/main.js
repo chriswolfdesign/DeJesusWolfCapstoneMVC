@@ -145,6 +145,26 @@ function addClickListeners(controller) {
     a.dispatchEvent(e);
     controller.model.controller = temp;
   });
+
+  document.getElementById("submit").addEventListener('click', function(event){
+    var file = document.getElementById("file-input").files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = function (event) {
+        var new_model = JSON.parse(event.target.result);
+        controller.loadBoards(new_model);
+        render(controller);
+        controller.model.controller = null;
+      };
+      reader.onerror = function(event){
+        alert("Error reading file.");
+      };
+
+
+    }
+    
+  });
   
 
 } // end addClickListeners

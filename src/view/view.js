@@ -28,6 +28,8 @@ class View {
     html += this.generateListsHTML(model);
     html += "<div>"
     html += "<button id=\"save\"> Save </button>";
+    html += "<input id=\"file-input\" type=\"file\" name=\"test\" />";
+    html += "<button id=\"submit\"> Submit </button>"
     html += "</div>"
     html += '</html>';
     return html;

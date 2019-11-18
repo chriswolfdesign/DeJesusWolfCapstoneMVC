@@ -49,6 +49,15 @@ class List {
   removeTaskCard(cardID) {
     this.tasks.splice(cardID, 1);
   } // end removeTaskCard
+
+  loadTasks(tasks){
+    var ntask;
+    this.tasks = [];
+    for(var task of tasks){
+      ntask = new TaskCard(task.label, task.text);
+      this.tasks.push(ntask);
+    }
+  }
 } // end List
 
 // export this class
