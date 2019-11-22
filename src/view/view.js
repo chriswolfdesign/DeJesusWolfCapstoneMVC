@@ -155,7 +155,7 @@ class View {
     let style = 'style =\'';
     style += 'background-color: grey;';
     style += 'width: 80%;';
-    style += 'height: 15vh;';
+    style += 'min-height: 15vh;';
     style += 'margin-left: auto;';
     style += 'margin-right: auto;';
     style += 'margin-bottom: 10px;';
