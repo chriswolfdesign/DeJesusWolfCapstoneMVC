@@ -74,7 +74,8 @@ class View {
 
     // for every list, generate the HTML
     for(var i = 0; i < model.boards[0].lists.length; i++) {
-      html += '<div id=\'' + model.boards[0].lists[i].label + '\' class=\'dropzone\' style=' + this.generateListStyle(model.boards[0].lists[i])
+      html += '<div id=\'' + model.boards[0].lists[i].label + '\' class=\'dropzone\' style='
+          + this.generateListStyle(model.boards[0].lists[i])
         + '; position: fixed;><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
         this.generateIndividualListHTML(model.boards[0].lists[i]) +
           this.generateButtonHTML(model.boards[0].lists[i].label) +
@@ -161,6 +162,7 @@ class View {
     style += 'padding-top: 5px;';
     style += 'border-radius: 5px;';
     style += 'font-size: 24px;';
+    style += 'z-index: 10;';
     style += '\'';
     return style;
   }
@@ -176,7 +178,7 @@ class View {
     let style = '\'';
     style += 'display: inline-block;';
     style += 'vertical-align: top;';
-    style += 'height: 80vh;';
+    style += 'min-height: 80vh;';
     style += 'text-align: center;'
     style += 'border: 5px solid black;';
     style += 'border-radius: 5px;';
@@ -184,7 +186,8 @@ class View {
       ';';
     style += 'color: black;';
     style += 'margin-left: 5px;';
-    style += 'width: 23%';
+    style += 'width: 23%;';
+    // style += 'overflow: auto;';
     style += '\'';
     return style;
   } // end generateListStyle
