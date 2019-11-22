@@ -11951,11 +11951,15 @@ class View {
     let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + 
           'class=draggable>';
 
-    html += '<div id=' + task.label + 'Text>' + task.text + '</div>';
+    html += '<div id=' + task.label + 'Text>'; // + task.text + '</div>';
+    html += '<div style=\'text-align: left; font-size: 12pt;\'>' + task.label + '</div>';
+    html += '<div style=\'text-align: center; font-size: 14pt;\'>' + task.text + '</div>';
 
     html += this.generateRemoveButtonHTML(task);
 
-    html += '</div>';
+    html += '</div></div>';
+
+    console.log(html);
 
     return html;
   } // end generateIndividualTaskCardHTML
@@ -11980,6 +11984,9 @@ class View {
     style += 'margin-right: auto;';
     style += 'margin-bottom: 10px;';
     style += 'padding-top: 5px;';
+    style += 'padding-bottom: 5px;';
+    style += 'padding-right: 5px;';
+    style += 'padding-left: 5px;';
     style += 'border-radius: 5px;';
     style += 'font-size: 24px;';
     style += 'z-index: 10;';
