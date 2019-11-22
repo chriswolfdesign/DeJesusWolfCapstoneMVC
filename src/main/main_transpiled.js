@@ -11860,8 +11860,8 @@ class View {
    */
   generateStyle() {
     let style = '<style> body {';
-    style += 'background-color: purple;';
-    style += 'color: white;';
+    // style += 'background-color: purple;';
+    style += 'color: black;';
     style += '}';
     style += '</style>';
     return style;
