@@ -40,8 +40,8 @@ class View {
    */
   generateStyle() {
     let style = '<style> body {';
-    // style += 'background-color: purple;';
     style += 'color: black;';
+    style += 'font-family: Lobster Two, cursive;';
     style += '}';
     style += '</style>';
     return style;
@@ -157,6 +157,7 @@ class View {
    */
   generateTaskCardStyle() {
     let style = 'style =\'';
+    style += 'font-family: arial;';
     style += 'background-color: grey;';
     style += 'width: 80%;';
     style += 'min-height: 15vh;';
