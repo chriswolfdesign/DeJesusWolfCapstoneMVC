@@ -11840,16 +11840,16 @@ class View {
    * @return {string} the HTML for model
    */
   generateHTML(model) {
-    let html = '<html>';
+    let html = '<div>';
     html += this.generateStyle();
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
-    html += "<div>"
+    html += "<div>";
     html += "<button id=\"save\"> Save </button>";
     html += "<input id=\"file-input\" type=\"file\" name=\"test\" />";
-    html += "<button id=\"submit\"> Submit </button>"
-    html += "</div>"
-    html += '</html>';
+    html += "<button id=\"submit\"> Submit </button>";
+    html += "</div>";
+    html += '</div>';
     return html;
   } // end generateHTML
 
@@ -11875,8 +11875,8 @@ class View {
    * @return {String} the HTML for the header of the model
    */
   generateHeaderHTML(model)  {
-    let html = '<div style=text-align:center;>'
-    html += '<h1><u>'
+    let html = '<div style=text-align:center;>';
+    html += '<h1><u>';
     html += model.title;
     html += '</u></h1></div>';
     return html;
@@ -11893,7 +11893,7 @@ class View {
     let html = '<div style=\'height: 80vh;\'>';
 
     // for every list, generate the HTML
-    for(var i = 0; i < model.boards[0].lists.length; i++) {
+    for(let i = 0; i < model.boards[0].lists.length; i++) {
       html += '<div id=\'' + model.boards[0].lists[i].label + '\' class=\'dropzone\' style='
           + this.generateListStyle(model.boards[0].lists[i])
         + '; position: fixed;><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
@@ -11913,7 +11913,7 @@ class View {
    * @return {string} the HTML representation of the given list
    */
   generateIndividualListHTML(list) {
-    let html = '<div>'
+    let html = '<div>';
     html += this.generateTaskCardsHTML(list);
     html += '</div>';
     return html;
@@ -11931,7 +11931,7 @@ class View {
     let html = '<div>';
 
     // for each task card, generate the HTML
-    for(var i = 0; i < list.tasks.length; i++) {
+    for(let i = 0; i < list.tasks.length; i++) {
       html += this.generateIndividualTaskCardHTML(list.tasks[i]);
     } // end for loop
 
@@ -11958,43 +11958,14 @@ class View {
 
     html += '</div></div>';
 
-    console.log(html);
-
     return html;
   } // end generateIndividualTaskCardHTML
 
   generateRemoveButtonHTML(task) {
     let buttonID = task.label + "RemoveButton";
-    return '</br><button id=' + buttonID + ' style=\'background-color: red; color: white\'>' +
+    return '<button id=' + buttonID + ' class=remove-button>' +
       'X</button>';
   }
-
-  /**
-   * generates the style for a task card
-   *
-   * @return {string} the HTML representation of the style of a task card
-   */
-  /**
-  generateTaskCardStyle() {
-    let style = 'style =\'';
-    style += 'font-family: arial;';
-    style += 'background-color: grey;';
-    style += 'width: 80%;';
-    style += 'min-height: 15vh;';
-    style += 'margin-left: auto;';
-    style += 'margin-right: auto;';
-    style += 'margin-bottom: 10px;';
-    style += 'padding-top: 5px;';
-    style += 'padding-bottom: 5px;';
-    style += 'padding-right: 5px;';
-    style += 'padding-left: 5px;';
-    style += 'border-radius: 5px;';
-    style += 'font-size: 24px;';
-    style += 'z-index: 10;';
-    style += '\'';
-    return style;
-  }
-   */
 
   /**
    * generates the style for the individual list
@@ -12008,7 +11979,7 @@ class View {
     style += 'display: inline-block;';
     style += 'vertical-align: top;';
     style += 'min-height: 80vh;';
-    style += 'text-align: center;'
+    style += 'text-align: center;';
     style += 'border: 5px solid black;';
     style += 'border-radius: 5px;';
     style += 'background-color: ' + this.generateListBackgroundColor(list) +
@@ -12016,7 +11987,6 @@ class View {
     style += 'color: black;';
     style += 'margin-left: 5px;';
     style += 'width: 23%;';
-    // style += 'overflow: auto;';
     style += '\'';
     return style;
   } // end generateListStyle
@@ -12045,7 +12015,7 @@ class View {
 
   generateButtonHTML(parentID) {
     let thisID = parentID + 'AddButton';
-    return "<button id=\'" + thisID + "\' style=\'background-color: blue;color: white;\'> + </button>";
+    return "<button id=\'" + thisID + "\' class=add-button>+</button>";
   } // end generateButtonHTML
 } // end View
 
