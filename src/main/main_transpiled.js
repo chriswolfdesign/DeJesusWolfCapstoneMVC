@@ -11948,8 +11948,7 @@ class View {
    * @return {string} the HTML representation of the task card
    */
   generateIndividualTaskCardHTML(task) {
-    let html = '<div id=\'' + task.label + '\' ' + this.generateTaskCardStyle() + 
-          'class=draggable>';
+    let html = '<div id=\'' + task.label + '\' class=\'task-card draggable\'>';
 
     html += '<div id=' + task.label + 'Text>'; // + task.text + '</div>';
     html += '<div style=\'text-align: left; font-size: 12pt;\'>' + task.label + '</div>';
@@ -11975,6 +11974,7 @@ class View {
    *
    * @return {string} the HTML representation of the style of a task card
    */
+  /**
   generateTaskCardStyle() {
     let style = 'style =\'';
     style += 'font-family: arial;';
@@ -11994,6 +11994,7 @@ class View {
     style += '\'';
     return style;
   }
+   */
 
   /**
    * generates the style for the individual list
