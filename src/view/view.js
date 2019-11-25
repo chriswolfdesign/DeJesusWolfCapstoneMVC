@@ -21,6 +21,7 @@ class View {
    */
   generateHTML(model) {
     let html = '<div>';
+    html += this.generateToolbar();
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
     html += "<div>";
@@ -31,6 +32,10 @@ class View {
     html += '</div>';
     return html;
   } // end generateHTML
+
+  generateToolbar() {
+    return '<div id=toolbar><u>Agility</u></div>';
+  }
 
   generateSaveLoadButtons() {
     let html = '<div>';
@@ -153,7 +158,7 @@ class View {
     style += 'min-height: 80vh;';
     style += 'text-align: center;';
     style += 'border: 5px solid black;';
-    style += 'border-radius: 5px;';
+    style += 'border-radius: 10px;';
     style += 'background-color: ' + this.generateListBackgroundColor(list) +
       ';';
     style += 'color: black;';
