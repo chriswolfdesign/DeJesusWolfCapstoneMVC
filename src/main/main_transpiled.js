@@ -11841,7 +11841,6 @@ class View {
    */
   generateHTML(model) {
     let html = '<div>';
-    // html += this.generateStyle();
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
     html += "<div>";
@@ -11853,19 +11852,11 @@ class View {
     return html;
   } // end generateHTML
 
-  /**
-   * Generates the style for this HTML page
-   *
-   * @return {string} the HTML that specifies the style
-   */
-  // generateStyle() {
-  //   let style = '<style> body {';
-  //   style += 'color: black;';
-  //   style += 'font-family: Lobster Two, cursive;';
-  //   style += '}';
-  //   style += '</style>';
-  //   return style;
-  // }
+  generateSaveLoadButtons() {
+    let html = '<div>';
+    html += '<button id=save> Save </button>';
+    html += '<input id=file-input type=\'file\' name=\'test\'/>';
+  }
 
   /**
    * generates the header based on the current model
@@ -11950,11 +11941,12 @@ class View {
   generateIndividualTaskCardHTML(task) {
     let html = '<div id=\'' + task.label + '\' class=\'task-card draggable\'>';
 
+    html += '<div>';
     html += '<div id=' + task.label + 'Text>'; // + task.text + '</div>';
-    html += '<div style=\'text-align: left; font-size: 12pt;\'>' + task.label + '</div>';
-    html += '<div style=\'text-align: center; font-size: 14pt;\'>' + task.text + '</div>';
-
+    html += '<div style=\'text-align: left; font-size: 12pt; display: inline-block;\'><u>' + task.label + '</u></div>';
     html += this.generateRemoveButtonHTML(task);
+    html += '</div>';
+    html += '<div style=\'text-align: center; font-size: 14pt;\'>' + task.text + '</div>';
 
     html += '</div></div>';
 
