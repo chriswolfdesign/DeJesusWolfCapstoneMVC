@@ -11841,7 +11841,7 @@ class View {
    */
   generateHTML(model) {
     let html = '<div>';
-    html += this.generateStyle();
+    // html += this.generateStyle();
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
     html += "<div>";
@@ -11858,14 +11858,14 @@ class View {
    *
    * @return {string} the HTML that specifies the style
    */
-  generateStyle() {
-    let style = '<style> body {';
-    style += 'color: black;';
-    style += 'font-family: Lobster Two, cursive;';
-    style += '}';
-    style += '</style>';
-    return style;
-  }
+  // generateStyle() {
+  //   let style = '<style> body {';
+  //   style += 'color: black;';
+  //   style += 'font-family: Lobster Two, cursive;';
+  //   style += '}';
+  //   style += '</style>';
+  //   return style;
+  // }
 
   /**
    * generates the header based on the current model

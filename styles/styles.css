@@ -1,5 +1,7 @@
 body {
     background: radial-gradient(circle, rgba(213,201,39,1) 46%, rgba(173,0,255,1) 100%);
+    color: black;
+    font-family: Lobster-Two, cursive;
 }
 
 .task-card {
