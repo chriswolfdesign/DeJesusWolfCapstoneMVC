@@ -31,9 +31,14 @@ class View {
     return html;
   } // end generateHTML
 
+  /**
+   * generates the toolbar HTML
+   * 
+   * @return {HTML} the html for the toolbar
+   */
   generateToolbar() {
     return '<div id=toolbar><u>Agility</u></div>';
-  }
+  } // end generateToolbar
 
   generateSaveLoadButtons() {
     let html = '<div>';
