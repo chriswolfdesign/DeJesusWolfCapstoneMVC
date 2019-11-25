@@ -24,9 +24,7 @@ class View {
     html += this.generateToolbar();
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
-    html += "<div>";
-    html += this.generateSaveLoadButtons();
-    html += "</div>";
+    // html += this.generateSaveLoadButtons();
     html += '</div>';
     return html;
   } // end generateHTML
@@ -37,7 +35,13 @@ class View {
    * @return {HTML} the html for the toolbar
    */
   generateToolbar() {
-    return '<div id=toolbar><u>Agility</u></div>';
+    // return '<div id=toolbar><u>Agility</u></div>';
+
+    let html = '<div id=toolbar>';
+    html += this.generateSaveLoadButtons();
+    html += '<div style=\'display: inline-block; margin-left: 320px;\'><u>Agility</u></div>';
+    html += '</div>';
+    return html;
   } // end generateToolbar
 
   /**
@@ -46,10 +50,11 @@ class View {
    * @return {HTML} the html for the save and load buttons
    */
   generateSaveLoadButtons() {
-    let html = '<div>';
+    let html = '<div style=\'display: inline-block\'>';
     html += '<button id=save> Save </button>';
     html += '<input id=file-input type=\'file\' name=\'test\'/>';
     html += '<button id=submit> Submit </button>';
+    html += '</div>';
     return html;
   } // end generateSaveLoadButtons
 
