@@ -40,13 +40,18 @@ class View {
     return '<div id=toolbar><u>Agility</u></div>';
   } // end generateToolbar
 
+  /**
+   * generates the save and load button HTML
+   * 
+   * @return {HTML} the html for the save and load buttons
+   */
   generateSaveLoadButtons() {
     let html = '<div>';
     html += '<button id=save> Save </button>';
     html += '<input id=file-input type=\'file\' name=\'test\'/>';
     html += '<button id=submit> Submit </button>';
     return html;
-  }
+  } // end generateSaveLoadButtons
 
   /**
    * generates the header based on the current model
