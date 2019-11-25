@@ -11845,9 +11845,7 @@ class View {
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
     html += "<div>";
-    html += "<button id=\"save\"> Save </button>";
-    html += "<input id=\"file-input\" type=\"file\" name=\"test\" />";
-    html += "<button id=\"submit\"> Submit </button>";
+    html += this.generateSaveLoadButtons();
     html += "</div>";
     html += '</div>';
     return html;
@@ -11861,6 +11859,8 @@ class View {
     let html = '<div>';
     html += '<button id=save> Save </button>';
     html += '<input id=file-input type=\'file\' name=\'test\'/>';
+    html += '<button id=submit> Submit </button>';
+    return html;
   }
 
   /**
