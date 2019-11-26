@@ -35,8 +35,6 @@ class View {
    * @return {HTML} the html for the toolbar
    */
   generateToolbar() {
-    // return '<div id=toolbar><u>Agility</u></div>';
-
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
     html += '<div style=\'display: inline-block; margin-left: 320px;\'><u>Agility</u></div>';

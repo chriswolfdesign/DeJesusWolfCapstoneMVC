@@ -10,16 +10,7 @@
 
 let express = require('express');
 let Controller = require('./controller/controller.js').Controller;
-
-/**
- * DEMO CODE
- * Simply for demonstration purposes
- * Remove after sprint review
- */
 let BoardOptions = require('./model/enums/board_options.js').BoardOptions;
-/**
- * END DEMO CODE
- */
 
 // Define the port number
 const PORT = 5000;
