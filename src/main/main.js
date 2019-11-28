@@ -106,7 +106,7 @@ function addClickListeners(controller) {
   for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
     for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
       // console.log(controller);
-      let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'Text';
+      let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'TextField';
       document.getElementById(taskID).addEventListener('click', function(event) {
         let newTaskText = prompt('Please enter the new text');
         controller.editTaskText(i, j, newTaskText);

@@ -10638,7 +10638,7 @@ let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 let Controller = require("../controller/controller").Controller;
 let View = require('../view/view.js').View;
 let interact = require('interactjs');
-let controller;  // I really don't like that this is global, look into other options
+let controller;  // I really don't like that this is global, let's look into other options
 
 window.onload = function() {
 
@@ -10732,7 +10732,7 @@ function addClickListeners(controller) {
   for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
     for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
       // console.log(controller);
-      let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'Text';
+      let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'TextField';
       document.getElementById(taskID).addEventListener('click', function(event) {
         let newTaskText = prompt('Please enter the new text');
         controller.editTaskText(i, j, newTaskText);
@@ -11855,8 +11855,6 @@ class View {
    * @return {HTML} the html for the toolbar
    */
   generateToolbar() {
-    // return '<div id=toolbar><u>Agility</u></div>';
-
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
     html += '<div style=\'display: inline-block; margin-left: 320px;\'><u>Agility</u></div>';
@@ -11966,7 +11964,7 @@ class View {
     html += '<div style=\'text-align: left; font-size: 12pt; display: inline-block;\'><u>' + task.label + '</u></div>';
     html += this.generateRemoveButtonHTML(task);
     html += '</div>';
-    html += '<div style=\'text-align: center; font-size: 14pt;\'>' + task.text + '</div>';
+    html += '<div id=' + task.label + 'TextField style=\'text-align: center; font-size: 14pt;\'>' + task.text + '</div>';
 
     html += '</div></div>';
 
