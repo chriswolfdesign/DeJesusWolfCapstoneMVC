@@ -12,7 +12,7 @@ let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
 let Controller = require("../controller/controller").Controller;
 let View = require('../view/view.js').View;
 let interact = require('interactjs');
-let controller;  // I really don't like that this is global, look into other options
+let controller;  // I really don't like that this is global, let's look into other options
 
 window.onload = function() {
 
