@@ -10746,8 +10746,9 @@ function addClickListeners(controller) {
     for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
       let buttonID = controller.model.boards[0].lists[i].tasks[j].label + 'RemoveButton';
       document.getElementById(buttonID).addEventListener('click', function(event){
-        let choice = prompt('Are you sure you would like to remove this card?');
-        if (choice.toLowerCase() == 'yes') {
+        // let choice = prompt('Are you sure you would like to remove this card?');
+        let choice = confirm('Delete this task card?');
+        if (choice) {
           controller.removeTaskCard(i, j);
           render(controller);
         } // end if
