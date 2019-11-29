@@ -12019,7 +12019,7 @@ class View {
       case Color.RED:
         return 'red';
       default:
-        return 'white'
+        return '#AA00AA'
     } // end switch case
   } // end generateListBackgroundColor
 
