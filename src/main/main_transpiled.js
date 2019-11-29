@@ -10734,7 +10734,7 @@ function addClickListeners(controller) {
       // console.log(controller);
       let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'TextField';
       document.getElementById(taskID).addEventListener('click', function(event) {
-        let newTaskText = prompt('Please enter the new text');
+        let newTaskText = prompt('Please enter the new text',controller.model.boards[0].lists[i].tasks[j].text);
         controller.editTaskText(i, j, newTaskText);
         render(controller);
       }); // end Event Listener
