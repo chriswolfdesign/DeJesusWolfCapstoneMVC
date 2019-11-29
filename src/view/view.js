@@ -154,7 +154,7 @@ class View {
   generateRemoveButtonHTML(task) {
     let buttonID = task.label + "RemoveButton";
     return '<button id=' + buttonID + ' class=remove-button>' +
-      'X</button>';
+      '<i class=\"fa fa-trash-o\"></i></button>';
   }
 
   /**
