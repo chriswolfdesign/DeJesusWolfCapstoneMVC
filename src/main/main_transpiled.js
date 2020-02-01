@@ -10440,7 +10440,7 @@ class Controller{
   /**
    * calls on the model to create a new board from a template
    *
-   * @param {BoardOption} the template we are using to build a new board
+   * @param {BoardOption} the template we are using to src a new board
    */
   generateBoardTemplate(option) {
     this.model.generateBoardTemplate(option);
@@ -10493,7 +10493,7 @@ class Controller{
    * generates a list from a template
    *
    * @param {string} boardID the board we are adding a list to
-   * @param {ListOption} option the template we would like to build a list from
+   * @param {ListOption} option the template we would like to src a list from
    */
   generateListTemplate(boardID, option) {
     this.model.generateListTemplate(boardID, option);

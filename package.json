@@ -11,7 +11,8 @@
     "test_list_factory": "mocha -u tdd -R spec test/model/factories/list_factory_test.js",
     "test_board": "mocha -u tdd -R spec test/model/boards/board_test.js",
     "test_board_factory": "mocha -u tdd -R spec test/model/factories/board_factory_test.js",
-    "test_app": "mocha -u tdd -R spec test/model/app_test.js"
+    "test_app": "mocha -u tdd -R spec test/model/app_test.js",
+    "build": "tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.2.1"
+    "mocha": "^6.2.1",
+    "typescript": "^3.7.5"
   }
 }
