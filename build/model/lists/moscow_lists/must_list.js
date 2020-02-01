@@ -1,3 +1,4 @@
+"use strict";
 /**
  * must_list.js
  *
@@ -7,22 +8,21 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 5, 2019)
  */
-
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
-
-class MustList {
-  // Constructor delibrately left out
-
-  /**
-   * generates a Must Have List for MoSCoW board
-   *
-   * @return {List} a Must Have List
-   */
-  generateList() {
-    return new List('Must', Colors.GREEN);
-  } // end generateList
-} // end MustList
-
-// export this class
-module.exports.MustList = MustList;
+exports.__esModule = true;
+var list_1 = require("../list");
+var colors_1 = require("../../enums/colors");
+var MustList = /** @class */ (function () {
+    function MustList() {
+    }
+    // Constructor deliberately left out
+    /**
+     * generates a Must Have List for MoSCoW board
+     *
+     * @return {List} a Must Have List
+     */
+    MustList.prototype.generateList = function () {
+        return new list_1.List('Must', colors_1.Colors.GREEN);
+    }; // end generateList
+    return MustList;
+}()); // end MustList
+exports.MustList = MustList;

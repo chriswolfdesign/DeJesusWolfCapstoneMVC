@@ -8,10 +8,10 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
+import {List} from '../list';
+import {Colors} from '../../enums/colors';
 
-class CouldList {
+export class CouldList {
   // Constructor deliberately left out
 
   /**
@@ -19,10 +19,7 @@ class CouldList {
    *
    * @return {List} a Could Have List
    */
-  generateList() {
+  generateList(): List {
     return new List('Could', Colors.ORANGE);
   } // end generateList
 } // end CouldList
-
-// export this class
-module.exports.CouldList = CouldList;

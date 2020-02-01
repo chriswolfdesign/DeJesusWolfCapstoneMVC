@@ -15,7 +15,7 @@ Usage:
     in the templates directory
 
 Modifications:
-    If you wish to modify this application, you will need to retranspile the main.js file in
+    If you wish to modify this application, you will need to retranspile the main.ts file in
     the src/main directory.  This can be done with the browserify tool.  You can install this 
     tool with the following command
 
@@ -25,4 +25,4 @@ Modifications:
 
     Move into the src/main directory and run the following command after making changes
 
-    browserify main.js > main_transpiled.js
+    browserify main.ts > main_transpiled.js

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * sprint_backlog_board.js
  *
@@ -7,30 +8,27 @@
  * @author Chris Wolf
  * @version 2.0.0 (November 3, 2019)
  */
-
-// let ListOptions = require('../enums/list_options.js').ListOptions;
-let Board = require('./board.js').Board;
-let SprintBacklogListOptions = require('../enums/sprint_backlog_list_options.js').SprintBacklogListOptions;
-let SprintBacklogListFactory = require('../factories/sprint_backlog_list_factory.js').SprintBacklogListFactory;
-
-class SprintBacklogBoard {
-  /**
-   * generates a Sprint Backlog Board
-   *
-   * @return {Board} a SprintBacklogBoard
-   */
-  generateBoard() {
-    let board = new Board('Sprint Backlog');
-    board.setListFactory(new SprintBacklogListFactory());
-
-    board.addListTemplate(SprintBacklogListOptions.BACKLOG);
-    board.addListTemplate(SprintBacklogListOptions.INPROGRESS);
-    board.addListTemplate(SprintBacklogListOptions.INREVIEW);
-    board.addListTemplate(SprintBacklogListOptions.COMPLETE);
-
-    return board;
-  } // end generateBoard
-} // end SprintBacklogBoard
-
-// export this class
-module.exports.SprintBacklogBoard = SprintBacklogBoard;
+exports.__esModule = true;
+var board_1 = require("./board");
+var sprint_backlog_list_options_1 = require("../enums/sprint_backlog_list_options");
+var sprint_backlog_list_factory_1 = require("../factories/sprint_backlog_list_factory");
+var SprintBacklogBoard = /** @class */ (function () {
+    function SprintBacklogBoard() {
+    }
+    /**
+     * generates a Sprint Backlog Board
+     *
+     * @return {Board} a SprintBacklogBoard
+     */
+    SprintBacklogBoard.prototype.generateBoard = function () {
+        var board = new board_1.Board('Sprint Backlog');
+        board.setListFactory(new sprint_backlog_list_factory_1.SprintBacklogListFactory());
+        board.addListTemplate(sprint_backlog_list_options_1.SprintBacklogListOptions.BACKLOG);
+        board.addListTemplate(sprint_backlog_list_options_1.SprintBacklogListOptions.INPROGRESS);
+        board.addListTemplate(sprint_backlog_list_options_1.SprintBacklogListOptions.INREVIEW);
+        board.addListTemplate(sprint_backlog_list_options_1.SprintBacklogListOptions.COMPLETE);
+        return board;
+    }; // end generateBoard
+    return SprintBacklogBoard;
+}()); // end SprintBacklogBoard
+exports.SprintBacklogBoard = SprintBacklogBoard;

@@ -1,7 +1,7 @@
 /**
  * test_list.js
  *
- * Unit testing for list.js
+ * Unit testing for list.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -91,4 +91,4 @@ suite('Unit testing for task-card.js', function() {
     });
   });
 
-}); // end unit testing for list.js
+}); // end unit testing for list.ts

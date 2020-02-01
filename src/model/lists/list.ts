@@ -9,17 +9,21 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-const Colors = require('../enums/colors.js').Colors;
-const TaskCard = require('../task_card.js').TaskCard;
+import {Colors} from '../enums/colors';
+import {TaskCard} from '../task_card';
 
-class List {
+export class List {
+  private label: string;
+  private color: Colors;
+  private tasks: TaskCard[];
+
   /**
    * Generates the List object
    *
    * @param {string} label the label for the this list
-   * @param {colors} color the background color of this list
+   * @param {Colors} color the background color of this list
    */
-  constructor(label, color) {
+  constructor(label: string, color: Colors) {
     // if user did not define a color
     if (color === undefined) {
       color = Colors.GRAY;
@@ -30,23 +34,35 @@ class List {
     this.tasks = [];
   } // end constructor
 
+  getLabel(): string {
+    return this.label;
+  }
+
+  getTasks(): TaskCard[] {
+    return this.tasks;
+  }
+
+  getColor(): Colors {
+    return this.color;
+  }
+
   /**
    * adds a new task card to the tasks field
    *
    * @param {string} label the label for the new task card
    * @param {string} text the text for the new task card
    */
-  addTask(label, text) {
+  addTask(label: string, text: string): void {
     this.tasks.push(new TaskCard(label, text));
   } // end addTask
 
   /**
    * Removes a task card from the tasks field
    *
-   * @param {integer} cardID the ID of the being removed.
+   * @param {number} cardID the ID of the being removed.
    */
 
-  removeTaskCard(cardID) {
+  removeTaskCard(cardID: number): void {
     this.tasks.splice(cardID, 1);
   } // end removeTaskCard
 
@@ -54,15 +70,12 @@ class List {
    * Loads in a set of tasks into the 'tasks' attribute.
    * @param {tasks[]} tasks lists of tasks to be loaded in
    */
-  loadTasks(tasks){
-    var ntask;
+  loadTasks(tasks: TaskCard[]): void{
+    let ntask;
     this.tasks = [];
-    for(var task of tasks){
-      ntask = new TaskCard(task.label, task.text);
+    for(let task of tasks){
+      ntask = new TaskCard(task.getLabel(), task.getText());
       this.tasks.push(ntask);
     }
   }
 } // end List
-
-// export this class
-module.exports.List = List;

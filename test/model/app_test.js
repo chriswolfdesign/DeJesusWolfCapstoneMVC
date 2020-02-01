@@ -1,7 +1,7 @@
 /**
  * test_app.js
  *
- * Unit testing for model.js
+ * Unit testing for model.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -15,7 +15,7 @@ let Board = require('../../src/model/boards/board.js').Board
 let Colors = require('../../src/model/enums/colors.js').Colors
 let ListOptions = require('../../src/model/enums/list_options.js').ListOptions
 
-suite('Unit testing for model.js', function() {
+suite('Unit testing for model.ts', function() {
   let app = null;
 
   // Set up our app
@@ -203,7 +203,7 @@ suite('Unit testing for model.js', function() {
       app.boards[1].addList('ListA');
       app.boards[1].lists[0].addTask('TestC', '');
 
-      app.removeTaskCard(0, 0, 0);
+      app.removeTaskCard(0, 0);
       assert(app.boards[0].lists[0].tasks.length === 1, 'A task card should have been removed from the first list of the first board');
       assert(app.boards[0].lists[1].tasks.length === 1, 'A card should have not been removed from the second list of the first board');
       assert(app.boards[1].lists[0].tasks.length === 1, 'A card should have not been removed from the first list of the second board.');
@@ -221,7 +221,7 @@ suite('Unit testing for model.js', function() {
       app.boards[1].addList('ListA');
       app.boards[1].lists[0].addTask('TestC', '');
 
-      app.removeTaskCard(0, 0, 1);
+      app.removeTaskCard(0, 0);
       assert(app.boards[0].lists[0].tasks.length === 1, 'A task card should have been removed from the first list of the first board');
       assert(app.boards[0].lists[1].tasks.length === 1, 'A card should have not been removed from the second list of the first board');
       assert(app.boards[1].lists[0].tasks.length === 1, 'A card should have not been removed from the first list of the second board.');
@@ -239,7 +239,7 @@ suite('Unit testing for model.js', function() {
       app.boards[1].addList('ListA');
       app.boards[1].lists[0].addTask('TestC', '');
 
-      app.removeTaskCard(0, 1, 0);
+      app.removeTaskCard(0, 1);
       assert(app.boards[0].lists[1].tasks.length === 0, 'A task card should have been removed from the second list of the first board');
       assert(app.boards[0].lists[0].tasks.length === 2, 'A card should have not been removed from the first list of the first board');
       assert(app.boards[1].lists[0].tasks.length === 1, 'A card should have not been removed from the first list of the second board.');
@@ -256,13 +256,13 @@ suite('Unit testing for model.js', function() {
       app.boards[1].addList('ListA');
       app.boards[1].lists[0].addTask('TestC', '');
 
-      app.removeTaskCard(1, 0, 0);
+      app.removeTaskCard(1, 0);
       assert(app.boards[1].lists[0].tasks.length === 0, 'A task card should have been removed from the first list of the second board');
       assert(app.boards[0].lists[0].tasks.length === 2, 'A card should have not been removed from the first list of the first board');
       assert(app.boards[0].lists[1].tasks.length === 1, 'A card should have not been removed from the second list of the first board.');
     })
   });
 
-}); // end unit testing for model.js
+}); // end unit testing for model.ts
 
 

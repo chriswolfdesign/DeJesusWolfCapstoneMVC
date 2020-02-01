@@ -1,21 +1,25 @@
-let Model = require('../model/model.js').Model;
-let View = require('../view/view.js').View;
-let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
+import {Model} from '../model/model';
+import {View} from '../view/view';
+import {ListOptions} from '../model/enums/list_options';
 
-class Controller{
+import {BoardOptions} from '../model/enums/board_options';
+import {Colors} from '../model/enums/colors';
+
+export class Controller{
+  private readonly model: Model;
+  private view: View;
   constructor(boardName) {
     this.model = new Model(boardName);
     this.model.setController(this);
     this.view = new View();
-    // this.generateBoardTemplate(BoardOptions.MOSCOW);
   } // end constructor
 
   /**
    * calls on the model to create a new board from a template
    *
-   * @param {BoardOption} the template we are using to src a new board
+   * @param option which type of board the user would like
    */
-  generateBoardTemplate(option) {
+  generateBoardTemplate(option: BoardOptions) {
     this.model.generateBoardTemplate(option);
   } // end generateBoardTemplate
 
@@ -26,9 +30,9 @@ class Controller{
    * @param taskIndex which task card we are changing
    * @param newTaskText the text to change the task card to
    */
-  editTaskText(listIndex, taskIndex, newTaskText) {
+  editTaskText(listIndex: number, taskIndex: number, newTaskText: string) {
     if (newTaskText !== '' && newTaskText !== null) {
-      this.model.boards[0].lists[listIndex].tasks[taskIndex].text = newTaskText;
+      this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].setText(newTaskText);
     } // end if
   } // end editTaskText
 
@@ -37,7 +41,7 @@ class Controller{
    *
    * @param {string} boardID the id for the board we are removing
    */
-  removeBoard(boardID) {
+  removeBoard(boardID: number) {
     this.model.removeBoard(boardID);
   } // end removeBoard
 
@@ -46,9 +50,9 @@ class Controller{
    *
    * @param {string} boardID the board to add the list to
    * @param {string} label the label for the new list
-   * @param {Colors} the color of the new list
+   * @param color
    */
-  generateList(boardID, label, color) {
+  generateList(boardID: number, label: string, color: Colors) {
     this.model.generateList(boardID, label, color);
   } // end generateList
 
@@ -58,7 +62,7 @@ class Controller{
    * @param {string} boardID the board we are removing a list from
    * @param {string} listID the list we are removing
    */
-  removeList(boardID, listID) {
+  removeList(boardID: number, listID: number) {
     this.model.removeList(boardID, listID);
   } // end removeList
 
@@ -68,31 +72,30 @@ class Controller{
    * @param {string} boardID the board we are adding a list to
    * @param {ListOption} option the template we would like to src a list from
    */
-  generateListTemplate(boardID, option) {
+  generateListTemplate(boardID: number, option: ListOptions) {
     this.model.generateListTemplate(boardID, option);
   } // end generateListTemplate
 
   /**
    * generates a task card with the given credentials
    *
-   * @param {string} boardID the board we are adding a task card to
-   * @param {string} listID the list we are adding a task card to
+   * @param {number} boardID the board we are adding a task card to
+   * @param {number} listID the list we are adding a task card to
    * @param {string} label the label for the new task card
    * @param {string} text the text for the new task card
    */
-  generateTaskCard(boardID, listID, label, text) {
+  generateTaskCard(boardID: number, listID: number, label: string, text: string) {
     this.model.generateTaskCard(boardID, listID, label, text);
   } // end generateTaskCard
 
   /**
    * removes a task card from a list
    *
-   * @param {string} boardID the board from which we are removing a task card
-   * @param {string} listID the list from which we are removing a task card
-   * @param {string} cardID the task we are removing
+   * @param {number} listID the list from which we are removing a task card
+   * @param taskID
    */
-  removeTaskCard(list, task) {
-    this.model.removeTaskCard(list, task);
+  removeTaskCard(listID: number, taskID: number) {
+    this.model.removeTaskCard(listID, taskID);
   } // end removeTaskCard
 
   /**
@@ -101,7 +104,7 @@ class Controller{
    * @param {HTML} newList -- the HTML representation of the new list we're moving the task card to
    * @param {HTML} movedTaskCard -- the HTML representation of the task card we're moving
    */
-  moveTaskCard(newList, movedTaskCard) {
+  moveTaskCard(newList: any, movedTaskCard: any) {
     let listIndex = this.findListIndex(newList.id);
     let taskIndices = this.getTaskIndices(movedTaskCard.id);
 
@@ -112,7 +115,7 @@ class Controller{
     this.removeTaskCard(taskIndices[0], taskIndices[1]);
 
     // add a new task card with the same data to the new list
-    this.model.boards[0].lists[listIndex].addTask(tempData[0], tempData[1]);
+    this.model.getBoards()[0].getLists()[listIndex].addTask(tempData[0], tempData[1]);
   }
 
   /**
@@ -123,9 +126,9 @@ class Controller{
    * @return {int} the list index of the requested list if it exists
    *               -1 otherwise
    */
-  findListIndex(listLabel) {
-    for (let i = 0; i < this.model.boards[0].lists.length; i++) {
-      if (this.model.boards[0].lists[i].label === listLabel) {
+  findListIndex(listLabel: string) {
+    for (let i = 0; i < this.model.getBoards()[0].getLists().length; i++) {
+      if (this.model.getBoards()[0].getLists()[i].getLabel() === listLabel) {
         return i;
       } // end if
     } // end for
@@ -141,10 +144,10 @@ class Controller{
    *
    * @return {list} -- [the list index of the task card, the task index of the task card]
    */
-  getTaskIndices(taskID) {
-    for (let i = 0; i < this.model.boards[0].lists.length; i++) {
-      for (let j = 0; j < this.model.boards[0].lists[i].tasks.length; j++) {
-        if (taskID === this.model.boards[0].lists[i].tasks[j].label) {
+  getTaskIndices(taskID: string) {
+    for (let i = 0; i < this.model.getBoards()[0].getLists().length; i++) {
+      for (let j = 0; j < this.model.getBoards()[0].getLists()[i].getTasks().length; j++) {
+        if (taskID === this.model.getBoards()[0].getLists()[i].getTasks()[j].getLabel()) {
           return [i, j];
         } // end if
       } // end inner-for
@@ -153,23 +156,21 @@ class Controller{
 
   /**
    * Gets the data held inside the task card
-   *
-   * @param {int} -- the list index of the task card we're looking for
-   * @param {int} -- the task index of the task card we're looking for
-   *
    * @return {list} -- [task card's label, task card's text]
+   * @param listIndex
+   * @param taskIndex
    */
-  getTaskData(listIndex, taskIndex) {
-    return [this.model.boards[0].lists[listIndex].tasks[taskIndex].label,
-            this.model.boards[0].lists[listIndex].tasks[taskIndex].text];
+  getTaskData(listIndex: number, taskIndex: number) {
+    return [this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getLabel(),
+      this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getText()];
   }
 
   /**
    * getter for model
    *
-   * @return {App} the model this controller controls
+   * @return {Model} the model this controller controls
    */
-  getModel() {
+  getModel(): Model {
     return this.model;
   } // end getModel
 
@@ -178,7 +179,7 @@ class Controller{
    *
    * @return {String} html based off of model
    */
-  generateHTML() {
+  generateHTML(): string {
     return this.view.generateHTML(this.model);
   } // end generateHTML
 
@@ -188,10 +189,8 @@ class Controller{
    * @param {object} model the board we are trying to load into model
    */
 
-  loadBoards(model){
-    this.model.loadBoards(model);
+  loadBoards(model: object){
+    this.model.loadBoards(this.model);
   }
 } // end Controller
 
-// export this class
-module.exports.Controller = Controller;

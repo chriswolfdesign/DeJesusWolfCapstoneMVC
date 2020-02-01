@@ -1,3 +1,4 @@
+"use strict";
 /**
  * board_options.js
  *
@@ -8,11 +9,9 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 7, 2019)
  */
-
-const BoardOptions = {
-  MOSCOW: 'Moscow',
-  SPRINT: 'Sprint Backlog'
-}; // end BoardOptions
-
-// export BoardOptions
-module.exports.BoardOptions = BoardOptions;
+exports.__esModule = true;
+var BoardOptions;
+(function (BoardOptions) {
+    BoardOptions["MOSCOW"] = "Moscow";
+    BoardOptions["SPRINT"] = "Sprint Backlog";
+})(BoardOptions = exports.BoardOptions || (exports.BoardOptions = {})); // end BoardOptions

@@ -8,16 +8,16 @@
  * @version 2.0.0 (November 3, 2019)
  */
 
-let BoardOptions = require('../model/enums/board_options.js').BoardOptions;
-let Controller = require("../controller/controller").Controller;
-let View = require('../view/view.js').View;
-let interact = require('interactjs');
-let controller;  // I really don't like that this is global, let's look into other options
+import {BoardOptions} from '../model/enums/board_options';
+import {Controller} from '../controller/controller';
+import interact from 'interactjs';
 
-window.onload = function() {
+let controller: Controller;  // I really don't like that this is global, let's look into other options
+
+window.onload = function(): void {
 
   // ask the user which board they would like
-  let decision = '';
+  let decision: string = '';
   while (decision !== 'moscow' && decision !== 'sprint') {
     decision = prompt('Which board would you like? (moscow/sprint)');
   } // end while
@@ -40,7 +40,7 @@ window.onload = function() {
  *
  * @return {board} a Sprint Backlog board with predefined tasks
  */
-function generateSprintController(controller) {
+function generateSprintController(controller: Controller): void {
   controller.generateBoardTemplate(BoardOptions.SPRINT);
 
   // add backlog items
@@ -65,7 +65,7 @@ function generateSprintController(controller) {
  *
  * @param controller the controller generating the board
  */
-function generateMoSCoWController(controller) {
+function generateMoSCoWController(controller: Controller): void {
   controller.generateBoardTemplate(BoardOptions.MOSCOW);
 
   // add Must Have Items
@@ -90,25 +90,25 @@ function generateMoSCoWController(controller) {
  *
  * @param controller the controller holding each of the buttons
  */
-function addClickListeners(controller) {
+function addClickListeners(controller: Controller): void{
   // generate the add button listeners
-  for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
-    let buttonID = controller.model.boards[0].lists[i].label + "AddButton";
-    document.getElementById(buttonID).addEventListener("click", function(event) {
+  for (let i = 0; i < controller.getModel().getBoards()[0].getLists().length; i++) {
+    let buttonID = controller.getModel().getBoards()[0].getLists()[i].getLabel() + 'AddButton';
+    document.getElementById(buttonID).addEventListener('click', function(event) {
       let newTaskID = prompt('Please enter the new task label: ');
       let newTaskText = prompt('Please enter the new task text: ');
-        controller.model.boards[0].lists[i].addTask(newTaskID, newTaskText);
-        render(controller);
+      controller.getModel().getBoards()[0].getLists()[i].addTask(newTaskID, newTaskText);
+      render(controller);
     }); // end Event Listener
   } // end for
 
   // generate the listeners for editting task cards
-  for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
-    for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
+  for (let i = 0; i < controller.getModel().getBoards()[0].getLists().length; i++) {
+    for (let j = 0; j < controller.getModel().getBoards()[0].getLists()[i].getTasks().length; j++) {
       // console.log(controller);
-      let taskID = controller.model.boards[0].lists[i].tasks[j].label + 'TextField';
+      let taskID = controller.getModel().getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'TextField';
       document.getElementById(taskID).addEventListener('click', function(event) {
-        let newTaskText = prompt('Please enter the new text',controller.model.boards[0].lists[i].tasks[j].text);
+        let newTaskText = prompt('Please enter the new text',controller.getModel().getBoards()[0].getLists()[i].getTasks()[j].getText());
         controller.editTaskText(i, j, newTaskText);
         render(controller);
       }); // end Event Listener
@@ -116,9 +116,9 @@ function addClickListeners(controller) {
   } // end for each list
   
   // generate the listener for removing task cards
-  for (let i = 0; i < controller.model.boards[0].lists.length; i++) {
-    for (let j = 0; j < controller.model.boards[0].lists[i].tasks.length; j++) {
-      let buttonID = controller.model.boards[0].lists[i].tasks[j].label + 'RemoveButton';
+  for (let i = 0; i < controller.getModel().getBoards()[0].getLists().length; i++) {
+    for (let j = 0; j < controller.getModel().getBoards()[0].getLists()[i].getTasks().length; j++) {
+      let buttonID = controller.getModel().getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'RemoveButton';
       document.getElementById(buttonID).addEventListener('click', function(event){
         let choice = confirm('Delete this task card?');
         if (choice) {
@@ -129,37 +129,37 @@ function addClickListeners(controller) {
     } // end inner for loop
   } // end outer for loop
 
-  document.getElementById("save").addEventListener('click', function(event){
-    var temp = controller;
-    controller.model.controller = null;
-    var name = prompt("Enter the file name:");
-    const data = JSON.stringify(controller.model)
-    const blob = new Blob([data], {type: 'text/plain'})
-    const e = document.createEvent('MouseEvents'),
-    a = document.createElement('a');
-    a.download = name + ".json";
-    a.href = window.URL.createObjectURL(blob);
-    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
-    e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-    a.dispatchEvent(e);
-    controller.model.controller = temp;
-  });
-
-  document.getElementById("submit").addEventListener('click', function(event){
-    var file = document.getElementById("file-input").files[0];
-    if (file) {
-      var reader = new FileReader();
-      reader.readAsText(file, "UTF-8");
-      reader.onload = function (event) {
-        var new_model = JSON.parse(event.target.result);
-        controller.loadBoards(new_model);
-        render(controller);
-      };
-      reader.onerror = function(event){
-        alert("Error reading file.");
-      };
-    }
-  });
+  // document.getElementById("save").addEventListener('click', function(event){
+  //   var temp = controller;
+  //   controller.getModel().setController(null);
+  //   var name = prompt("Enter the file name:");
+  //   const data = JSON.stringify(controller.getModel())
+  //   const blob = new Blob([data], {type: 'text/plain'})
+  //   const e = document.createEvent('MouseEvents'),
+  //   a = document.createElement('a');
+  //   a.download = name + ".json";
+  //   a.href = window.URL.createObjectURL(blob);
+  //   a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+  //   e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+  //   a.dispatchEvent(e);
+  //   controller.getModel().setController(temp);
+  // });
+  //
+  // document.getElementById("submit").addEventListener('click', function(event){
+  //   let file = document.getElementById("file-input").files[0];
+  //   if (file) {
+  //     var reader = new FileReader();
+  //     reader.readAsText(file, "UTF-8");
+  //     reader.onload = function (event) {
+  //       var new_model = JSON.parse(event.target.result);
+  //       controller.loadBoards(new_model);
+  //       render(controller);
+  //     };
+  //     reader.onerror = function(event){
+  //       alert("Error reading file.");
+  //     };
+  //   }
+  // });
 
 
 } // end addClickListeners
@@ -169,7 +169,7 @@ function addClickListeners(controller) {
  *
  * @param {Controller} controller responsible for generating the HTML
  */
-function render(controller) {
+function render(controller: Controller): void {
   document.getElementById('main').innerHTML = controller.generateHTML();
   addClickListeners(controller);
 } // end render
@@ -219,6 +219,6 @@ function dragMoveListener(event) {
 /**
  * Describes what to do when a task card is dropped
  */
-function dropped() {
+function dropped(): void {
   render(controller);
 } // end dropped

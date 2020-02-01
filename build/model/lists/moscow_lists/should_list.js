@@ -1,3 +1,4 @@
+"use strict";
 /**
  * should_list.js
  *
@@ -7,22 +8,21 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 5, 2019)
  */
-
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
-
-class ShouldList {
-  // Constructor delibrately left out
-
-  /**
-   * generates a Should Have List for MoSCoW board
-   *
-   * @return {List} a Should Have List
-   */
-  generateList() {
-    return new List('Should', Colors.YELLOW);
-  } // end generateList
-} // end MustList
-
-// export this class
-module.exports.ShouldList = ShouldList;
+exports.__esModule = true;
+var list_1 = require("../list");
+var colors_1 = require("../../enums/colors");
+var ShouldList = /** @class */ (function () {
+    function ShouldList() {
+    }
+    // Constructor deliberately left out
+    /**
+     * generates a Should Have List for MoSCoW board
+     *
+     * @return {List} a Should Have List
+     */
+    ShouldList.prototype.generateList = function () {
+        return new list_1.List('Should', colors_1.Colors.YELLOW);
+    }; // end generateList
+    return ShouldList;
+}()); // end MustList
+exports.ShouldList = ShouldList;

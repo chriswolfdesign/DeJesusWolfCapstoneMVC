@@ -9,7 +9,10 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-class TaskCard {
+export class TaskCard {
+  private label: string;
+  private text: string;
+
   /**
    * Generates the TaskCard object
    *
@@ -20,7 +23,16 @@ class TaskCard {
     this.label = label;
     this.text = text;
   } // end constructor
-} // end class
 
-// export the class
-module.exports.TaskCard = TaskCard;
+  setText(text: string) {
+    this.text = text;
+  }
+
+  getLabel() {
+    return this.label;
+  }
+
+  getText() {
+    return this.text;
+  }
+} // end class

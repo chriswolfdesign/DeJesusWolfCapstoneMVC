@@ -1,7 +1,7 @@
 /**
  * test_task_card.js
  *
- * Unit testing for task_card.js
+ * Unit testing for task_card.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -11,7 +11,7 @@
 let assert = require('chai').assert;
 let TaskCard = require('../../src/model/task_card.js').TaskCard;
 
-suite('Unit testing for task_card.js', function() {
+suite('Unit testing for task_card.ts', function() {
   let testTaskCard = null;
 
   // Set up testTaskCard
@@ -30,5 +30,5 @@ suite('Unit testing for task_card.js', function() {
           'Should equal Test Task Card');
     }); // end TaskCard.text test
   }); // end constructor tests
-}); // end unit testing for task_card.js
+}); // end unit testing for task_card.ts
 

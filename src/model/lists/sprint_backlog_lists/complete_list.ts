@@ -8,10 +8,10 @@
  * @version 2.0.0 (November 3, 2019)
  */
 
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
+import {List} from '../list';
+import {Colors} from '../../enums/colors';
 
-class CompleteList {
+export class CompleteList {
   // Constructor deliberately left out
 
   /**
@@ -19,10 +19,7 @@ class CompleteList {
    *
    * @return {List} a Complete List
    */
-  generateList() {
+  generateList(): List {
     return new List('Complete', Colors.GRAY);
   } // end generateList
 } // end CompleteList
-
-// export this module
-module.exports.CompleteList = CompleteList;

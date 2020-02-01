@@ -1,3 +1,4 @@
+"use strict";
 /**
  * in_review_list.js
  *
@@ -7,22 +8,21 @@
  * @author Chris Wolf
  * @version 2.0.0 (November 3, 2019)
  */
-
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
-
-class InReviewList {
-  // Constructor deliberately left out
-
-  /**
-   * generates an In Review List for Sprint Backlog board
-   *
-   * @return {List} an InReviewList
-   */
-  generateList() {
-    return new List('In Review', Colors.GRAY);
-  } // end generateList
-} // end InReviewList
-
-// export this class
-module.exports.InReviewList = InReviewList;
+exports.__esModule = true;
+var list_1 = require("../list");
+var colors_1 = require("../../enums/colors");
+var InReviewList = /** @class */ (function () {
+    function InReviewList() {
+    }
+    // Constructor deliberately left out
+    /**
+     * generates an In Review List for Sprint Backlog board
+     *
+     * @return {List} an InReviewList
+     */
+    InReviewList.prototype.generateList = function () {
+        return new list_1.List('In Review', colors_1.Colors.GRAY);
+    }; // end generateList
+    return InReviewList;
+}()); // end InReviewList
+exports.InReviewList = InReviewList;

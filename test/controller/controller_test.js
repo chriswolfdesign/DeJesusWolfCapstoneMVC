@@ -1,7 +1,7 @@
  /**
  * controller_test.js
  *
- * Unit testing for controller.js
+ * Unit testing for controller.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -18,7 +18,7 @@ let Board = require('../../src/model/boards/board.js').Board;
 let List = require('../../src/model/lists/list.js').List;
 let TaskCard = require('../../src/model/task_card.js').TaskCard;
 
-suite('Unit testing for controller.js', function() {
+suite('Unit testing for controller.ts', function() {
   let controller = null;
 
   setup(function() {
@@ -163,23 +163,23 @@ suite('Unit testing for controller.js', function() {
       app.boards[0].lists[1].tasks.push(new TaskCard("TestCardA", ""));
       app.boards[1].lists[0].tasks.push(new TaskCard("TestCardB", ""));
 
-      controller.removeTaskCard(0, 0, 0);
+      controller.removeTaskCard(0, 0);
       assert(app.boards[0].lists[0].tasks.length != 3, 
         'App should have removed a task card from the first list in the first board');
       assert(app.boards[0].lists[0].tasks[0].label === "Two", 
         'App should have removed the first task card.');
 
-      controller.removeTaskCard(0, 0, 1);
+      controller.removeTaskCard(0, 0);
       assert(app.boards[0].lists[0].tasks.length != 2, 
         'App should have removed a 2nd task card from the first list in the first board');
       assert(app.boards[0].lists[0].tasks[0].label === "Two", 
         'App should have removed the 2nd task card.');
 
-      controller.removeTaskCard(1, 0, 0);
+      controller.removeTaskCard(1, 0);
       assert(app.boards[1].lists[0].tasks.length != 1, 
         'App should have removed a task card from the 2nd board\'s first list');
 
-      controller.removeTaskCard(0, 1, 0);
+      controller.removeTaskCard(0, 1);
       assert(app.boards[0].lists[1].tasks.length != 1, 
         'App should have removed a task card from the 1st board\'s second list');
       }); // end able to remove task card from controller test

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "src"
+    "rootDir": "./src/",
+    "outFile": "build.js"
   }
 }

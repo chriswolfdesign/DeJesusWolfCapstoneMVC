@@ -1,5 +1,5 @@
 /**
- * main.js
+ * main.ts
  *
  * Acts as the HTML injector for our web application
  *

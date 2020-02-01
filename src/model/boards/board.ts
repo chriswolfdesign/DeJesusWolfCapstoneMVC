@@ -8,16 +8,22 @@
  * @version 2.0.0 (October 7, 2019)
  */
 
-List = require('../lists/list.js').List;
-ListFactory = require('../factories/list_factory.js').ListFactory;
+import {List} from '../lists/list';
+import {Colors} from '../enums/colors';
+import {ListFactory} from '../factories/list_factory';
+import {ListOptions} from '../enums/list_options';
 
-class Board {
+export class Board {
+  private title: string;
+  private lists: List[];
+  private listFactory: ListFactory;
+
   /**
    * Generates the board object
    *
    * @param {string} title the title of the board
    */
-  constructor(title) {
+  constructor(title: string) {
     this.title = title;
     this.lists = [];
     this.listFactory = new ListFactory();
@@ -28,8 +34,8 @@ class Board {
    *
    * @param {ListFactory} factory the new factory
    */
-  setListFactory(factory) {
-    this.factory = factory;
+  setListFactory(factory: ListFactory) {
+    this.listFactory = factory;
   }
 
   /**
@@ -38,7 +44,7 @@ class Board {
    * @param {string} label the label for our new list
    * @param {Colors} color the optional color value for our list
    */
-  addList(label, color) {
+  addList(label: string, color: Colors) {
     this.lists.push(new List(label, color));
   } // end addList
 
@@ -49,25 +55,25 @@ class Board {
    * @param {string} label the label of the new task card
    * @param {string} text the text in the new task card
    */
-   generateTaskCard(listID, label, text) {
-     this.lists[listID].addTask(label, text);
-   } // end generateTaskCard
+  generateTaskCard(listID: number, label: string, text: string) {
+    this.lists[listID].addTask(label, text);
+  } // end generateTaskCard
 
   /**
    * Removes a task card from a specified list.
-   * @param {integer} listID the ID we are removing a card from.
-   * @param {integer} cardID the ID of the card we are removing.
+   * @param {number} listID the ID we are removing a card from.
+   * @param {number} cardID the ID of the card we are removing.
    */
-  removeTaskCard(listID, cardID) {
+  removeTaskCard(listID: number, cardID: number) {
     this.lists[listID].removeTaskCard(cardID);
   } // end removeTaskCard
 
   /**
    * Removes the specified list.
    *
-   * @param {integer} listID the ID of a list we are trying to remove
+   * @param {number} listID the ID of a list we are trying to remove
    */
-  removeList(listID) {
+  removeList(listID: number) {
     this.lists.splice(listID, 1);
   } // end removeList
 
@@ -76,7 +82,7 @@ class Board {
    *
    * @param {ListOption} option the type of list we want to generate
    */
-  addListTemplate(option) {
+  addListTemplate(option: ListOptions) {
     this.lists.push(this.listFactory.generateList(option));
   } // end addListTemplate
 
@@ -84,17 +90,22 @@ class Board {
    * Loads in a list of lists into the 'lists' attribute in board.
    * @param {lists[]} lists an array of lists to load into board.
    */
-  loadLists(lists){
-    var nlist;
-    this.lists = []
-    for(var list of lists){
-      nlist = new List(list.label, list.color);
-      nlist.loadTasks(list.tasks);
+  loadLists(lists: List[]){
+    let nlist;
+    this.lists = [];
+    for(let list of lists){
+      nlist = new List(list.getLabel(), list.getColor());
+      nlist.loadTasks(list.getTasks());
       this.lists.push(nlist);
     }
   }
 
+  getTitle(): string {
+    return this.title;
+  }
+
+  getLists(): List[] {
+    return this.lists;
+  }
 } // end Board
 
-// export this class
-module.exports.Board = Board;

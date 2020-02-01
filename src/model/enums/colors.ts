@@ -9,13 +9,10 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-const Colors = {
-  GRAY: 'gray',
-  GREEN: 'green',
-  YELLOW: 'yellow',
-  ORANGE: 'orange',
-  RED: 'red'
-}; // end Colors
-
-// export Colors
-module.exports.Colors = Colors;
+export enum Colors {
+  GRAY = 'gray',
+  GREEN = 'green',
+  YELLOW = 'yellow',
+  ORANGE = 'orange',
+  RED = 'red'
+} // end Colors

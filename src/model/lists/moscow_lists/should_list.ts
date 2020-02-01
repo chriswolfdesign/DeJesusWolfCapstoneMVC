@@ -8,21 +8,18 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
+import {List} from '../list';
+import {Colors} from '../../enums/colors';
 
-class ShouldList {
-  // Constructor delibrately left out
+export class ShouldList {
+  // Constructor deliberately left out
 
   /**
    * generates a Should Have List for MoSCoW board
    *
    * @return {List} a Should Have List
    */
-  generateList() {
+  generateList(): List {
     return new List('Should', Colors.YELLOW);
   } // end generateList
 } // end MustList
-
-// export this class
-module.exports.ShouldList = ShouldList;

@@ -1,5 +1,5 @@
 /**
- * view.js
+ * view.ts
  *
  * The class responsible for generating the HTML based off our current model
  *

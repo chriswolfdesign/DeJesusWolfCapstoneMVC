@@ -1,3 +1,4 @@
+"use strict";
 /**
  * backlog_list.js
  *
@@ -7,22 +8,21 @@
  * @author Chris Wolf
  * @version 2.0.0 (November 3, 2019)
  */
-
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
-
-class BacklogList {
-  // Constructor deliberately left out
-
-  /**
-   * generates a Backlog LIst for Sprint Backlog board
-   *
-   * @return {List} a Backlog List
-   */
-  generateList() {
-    return new List('Backlog', Colors.GRAY);
-  } // end generateList
-} // end BacklogList
-
-// export this class
-module.exports.BacklogList = BacklogList;
+exports.__esModule = true;
+var list_1 = require("../list");
+var colors_1 = require("../../enums/colors");
+var BacklogList = /** @class */ (function () {
+    function BacklogList() {
+    }
+    // Constructor deliberately left out
+    /**
+     * generates a Backlog LIst for Sprint Backlog board
+     *
+     * @return {List} a Backlog List
+     */
+    BacklogList.prototype.generateList = function () {
+        return new list_1.List('Backlog', colors_1.Colors.GRAY);
+    }; // end generateList
+    return BacklogList;
+}()); // end BacklogList
+exports.BacklogList = BacklogList;

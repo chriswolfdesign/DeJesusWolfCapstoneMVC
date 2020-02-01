@@ -1,5 +1,5 @@
 /**
- * task_card.js
+ * task_card.ts
  *
  * The JavaScript class that represents a Task Card in our Agile Development
  * Board.

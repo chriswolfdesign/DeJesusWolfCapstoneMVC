@@ -7,9 +7,11 @@
  * @version 2.0.0 (October 21, 2019)
  */
 
-let Color = require('../model/enums/colors.js').Colors;
+import {Colors as Color} from '../model/enums/colors';
+import {List} from '../model/lists/list';
+import {TaskCard} from '../model/task_card';
 
-class View {
+export class View {
   // Intentionally no constructor
 
   /**
@@ -19,7 +21,7 @@ class View {
    *
    * @return {string} the HTML for model
    */
-  generateHTML(model) {
+  generateHTML(model): string {
     let html = '<div>';
     html += this.generateToolbar();
     html += this.generateHeaderHTML(model);
@@ -34,7 +36,7 @@ class View {
    * 
    * @return {HTML} the html for the toolbar
    */
-  generateToolbar() {
+  generateToolbar(): string {
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
     html += '<div style=\'display: inline-block; margin-left: 320px;\'><u>Agility</u></div>';
@@ -47,7 +49,7 @@ class View {
    * 
    * @return {HTML} the html for the save and load buttons
    */
-  generateSaveLoadButtons() {
+  generateSaveLoadButtons(): string {
     let html = '<div style=\'display: inline-block\'>';
     html += '<button id=save> Save </button>';
     html += '<input id=file-input type=\'file\' name=\'test\'/>';
@@ -61,15 +63,15 @@ class View {
    *
    * @param {Model} model the model we are generating the header HTML for
    *
-   * @return {String} the HTML for the header of the model
+   * @return {string} the HTML for the header of the model
    */
-  generateHeaderHTML(model)  {
+  generateHeaderHTML(model): string  {
     let html = '<div style=text-align:center;>';
     html += '<h1><u>';
-    html += model.title;
+    html += model.getTitle();
     html += '</u></h1></div>';
     return html;
-  }; // end generateHeaderHTML
+  } // end generateHeaderHTML
 
   /**
    * generates all of the lists inside of the model
@@ -78,21 +80,21 @@ class View {
    *
    * @return {string} the HTML for the lists
    */
-  generateListsHTML(model)  {
+  generateListsHTML(model): string  {
     let html = '<div style=\'height: 80vh;\'>';
 
     // for every list, generate the HTML
-    for(let i = 0; i < model.boards[0].lists.length; i++) {
-      html += '<div id=\'' + model.boards[0].lists[i].label + '\' class=\'dropzone\' style='
-          + this.generateListStyle(model.boards[0].lists[i])
-        + '; position: fixed;><h1><u>' + model.boards[0].lists[i].label + '</u></h1>' +
-        this.generateIndividualListHTML(model.boards[0].lists[i]) +
-          this.generateButtonHTML(model.boards[0].lists[i].label) +
+    for(let i = 0; i < model.getBoards()[0].getLists().length; i++) {
+      html += '<div id=\'' + model.getBoards()[0].getLists()[i].getLabel() + '\' class=\'dropzone\' style='
+          + this.generateListStyle(model.getBoards()[0].getLists[i])
+        + '; position: fixed;><h1><u>' + model.getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
+        this.generateIndividualListHTML(model.getBoards()[0].getLists()[i]) +
+          this.generateButtonHTML(model.getBoards()[0].getLists()[i].getLabel()) +
         '</div>';
     } // end for loop
 
     return html;
-  }; // end generateListsHTML
+  } // end generateListsHTML
 
   /**
    * generates the list passed in
@@ -101,7 +103,7 @@ class View {
    *
    * @return {string} the HTML representation of the given list
    */
-  generateIndividualListHTML(list) {
+  generateIndividualListHTML(list: List): string {
     let html = '<div>';
     html += this.generateTaskCardsHTML(list);
     html += '</div>';
@@ -116,12 +118,12 @@ class View {
    * @return {string} the HTML representation of all of the task cards in the
    *                  list
    */
-  generateTaskCardsHTML(list) {
+  generateTaskCardsHTML(list: List): string {
     let html = '<div>';
 
     // for each task card, generate the HTML
-    for(let i = 0; i < list.tasks.length; i++) {
-      html += this.generateIndividualTaskCardHTML(list.tasks[i]);
+    for(let i = 0; i < list.getTasks().length; i++) {
+      html += this.generateIndividualTaskCardHTML(list.getTasks()[i]);
     } // end for loop
 
     html += '</div>';
@@ -136,23 +138,23 @@ class View {
    *
    * @return {string} the HTML representation of the task card
    */
-  generateIndividualTaskCardHTML(task) {
-    let html = '<div id=\'' + task.label + '\' class=\'task-card draggable\'>';
+  generateIndividualTaskCardHTML(task: TaskCard): string {
+    let html = '<div id=\'' + task.getLabel() + '\' class=\'task-card draggable\'>';
 
     html += '<div>';
-    html += '<div id=' + task.label + 'Text>'; // + task.text + '</div>';
-    html += '<div style=\'text-align: left; font-size: 12pt; display: inline-block;\'><u>' + task.label + '</u></div>';
+    html += '<div id=' + task.getLabel() + 'Text>'; // + task.text + '</div>';
+    html += '<div style=\'text-align: left; font-size: 12pt; display: inline-block;\'><u>' + task.getLabel() + '</u></div>';
     html += this.generateRemoveButtonHTML(task);
     html += '</div>';
-    html += '<div id=' + task.label + 'TextField style=\'text-align: center; font-size: 14pt;\'>' + task.text + '</div>';
+    html += '<div id=' + task.getLabel() + 'TextField style=\'text-align: center; font-size: 14pt;\'>' + task.getText() + '</div>';
 
     html += '</div></div>';
 
     return html;
   } // end generateIndividualTaskCardHTML
 
-  generateRemoveButtonHTML(task) {
-    let buttonID = task.label + "RemoveButton";
+  generateRemoveButtonHTML(task: TaskCard) {
+    let buttonID = task.getLabel() + 'RemoveButton';
     return '<button id=' + buttonID + ' class=remove-button>' +
       '<i class=\"fa fa-trash-o\"></i></button>';
   }
@@ -164,7 +166,7 @@ class View {
    *
    * @return {string} the HTML for the style of this
    */
-  generateListStyle(list) {
+  generateListStyle(list: List): string {
     let style = '\'';
     style += 'display: inline-block;';
     style += 'vertical-align: top;';
@@ -188,26 +190,24 @@ class View {
    *
    * @return {string} string representation of the list's color
    */
-  generateListBackgroundColor(list) {
-    switch(list.color) {
-      case Color.GREEN:
-        return 'green';
-      case Color.YELLOW:
-        return 'yellow';
-      case Color.ORANGE:
-        return 'orange';
-      case Color.RED:
-        return 'red';
-      default:
-        return '#AA00AA'
+  generateListBackgroundColor(list: List) {
+    let color = list.getColor();
+    switch(color) {
+    case Color.GREEN:
+      return 'green';
+    case Color.YELLOW:
+      return 'yellow';
+    case Color.ORANGE:
+      return 'orange';
+    case Color.RED:
+      return 'red';
+    default:
+      return '#AA00AA';
     } // end switch case
   } // end generateListBackgroundColor
 
-  generateButtonHTML(parentID) {
+  generateButtonHTML(parentID: number) {
     let thisID = parentID + 'AddButton';
-    return "<button id=\'" + thisID + "\' class=add-button>+</button>";
+    return '<button id=\'' + thisID + '\' class=add-button>+</button>';
   } // end generateButtonHTML
 } // end View
-
-// export this class
-module.exports.View = View;

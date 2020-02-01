@@ -8,10 +8,10 @@
  * @version 2.0.0 (November 3, 2019)
  */
 
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
+import {List} from '../list';
+import {Colors} from '../../enums/colors';
 
-class InReviewList {
+export class InReviewList {
   // Constructor deliberately left out
 
   /**
@@ -19,10 +19,7 @@ class InReviewList {
    *
    * @return {List} an InReviewList
    */
-  generateList() {
+  generateList(): List {
     return new List('In Review', Colors.GRAY);
   } // end generateList
 } // end InReviewList
-
-// export this class
-module.exports.InReviewList = InReviewList;

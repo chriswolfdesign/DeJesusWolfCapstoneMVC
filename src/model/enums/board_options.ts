@@ -9,10 +9,7 @@
  * @version 2.0.0 (October 7, 2019)
  */
 
-const BoardOptions = {
-  MOSCOW: 'Moscow',
-  SPRINT: 'Sprint Backlog'
-}; // end BoardOptions
-
-// export BoardOptions
-module.exports.BoardOptions = BoardOptions;
+export enum BoardOptions {
+  MOSCOW = 'Moscow',
+  SPRINT = 'Sprint Backlog'
+} // end BoardOptions

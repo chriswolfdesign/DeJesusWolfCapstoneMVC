@@ -1,3 +1,4 @@
+"use strict";
 /**
  * could_list.js
  *
@@ -7,22 +8,21 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 5, 2019)
  */
-
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
-
-class CouldList {
-  // Constructor deliberately left out
-
-  /**
-   * generates a Could Have List for MoSCoW board
-   *
-   * @return {List} a Could Have List
-   */
-  generateList() {
-    return new List('Could', Colors.ORANGE);
-  } // end generateList
-} // end CouldList
-
-// export this class
-module.exports.CouldList = CouldList;
+exports.__esModule = true;
+var list_1 = require("../list");
+var colors_1 = require("../../enums/colors");
+var CouldList = /** @class */ (function () {
+    function CouldList() {
+    }
+    // Constructor deliberately left out
+    /**
+     * generates a Could Have List for MoSCoW board
+     *
+     * @return {List} a Could Have List
+     */
+    CouldList.prototype.generateList = function () {
+        return new list_1.List('Could', colors_1.Colors.ORANGE);
+    }; // end generateList
+    return CouldList;
+}()); // end CouldList
+exports.CouldList = CouldList;

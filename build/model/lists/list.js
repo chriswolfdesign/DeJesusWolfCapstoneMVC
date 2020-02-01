@@ -1,3 +1,4 @@
+"use strict";
 /**
  * list.js
  *
@@ -8,61 +9,64 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 5, 2019)
  */
-
-const Colors = require('../enums/colors.js').Colors;
-const TaskCard = require('../task_card.js').TaskCard;
-
-class List {
-  /**
-   * Generates the List object
-   *
-   * @param {string} label the label for the this list
-   * @param {colors} color the background color of this list
-   */
-  constructor(label, color) {
-    // if user did not define a color
-    if (color === undefined) {
-      color = Colors.GRAY;
-    } // end if
-
-    this.label = label;
-    this.color = color;
-    this.tasks = [];
-  } // end constructor
-
-  /**
-   * adds a new task card to the tasks field
-   *
-   * @param {string} label the label for the new task card
-   * @param {string} text the text for the new task card
-   */
-  addTask(label, text) {
-    this.tasks.push(new TaskCard(label, text));
-  } // end addTask
-
-  /**
-   * Removes a task card from the tasks field
-   *
-   * @param {integer} cardID the ID of the being removed.
-   */
-
-  removeTaskCard(cardID) {
-    this.tasks.splice(cardID, 1);
-  } // end removeTaskCard
-
-  /**
-   * Loads in a set of tasks into the 'tasks' attribute.
-   * @param {tasks[]} tasks lists of tasks to be loaded in
-   */
-  loadTasks(tasks){
-    var ntask;
-    this.tasks = [];
-    for(var task of tasks){
-      ntask = new TaskCard(task.label, task.text);
-      this.tasks.push(ntask);
-    }
-  }
-} // end List
-
-// export this class
-module.exports.List = List;
+exports.__esModule = true;
+var colors_1 = require("../enums/colors");
+var task_card_1 = require("../task_card");
+var List = /** @class */ (function () {
+    /**
+     * Generates the List object
+     *
+     * @param {string} label the label for the this list
+     * @param {Colors} color the background color of this list
+     */
+    function List(label, color) {
+        // if user did not define a color
+        if (color === undefined) {
+            color = colors_1.Colors.GRAY;
+        } // end if
+        this.label = label;
+        this.color = color;
+        this.tasks = [];
+    } // end constructor
+    List.prototype.getLabel = function () {
+        return this.label;
+    };
+    List.prototype.getTasks = function () {
+        return this.tasks;
+    };
+    List.prototype.getColor = function () {
+        return this.color;
+    };
+    /**
+     * adds a new task card to the tasks field
+     *
+     * @param {string} label the label for the new task card
+     * @param {string} text the text for the new task card
+     */
+    List.prototype.addTask = function (label, text) {
+        this.tasks.push(new task_card_1.TaskCard(label, text));
+    }; // end addTask
+    /**
+     * Removes a task card from the tasks field
+     *
+     * @param {number} cardID the ID of the being removed.
+     */
+    List.prototype.removeTaskCard = function (cardID) {
+        this.tasks.splice(cardID, 1);
+    }; // end removeTaskCard
+    /**
+     * Loads in a set of tasks into the 'tasks' attribute.
+     * @param {tasks[]} tasks lists of tasks to be loaded in
+     */
+    List.prototype.loadTasks = function (tasks) {
+        var ntask;
+        this.tasks = [];
+        for (var _i = 0, tasks_1 = tasks; _i < tasks_1.length; _i++) {
+            var task = tasks_1[_i];
+            ntask = new task_card_1.TaskCard(task.label, task.text);
+            this.tasks.push(ntask);
+        }
+    };
+    return List;
+}()); // end List
+exports.List = List;

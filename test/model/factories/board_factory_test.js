@@ -1,7 +1,7 @@
 /**
  * test_board_factory.js
  *
- * Unit testing for board_factory.js
+ * Unit testing for board_factory.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -13,7 +13,7 @@ let BoardFactory = require('../../../src/model/factories/board_factory.js').Boar
 let Colors = require('../../../src/model/enums/colors.js').Colors;
 let BoardOptions = require('../../../src/model/enums/board_options.js').BoardOptions;
 
-suite('Unit testing for board_factory.js', function() {
+suite('Unit testing for board_factory.ts', function() {
   let boardFactory = null;
   let testBoard = null;
 
@@ -56,4 +56,4 @@ suite('Unit testing for board_factory.js', function() {
       assert(testBoard.lists[3].color === Colors.RED, 'Should be Red');
     }); // end MOSCOW wont test
   }); // end BoardFactory.generateBoard(BoardOptions.MOSCOW) tests
-}); // end unit testing for board_factory.js
+}); // end unit testing for board_factory.ts

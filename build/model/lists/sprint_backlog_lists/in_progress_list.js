@@ -1,3 +1,4 @@
+"use strict";
 /**
  * in_progress_list.js
  *
@@ -7,22 +8,21 @@
  * @author Chris Wolf
  * @version 2.0.0 (November 3, 2019)
  */
-
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
-
-class InProgressList {
-  // Constructor deliberately left out
-
-  /**
-   * generates an In Progress List for Sprint Backlog board
-   *
-   * @return {List} an In Progress List
-   */
-  generateList() {
-    return new List('In Progress', Colors.GRAY);
-  } // end generateList
-} // end InProgressList
-
-// export this class
-module.exports.InProgressList = InProgressList;
+exports.__esModule = true;
+var list_1 = require("../list");
+var colors_1 = require("../../enums/colors");
+var InProgressList = /** @class */ (function () {
+    function InProgressList() {
+    }
+    // Constructor deliberately left out
+    /**
+     * generates an In Progress List for Sprint Backlog board
+     *
+     * @return {List} an In Progress List
+     */
+    InProgressList.prototype.generateList = function () {
+        return new list_1.List('In Progress', colors_1.Colors.GRAY);
+    }; // end generateList
+    return InProgressList;
+}()); // end InProgressList
+exports.InProgressList = InProgressList;

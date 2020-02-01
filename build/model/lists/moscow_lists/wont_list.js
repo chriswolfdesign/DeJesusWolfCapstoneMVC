@@ -1,3 +1,4 @@
+"use strict";
 /**
  * wont_list.js
  *
@@ -7,22 +8,21 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 5, 2019)
  */
-
-let List = require('../list.js').List;
-let Colors = require('../../enums/colors.js').Colors;
-
-class WontList {
-  // Constructor delibrately left out
-
-  /**
-   * generates a Wont Have List for MoSCoW board
-   *
-   * @return {List} a Wont Have List
-   */
-  generateList() {
-    return new List('Wont', Colors.RED);
-  } // end generateList
-} // end WontList
-
-// export this class
-module.exports.WontList = WontList;
+exports.__esModule = true;
+var list_1 = require("../list");
+var colors_1 = require("../../enums/colors");
+var WontList = /** @class */ (function () {
+    function WontList() {
+    }
+    // Constructor deliberately left out
+    /**
+     * generates a Wont Have List for MoSCoW board
+     *
+     * @return {List} a Wont Have List
+     */
+    WontList.prototype.generateList = function () {
+        return new list_1.List('Wont', colors_1.Colors.RED);
+    }; // end generateList
+    return WontList;
+}()); // end WontList
+exports.WontList = WontList;

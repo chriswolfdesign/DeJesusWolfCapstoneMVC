@@ -1,3 +1,4 @@
+"use strict";
 /**
  * colors.js
  *
@@ -8,14 +9,12 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 5, 2019)
  */
-
-const Colors = {
-  GRAY: 'gray',
-  GREEN: 'green',
-  YELLOW: 'yellow',
-  ORANGE: 'orange',
-  RED: 'red'
-}; // end Colors
-
-// export Colors
-module.exports.Colors = Colors;
+exports.__esModule = true;
+var Colors;
+(function (Colors) {
+    Colors["GRAY"] = "gray";
+    Colors["GREEN"] = "green";
+    Colors["YELLOW"] = "yellow";
+    Colors["ORANGE"] = "orange";
+    Colors["RED"] = "red";
+})(Colors = exports.Colors || (exports.Colors = {})); // end Colors
