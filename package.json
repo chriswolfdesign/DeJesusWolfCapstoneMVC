@@ -12,7 +12,8 @@
     "test_board": "mocha -u tdd -R spec test/model/boards/board_test.js",
     "test_board_factory": "mocha -u tdd -R spec test/model/factories/board_factory_test.js",
     "test_app": "mocha -u tdd -R spec test/model/app_test.js",
-    "build": "tsc --watch"
+    "build": "tsc --watch",
+    "lint": "esw . -w --ext .ts --fix"
   },
   "repository": {
     "type": "git",
@@ -33,8 +34,13 @@
     "test": "test"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
     "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-watch": "^6.0.1",
     "mocha": "^6.2.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "watchify": "^3.11.1"
   }
 }
