@@ -1,5 +1,6 @@
+"use strict";
 /**
- * task_card.ts
+ * task_card.js
  *
  * The JavaScript class that represents a Task Card in our Agile Development
  * Board.
@@ -8,19 +9,27 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 5, 2019)
  */
-
-class TaskCard {
-  /**
-   * Generates the TaskCard object
-   *
-   * @param {string} label the label representing this task card
-   * @param {string} text the text this task card should display
-   */
-  constructor(label, text) {
-    this.label = label;
-    this.text = text;
-  } // end constructor
-} // end class
-
-// export the class
-module.exports.TaskCard = TaskCard;
+exports.__esModule = true;
+var TaskCard = /** @class */ (function () {
+    /**
+     * Generates the TaskCard object
+     *
+     * @param {string} label the label representing this task card
+     * @param {string} text the text this task card should display
+     */
+    function TaskCard(label, text) {
+        this.label = label;
+        this.text = text;
+    } // end constructor
+    TaskCard.prototype.setText = function (text) {
+        this.text = text;
+    };
+    TaskCard.prototype.getLabel = function () {
+        return this.label;
+    };
+    TaskCard.prototype.getText = function () {
+        return this.text;
+    };
+    return TaskCard;
+}()); // end class
+exports.TaskCard = TaskCard;

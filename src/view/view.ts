@@ -191,19 +191,20 @@ export class View {
    * @return {string} string representation of the list's color
    */
   generateListBackgroundColor(list: List) {
-    let color = list.getColor();
-    switch(color) {
-    case Color.GREEN:
-      return 'green';
-    case Color.YELLOW:
-      return 'yellow';
-    case Color.ORANGE:
-      return 'orange';
-    case Color.RED:
-      return 'red';
-    default:
-      return '#AA00AA';
-    } // end switch case
+    return '#999999';
+    // let color = list.getColor();
+    // switch(color) {
+    // case Color.GREEN:
+    //   return 'green';
+    // case Color.YELLOW:
+    //   return 'yellow';
+    // case Color.ORANGE:
+    //   return 'orange';
+    // case Color.RED:
+    //   return 'red';
+    // default:
+    //   return '#AA00AA';
+    // } // end switch case
   } // end generateListBackgroundColor
 
   generateButtonHTML(parentID: number) {

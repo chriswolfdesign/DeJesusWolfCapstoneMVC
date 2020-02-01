@@ -25,7 +25,7 @@ var Controller = /** @class */ (function () {
      */
     Controller.prototype.editTaskText = function (listIndex, taskIndex, newTaskText) {
         if (newTaskText !== '' && newTaskText !== null) {
-            this.model.boards[0].lists[listIndex].tasks[taskIndex].text = newTaskText;
+            this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].setText(newTaskText);
         } // end if
     }; // end editTaskText
     /**
@@ -67,8 +67,8 @@ var Controller = /** @class */ (function () {
     /**
      * generates a task card with the given credentials
      *
-     * @param {string} boardID the board we are adding a task card to
-     * @param {string} listID the list we are adding a task card to
+     * @param {number} boardID the board we are adding a task card to
+     * @param {number} listID the list we are adding a task card to
      * @param {string} label the label for the new task card
      * @param {string} text the text for the new task card
      */
@@ -78,7 +78,8 @@ var Controller = /** @class */ (function () {
     /**
      * removes a task card from a list
      *
-     * @param {string} listID the list from which we are removing a task card
+     * @param {number} listID the list from which we are removing a task card
+     * @param taskID
      */
     Controller.prototype.removeTaskCard = function (listID, taskID) {
         this.model.removeTaskCard(listID, taskID);
@@ -97,7 +98,7 @@ var Controller = /** @class */ (function () {
         // remove the old task card
         this.removeTaskCard(taskIndices[0], taskIndices[1]);
         // add a new task card with the same data to the new list
-        this.model.boards[0].lists[listIndex].addTask(tempData[0], tempData[1]);
+        this.model.getBoards()[0].getLists()[listIndex].addTask(tempData[0], tempData[1]);
     };
     /**
      * Finds the list index of a list by its label
@@ -108,8 +109,8 @@ var Controller = /** @class */ (function () {
      *               -1 otherwise
      */
     Controller.prototype.findListIndex = function (listLabel) {
-        for (var i = 0; i < this.model.boards[0].lists.length; i++) {
-            if (this.model.boards[0].lists[i].label === listLabel) {
+        for (var i = 0; i < this.model.getBoards()[0].getLists().length; i++) {
+            if (this.model.getBoards()[0].getLists()[i].getLabel() === listLabel) {
                 return i;
             } // end if
         } // end for
@@ -124,9 +125,9 @@ var Controller = /** @class */ (function () {
      * @return {list} -- [the list index of the task card, the task index of the task card]
      */
     Controller.prototype.getTaskIndices = function (taskID) {
-        for (var i = 0; i < this.model.boards[0].lists.length; i++) {
-            for (var j = 0; j < this.model.boards[0].lists[i].tasks.length; j++) {
-                if (taskID === this.model.boards[0].lists[i].tasks[j].label) {
+        for (var i = 0; i < this.model.getBoards()[0].getLists().length; i++) {
+            for (var j = 0; j < this.model.getBoards()[0].getLists()[i].getTasks().length; j++) {
+                if (taskID === this.model.getBoards()[0].getLists()[i].getTasks()[j].getLabel()) {
                     return [i, j];
                 } // end if
             } // end inner-for
@@ -139,13 +140,13 @@ var Controller = /** @class */ (function () {
      * @param taskIndex
      */
     Controller.prototype.getTaskData = function (listIndex, taskIndex) {
-        return [this.model.boards[0].lists[listIndex].tasks[taskIndex].label,
-            this.model.boards[0].lists[listIndex].tasks[taskIndex].text];
+        return [this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getLabel(),
+            this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getText()];
     };
     /**
      * getter for model
      *
-     * @return {App} the model this controller controls
+     * @return {Model} the model this controller controls
      */
     Controller.prototype.getModel = function () {
         return this.model;
@@ -164,7 +165,7 @@ var Controller = /** @class */ (function () {
      * @param {object} model the board we are trying to load into model
      */
     Controller.prototype.loadBoards = function (model) {
-        this.model.loadBoards(model);
+        this.model.loadBoards(this.model);
     };
     return Controller;
 }()); // end Controller

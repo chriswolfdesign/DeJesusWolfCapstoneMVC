@@ -23,34 +23,12 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var moscow_list_options_1 = require("../enums/moscow_list_options");
 var list_factory_1 = require("./list_factory");
 var MoscowListFactory = /** @class */ (function (_super) {
     __extends(MoscowListFactory, _super);
     function MoscowListFactory() {
         return _super.call(this) || this;
     } // end constructor
-    /**
-     * generates a list based on the parameter passed in
-     *
-     * @param {MoscowListOptions} option the type of list the user wants generated
-     *
-     * @return {List} a list set up based on the users preferences
-     */
-    MoscowListFactory.prototype.generateList = function (option) {
-        switch (option) {
-            case moscow_list_options_1.MoscowListOptions.MUST:
-                return this.getMustList().generateList();
-            case moscow_list_options_1.MoscowListOptions.SHOULD:
-                return this.getShouldList().generateList();
-            case moscow_list_options_1.MoscowListOptions.COULD:
-                return this.getCouldList().generateList();
-            case moscow_list_options_1.MoscowListOptions.WONT:
-                return this.getWontList().generateList();
-            default:
-                return null;
-        } // end switch
-    }; // end generateList
     return MoscowListFactory;
 }(list_factory_1.ListFactory)); // end MoscowListFactory
 exports.MoscowListFactory = MoscowListFactory;

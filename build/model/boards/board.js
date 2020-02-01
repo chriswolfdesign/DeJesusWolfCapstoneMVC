@@ -87,6 +87,12 @@ var Board = /** @class */ (function () {
             this.lists.push(nlist);
         }
     };
+    Board.prototype.getTitle = function () {
+        return this.title;
+    };
+    Board.prototype.getLists = function () {
+        return this.lists;
+    };
     return Board;
 }()); // end Board
 exports.Board = Board;

@@ -10,7 +10,7 @@
 
 import {BoardOptions} from '../model/enums/board_options';
 import {Controller} from '../controller/controller';
-import interact from 'interactjs';
+// import interact from 'interactjs';
 
 let controller: Controller;  // I really don't like that this is global, let's look into other options
 
@@ -174,48 +174,48 @@ function render(controller: Controller): void {
   addClickListeners(controller);
 } // end render
 
-// Set up interact
-interact('.draggable').draggable({
-  inertia: true,
-  autoscroll: true,
-  onmove: dragMoveListener,
-  onend: dropped
-}); // end interact-draggable
-
-interact('.dropzone').dropzone({
-  accept: '.draggable',
-  overlap: 0.5,
-  ondrop: function(event) {
-    controller.moveTaskCard(event.target, event.relatedTarget);
-    render(controller);
-  }, // end ondrop
-  ondragenter: function(event) {
-    console.log(event.target);
-    event.target.style.border = '5px solid white';
-  }, // end ondragenter
-  ondragleave: function(event) {
-    event.target.style.border = '5px solid black';
-  } // end ondragleave
-}); // end interact-dropzone
-
-/**
- * Describes what to do when a task card is being dragged
- *
- * @param {event} event -- the drag motion we are using to define movement
- */
-function dragMoveListener(event) {
-  let target = event.target;
-  let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-  let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-  target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' +  + y + 
-    'px)';
-
-  target.setAttribute('data-x', x);
-  target.setAttribute('data-y', y);
-
-} // end dragMoveListener
-
+// // Set up interact
+// interact('.draggable').draggable({
+//   inertia: true,
+//   autoscroll: true,
+//   onmove: dragMoveListener,
+//   onend: dropped
+// }); // end interact-draggable
+//
+// interact('.dropzone').dropzone({
+//   accept: '.draggable',
+//   overlap: 0.5,
+//   ondrop: function(event) {
+//     controller.moveTaskCard(event.target, event.relatedTarget);
+//     render(controller);
+//   }, // end ondrop
+//   ondragenter: function(event) {
+//     console.log(event.target);
+//     event.target.style.border = '5px solid white';
+//   }, // end ondragenter
+//   ondragleave: function(event) {
+//     event.target.style.border = '5px solid black';
+//   } // end ondragleave
+// }); // end interact-dropzone
+//
+// /**
+//  * Describes what to do when a task card is being dragged
+//  *
+//  * @param {event} event -- the drag motion we are using to define movement
+//  */
+// function dragMoveListener(event) {
+//   let target = event.target;
+//   let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+//   let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+//
+//   target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' +  + y +
+//     'px)';
+//
+//   target.setAttribute('data-x', x);
+//   target.setAttribute('data-y', y);
+//
+// } // end dragMoveListener
+//
 /**
  * Describes what to do when a task card is dropped
  */

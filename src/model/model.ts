@@ -14,7 +14,7 @@ import {Board} from './boards/board';
 import {Controller} from '../controller/controller';
 import {BoardOptions} from './enums/board_options';
 import {Colors} from './enums/colors';
-import {ListOptions} from '../../build/model/enums/list_options';
+import {ListOptions} from '../model/enums/list_options';
 
 export class Model {
   private title: string;
@@ -32,6 +32,10 @@ export class Model {
     this.boards = [];
     this.boardFactory = new BoardFactory();
   } // end constructor
+
+  getTitle(): string {
+    return this.title;
+  }
 
   /**
    * Generates a board from a template based on user preference

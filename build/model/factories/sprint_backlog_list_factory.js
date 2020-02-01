@@ -23,34 +23,12 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var sprint_backlog_list_options_1 = require("../enums/sprint_backlog_list_options");
 var list_factory_1 = require("./list_factory");
 var SprintBacklogListFactory = /** @class */ (function (_super) {
     __extends(SprintBacklogListFactory, _super);
     function SprintBacklogListFactory() {
         return _super.call(this) || this;
     } // end constructor
-    /**
-     * generates a list based on the parameter passed in
-     *
-     * @param {SprintBacklogListOptions} option the type of list the user wants generated
-     *
-     * @return {List} a list set up based on the user's preferences
-     */
-    SprintBacklogListFactory.prototype.generateList = function (option) {
-        switch (option) {
-            case sprint_backlog_list_options_1.SprintBacklogListOptions.BACKLOG:
-                return this.getBacklogList().generateList();
-            case sprint_backlog_list_options_1.SprintBacklogListOptions.INPROGRESS:
-                return this.getInProgressList().generateList();
-            case sprint_backlog_list_options_1.SprintBacklogListOptions.INREVIEW:
-                return this.getInReviewList().generateList();
-            case sprint_backlog_list_options_1.SprintBacklogListOptions.COMPLETE:
-                return this.getCompleteList().generateList();
-            default:
-                return null;
-        } // end switch
-    }; // end generateList
     return SprintBacklogListFactory;
 }(list_factory_1.ListFactory)); // end SprintBacklogListFactory
 exports.SprintBacklogListFactory = SprintBacklogListFactory;

@@ -10,8 +10,8 @@
  */
 exports.__esModule = true;
 var board_1 = require("./board");
-var moscow_list_options_1 = require("../enums/moscow_list_options");
 var moscow_list_factory_1 = require("../factories/moscow_list_factory");
+var list_options_1 = require("../enums/list_options");
 var MoscowBoard = /** @class */ (function () {
     function MoscowBoard() {
     }
@@ -23,10 +23,10 @@ var MoscowBoard = /** @class */ (function () {
     MoscowBoard.prototype.generateBoard = function () {
         var board = new board_1.Board('MoSCoW Board');
         board.setListFactory(new moscow_list_factory_1.MoscowListFactory());
-        board.addListTemplate(moscow_list_options_1.MoscowListOptions.MUST);
-        board.addListTemplate(moscow_list_options_1.MoscowListOptions.SHOULD);
-        board.addListTemplate(moscow_list_options_1.MoscowListOptions.COULD);
-        board.addListTemplate(moscow_list_options_1.MoscowListOptions.WONT);
+        board.addListTemplate(list_options_1.ListOptions.MUST);
+        board.addListTemplate(list_options_1.ListOptions.SHOULD);
+        board.addListTemplate(list_options_1.ListOptions.COULD);
+        board.addListTemplate(list_options_1.ListOptions.WONT);
         return board;
     }; // end generateBoard
     return MoscowBoard;

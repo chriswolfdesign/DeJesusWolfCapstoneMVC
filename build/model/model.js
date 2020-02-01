@@ -1,3 +1,4 @@
+"use strict";
 /**
  * model.js
  *
@@ -8,8 +9,8 @@
  * @author Chris Wolf
  * @version 2.0.0 (October 7, 2019)
  */
-var BoardFactory = require('./factories/board_factory.js').BoardFactory;
-var BoardOptions = require('./enums/board_options.js').BoardOptions;
+exports.__esModule = true;
+var board_factory_1 = require("./factories/board_factory");
 var Model = /** @class */ (function () {
     /**
      * Generates the foundation for the app
@@ -19,14 +20,15 @@ var Model = /** @class */ (function () {
     function Model(title) {
         this.title = title;
         this.boards = [];
-        this.boardFactory = new BoardFactory();
-        this.controller;
+        this.boardFactory = new board_factory_1.BoardFactory();
     } // end constructor
+    Model.prototype.getTitle = function () {
+        return this.title;
+    };
     /**
      * Generates a board from a template based on user preference
      *
-     * @param {option} BoardOptions the type of board the user would like
-     *                 generated
+     * @param option
      */
     Model.prototype.generateBoardTemplate = function (option) {
         this.boards.push(this.boardFactory.generateBoard(option));
@@ -34,7 +36,7 @@ var Model = /** @class */ (function () {
     /**
      * Removes a board from the list of boards.
      *
-     * @param {integer} boardID the id of the to be removed
+     * @param {number} boardID the id of the to be removed
      */
     Model.prototype.removeBoard = function (boardID) {
         this.boards.splice(boardID, 1);
@@ -42,7 +44,7 @@ var Model = /** @class */ (function () {
     /**
      * Generates a list with the title and color provided in the board specified by the Controller.
      *
-     * @param {integer} boardID the id of the board we are trying to add a list into.
+     * @param {number} boardID the id of the board we are trying to add a list into.
      * @param {string} label the name of the list being generated
      * @param {colors} color the color of the list being generated
      */
@@ -52,7 +54,7 @@ var Model = /** @class */ (function () {
     /**
      * Generates a list based on the template given, to the specified board
      *
-     * @param {integer} boardID the id of the baord we are trying to add a list into
+     * @param {number} boardID the id of the baord we are trying to add a list into
      * @param {option} option the type of list we are trying to create
      */
     Model.prototype.generateListTemplate = function (boardID, option) {
@@ -60,8 +62,8 @@ var Model = /** @class */ (function () {
     }; // end generateListTemplate
     /**
      * Removes a list from a specified board.
-     * @param {integer} boardID the ID of the board from whom we want to remove a list from
-     * @param {integer} listID the ID of the list we are removing
+     * @param {number} boardID the ID of the board from whom we want to remove a list from
+     * @param {number} listID the ID of the list we are removing
      */
     Model.prototype.removeList = function (boardID, listID) {
         this.boards[boardID].removeList(listID);
@@ -69,8 +71,8 @@ var Model = /** @class */ (function () {
     /**
      * Generates a card within a board's list
      *
-     * @param {integer} boardID
-     * @param {integer} listID
+     * @param {number} boardID
+     * @param {number} listID
      * @param {string} label
      * @param {string} text
      *
@@ -104,13 +106,15 @@ var Model = /** @class */ (function () {
         this.boards = [];
         for (var _i = 0, _a = model.boards; _i < _a.length; _i++) {
             var board = _a[_i];
-            nboard = this.boardFactory.generateBoard("empty");
-            nboard.title = board.title;
-            nboard.loadLists(board.lists);
+            nboard = this.boardFactory.generateBoard(null);
+            nboard.title = board.getTitle();
+            nboard.loadLists(board.getLists());
             this.boards.push(nboard);
         }
     };
+    Model.prototype.getBoards = function () {
+        return this.boards;
+    };
     return Model;
 }()); // end App
-// export this class
-module.exports.Model = Model;
+exports.Model = Model;

@@ -63,7 +63,7 @@ var List = /** @class */ (function () {
         this.tasks = [];
         for (var _i = 0, tasks_1 = tasks; _i < tasks_1.length; _i++) {
             var task = tasks_1[_i];
-            ntask = new task_card_1.TaskCard(task.label, task.text);
+            ntask = new task_card_1.TaskCard(task.getLabel(), task.getText());
             this.tasks.push(ntask);
         }
     };
