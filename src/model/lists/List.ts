@@ -28,11 +28,11 @@ export class List {
 
   getLabel(): string {
     return this.label;
-  }
+  } // end getLabel
 
   getTasks(): TaskCard[] {
     return this.tasks;
-  }
+  } // end getTasks
 
   /**
    * adds a new task card to the tasks field
@@ -49,7 +49,6 @@ export class List {
    *
    * @param {number} cardID the ID of the being removed.
    */
-
   removeTaskCard(cardID: number): void {
     this.tasks.splice(cardID, 1);
   } // end removeTaskCard
@@ -64,6 +63,6 @@ export class List {
     for(let task of tasks){
       ntask = new TaskCard(task.getLabel(), task.getText());
       this.tasks.push(ntask);
-    }
-  }
+    } // end for
+  } // end loadTasks
 } // end List

@@ -128,10 +128,10 @@ export class Model {
       nboard.title = board.getTitle();
       nboard.loadLists(board.getLists());
       this.boards.push(nboard);
-    }
-  }
+    } // end for
+  } // end loadBoards
 
   getBoards(): Board[] {
     return this.boards;
-  }
+  } // end getBoards
 } // end App

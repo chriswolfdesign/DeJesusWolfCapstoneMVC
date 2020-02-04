@@ -26,13 +26,13 @@ export class TaskCard {
 
   setText(text: string) {
     this.text = text;
-  }
+  } // end setText
 
   getLabel() {
     return this.label;
-  }
+  } // end getLabel
 
   getText() {
     return this.text;
-  }
+  } // end getText
 } // end class

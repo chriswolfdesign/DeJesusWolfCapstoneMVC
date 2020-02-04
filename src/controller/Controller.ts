@@ -115,7 +115,7 @@ export class Controller{
 
     // add a new task card with the same data to the new list
     this.model.getBoards()[0].getLists()[listIndex].addTask(tempData[0], tempData[1]);
-  }
+  } // end moveTaskCard
 
   /**
    * Finds the list index of a list by its label

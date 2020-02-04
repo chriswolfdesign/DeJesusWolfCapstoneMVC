@@ -43,35 +43,35 @@ export class ListFactory {
 
   getMustList(): MustList {
     return this.mustList;
-  }
+  } // end getMustList
 
   getShouldList(): ShouldList {
     return this.shouldList;
-  }
+  } // end getShouldList
 
   getCouldList(): CouldList {
     return this.couldList;
-  }
+  } // end getCouldList
 
   getWontList(): WontList {
     return this.wontList;
-  }
+  } // end getWontList
 
   getBacklogList(): BacklogList {
     return this.backlogList;
-  }
+  } // end getBacklogList
 
   getInProgressList(): InProgressList {
     return this.inProgressList;
-  }
+  } // end getInProgressList
 
   getInReviewList(): InReviewList {
     return this.inReviewList;
-  }
+  } // end getInReviewList
 
   getCompleteList(): CompleteList {
     return this.completeList;
-  }
+  } // end getCompleteList
 
   /**
    * generates a list based on the parameter passed in

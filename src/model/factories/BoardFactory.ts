@@ -17,6 +17,7 @@ import {SprintBacklogBoard} from '../boards/SprintBacklogBoard';
 export class BoardFactory {
   private moscowBoard: MoscowBoard;
   private sprintBoard: SprintBacklogBoard;
+
   constructor() {
     this.moscowBoard = new MoscowBoard();
     this.sprintBoard = new SprintBacklogBoard();

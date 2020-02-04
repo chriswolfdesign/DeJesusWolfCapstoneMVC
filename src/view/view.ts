@@ -156,7 +156,7 @@ export class View {
     let buttonID = task.getLabel() + 'RemoveButton';
     return '<button id=' + buttonID + ' class=remove-button>' +
       '<i class=\"fa fa-trash-o\"></i></button>';
-  }
+  } // end generateRemoveButtonHTML
 
   /**
    * generates the style for the individual list

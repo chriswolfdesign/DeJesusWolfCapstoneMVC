@@ -96,15 +96,15 @@ export class Board {
       nlist = new List(list.getLabel());
       nlist.loadTasks(list.getTasks());
       this.lists.push(nlist);
-    }
-  }
+    } // end for
+  } // end loadLists
 
   getTitle(): string {
     return this.title;
-  }
+  } // end getTitle
 
   getLists(): List[] {
     return this.lists;
-  }
+  } // end getLists
 } // end Board
 
