@@ -9,7 +9,6 @@
  */
 
 import {List} from '../list';
-import {Colors} from '../../enums/colors';
 
 export class WontList {
   // Constructor deliberately left out
@@ -20,6 +19,6 @@ export class WontList {
    * @return {List} a Wont Have List
    */
   generateList(): List {
-    return new List('Wont', Colors.RED);
+    return new List('Wont');
   } // end generateList
 } // end WontList

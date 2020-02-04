@@ -9,7 +9,6 @@
  */
 
 import {List} from '../list';
-import {Colors} from '../../enums/colors';
 
 export class ShouldList {
   // Constructor deliberately left out
@@ -20,6 +19,6 @@ export class ShouldList {
    * @return {List} a Should Have List
    */
   generateList(): List {
-    return new List('Should', Colors.YELLOW);
+    return new List('Should');
   } // end generateList
 } // end MustList

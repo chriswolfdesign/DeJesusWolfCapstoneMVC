@@ -10,7 +10,6 @@
  */
 exports.__esModule = true;
 var list_1 = require("../list");
-var colors_1 = require("../../enums/colors");
 var InProgressList = /** @class */ (function () {
     function InProgressList() {
     }
@@ -21,7 +20,7 @@ var InProgressList = /** @class */ (function () {
      * @return {List} an In Progress List
      */
     InProgressList.prototype.generateList = function () {
-        return new list_1.List('In Progress', colors_1.Colors.GRAY);
+        return new list_1.List('In Progress');
     }; // end generateList
     return InProgressList;
 }()); // end InProgressList

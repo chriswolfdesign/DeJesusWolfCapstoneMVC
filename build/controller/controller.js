@@ -43,8 +43,8 @@ var Controller = /** @class */ (function () {
      * @param {string} label the label for the new list
      * @param color
      */
-    Controller.prototype.generateList = function (boardID, label, color) {
-        this.model.generateList(boardID, label, color);
+    Controller.prototype.generateList = function (boardID, label) {
+        this.model.generateList(boardID, label);
     }; // end generateList
     /**
      * removes a list from a board

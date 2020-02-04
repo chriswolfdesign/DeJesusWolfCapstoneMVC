@@ -10,7 +10,6 @@
  */
 exports.__esModule = true;
 var list_1 = require("../list");
-var colors_1 = require("../../enums/colors");
 var WontList = /** @class */ (function () {
     function WontList() {
     }
@@ -21,7 +20,7 @@ var WontList = /** @class */ (function () {
      * @return {List} a Wont Have List
      */
     WontList.prototype.generateList = function () {
-        return new list_1.List('Wont', colors_1.Colors.RED);
+        return new list_1.List('Wont');
     }; // end generateList
     return WontList;
 }()); // end WontList

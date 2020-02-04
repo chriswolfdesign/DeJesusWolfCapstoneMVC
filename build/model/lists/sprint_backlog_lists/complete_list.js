@@ -10,7 +10,6 @@
  */
 exports.__esModule = true;
 var list_1 = require("../list");
-var colors_1 = require("../../enums/colors");
 var CompleteList = /** @class */ (function () {
     function CompleteList() {
     }
@@ -21,7 +20,7 @@ var CompleteList = /** @class */ (function () {
      * @return {List} a Complete List
      */
     CompleteList.prototype.generateList = function () {
-        return new list_1.List('Complete', colors_1.Colors.GRAY);
+        return new list_1.List('Complete');
     }; // end generateList
     return CompleteList;
 }()); // end CompleteList

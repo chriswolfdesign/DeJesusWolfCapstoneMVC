@@ -10,7 +10,6 @@
  */
 exports.__esModule = true;
 var list_1 = require("../list");
-var colors_1 = require("../../enums/colors");
 var BacklogList = /** @class */ (function () {
     function BacklogList() {
     }
@@ -21,7 +20,7 @@ var BacklogList = /** @class */ (function () {
      * @return {List} a Backlog List
      */
     BacklogList.prototype.generateList = function () {
-        return new list_1.List('Backlog', colors_1.Colors.GRAY);
+        return new list_1.List('Backlog');
     }; // end generateList
     return BacklogList;
 }()); // end BacklogList

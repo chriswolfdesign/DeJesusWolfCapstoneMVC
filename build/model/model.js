@@ -48,8 +48,8 @@ var Model = /** @class */ (function () {
      * @param {string} label the name of the list being generated
      * @param {colors} color the color of the list being generated
      */
-    Model.prototype.generateList = function (boardID, label, color) {
-        this.boards[boardID].addList(label, color);
+    Model.prototype.generateList = function (boardID, label) {
+        this.boards[boardID].addList(label);
     }; // end generateList
     /**
      * Generates a list based on the template given, to the specified board

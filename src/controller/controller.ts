@@ -3,7 +3,6 @@ import {View} from '../view/view';
 import {ListOptions} from '../model/enums/list_options';
 
 import {BoardOptions} from '../model/enums/board_options';
-import {Colors} from '../model/enums/colors';
 
 export class Controller{
   private readonly model: Model;
@@ -52,8 +51,8 @@ export class Controller{
    * @param {string} label the label for the new list
    * @param color
    */
-  generateList(boardID: number, label: string, color: Colors) {
-    this.model.generateList(boardID, label, color);
+  generateList(boardID: number, label: string) {
+    this.model.generateList(boardID, label);
   } // end generateList
 
   /**

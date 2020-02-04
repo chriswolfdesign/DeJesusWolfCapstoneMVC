@@ -36,8 +36,8 @@ var Board = /** @class */ (function () {
      * @param {string} label the label for our new list
      * @param {Colors} color the optional color value for our list
      */
-    Board.prototype.addList = function (label, color) {
-        this.lists.push(new list_1.List(label, color));
+    Board.prototype.addList = function (label) {
+        this.lists.push(new list_1.List(label));
     }; // end addList
     /**
      * Creates a task card within the specified list.
@@ -82,7 +82,7 @@ var Board = /** @class */ (function () {
         this.lists = [];
         for (var _i = 0, lists_1 = lists; _i < lists_1.length; _i++) {
             var list = lists_1[_i];
-            nlist = new list_1.List(list.getLabel(), list.getColor());
+            nlist = new list_1.List(list.getLabel());
             nlist.loadTasks(list.getTasks());
             this.lists.push(nlist);
         }

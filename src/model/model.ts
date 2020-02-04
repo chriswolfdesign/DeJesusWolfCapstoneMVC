@@ -13,7 +13,6 @@ import {BoardFactory} from './factories/board_factory';
 import {Board} from './boards/board';
 import {Controller} from '../controller/controller';
 import {BoardOptions} from './enums/board_options';
-import {Colors} from './enums/colors';
 import {ListOptions} from '../model/enums/list_options';
 
 export class Model {
@@ -62,8 +61,8 @@ export class Model {
    * @param {string} label the name of the list being generated
    * @param {colors} color the color of the list being generated
    */
-  generateList(boardID: number, label: string, color: Colors): void {
-    this.boards[boardID].addList(label, color);
+  generateList(boardID: number, label: string): void {
+    this.boards[boardID].addList(label);
   } // end generateList
 
   /**

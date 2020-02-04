@@ -10,7 +10,6 @@
  */
 exports.__esModule = true;
 var list_1 = require("../list");
-var colors_1 = require("../../enums/colors");
 var ShouldList = /** @class */ (function () {
     function ShouldList() {
     }
@@ -21,7 +20,7 @@ var ShouldList = /** @class */ (function () {
      * @return {List} a Should Have List
      */
     ShouldList.prototype.generateList = function () {
-        return new list_1.List('Should', colors_1.Colors.YELLOW);
+        return new list_1.List('Should');
     }; // end generateList
     return ShouldList;
 }()); // end MustList

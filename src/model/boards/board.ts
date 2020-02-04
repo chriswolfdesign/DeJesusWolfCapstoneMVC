@@ -9,7 +9,6 @@
  */
 
 import {List} from '../lists/list';
-import {Colors} from '../enums/colors';
 import {ListFactory} from '../factories/list_factory';
 import {ListOptions} from '../enums/list_options';
 
@@ -44,8 +43,8 @@ export class Board {
    * @param {string} label the label for our new list
    * @param {Colors} color the optional color value for our list
    */
-  addList(label: string, color: Colors) {
-    this.lists.push(new List(label, color));
+  addList(label: string) {
+    this.lists.push(new List(label));
   } // end addList
 
   /**
@@ -94,7 +93,7 @@ export class Board {
     let nlist;
     this.lists = [];
     for(let list of lists){
-      nlist = new List(list.getLabel(), list.getColor());
+      nlist = new List(list.getLabel());
       nlist.loadTasks(list.getTasks());
       this.lists.push(nlist);
     }

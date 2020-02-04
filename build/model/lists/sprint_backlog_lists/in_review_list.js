@@ -10,7 +10,6 @@
  */
 exports.__esModule = true;
 var list_1 = require("../list");
-var colors_1 = require("../../enums/colors");
 var InReviewList = /** @class */ (function () {
     function InReviewList() {
     }
@@ -21,7 +20,7 @@ var InReviewList = /** @class */ (function () {
      * @return {List} an InReviewList
      */
     InReviewList.prototype.generateList = function () {
-        return new list_1.List('In Review', colors_1.Colors.GRAY);
+        return new list_1.List('In Review');
     }; // end generateList
     return InReviewList;
 }()); // end InReviewList

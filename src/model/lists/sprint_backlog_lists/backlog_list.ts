@@ -9,7 +9,6 @@
  */
 
 import {List} from '../list';
-import {Colors} from '../../enums/colors';
 
 export class BacklogList {
   // Constructor deliberately left out
@@ -20,6 +19,6 @@ export class BacklogList {
    * @return {List} a Backlog List
    */
   generateList(): List {
-    return new List('Backlog', Colors.GRAY);
+    return new List('Backlog');
   } // end generateList
 } // end BacklogList

@@ -10,7 +10,6 @@
  */
 exports.__esModule = true;
 var list_1 = require("../list");
-var colors_1 = require("../../enums/colors");
 var MustList = /** @class */ (function () {
     function MustList() {
     }
@@ -21,7 +20,7 @@ var MustList = /** @class */ (function () {
      * @return {List} a Must Have List
      */
     MustList.prototype.generateList = function () {
-        return new list_1.List('Must', colors_1.Colors.GREEN);
+        return new list_1.List('Must');
     }; // end generateList
     return MustList;
 }()); // end MustList

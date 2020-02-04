@@ -7,7 +7,6 @@
  * @version 2.0.0 (October 21, 2019)
  */
 
-import {Colors as Color} from '../model/enums/colors';
 import {List} from '../model/lists/list';
 import {TaskCard} from '../model/task_card';
 

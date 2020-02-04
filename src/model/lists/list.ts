@@ -9,12 +9,10 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-import {Colors} from '../enums/colors';
 import {TaskCard} from '../task_card';
 
 export class List {
-  private label: string;
-  private color: Colors;
+  private readonly label: string;
   private tasks: TaskCard[];
 
   /**
@@ -23,14 +21,8 @@ export class List {
    * @param {string} label the label for the this list
    * @param {Colors} color the background color of this list
    */
-  constructor(label: string, color: Colors) {
-    // if user did not define a color
-    if (color === undefined) {
-      color = Colors.GRAY;
-    } // end if
-
+  constructor(label: string) {
     this.label = label;
-    this.color = color;
     this.tasks = [];
   } // end constructor
 
@@ -40,10 +32,6 @@ export class List {
 
   getTasks(): TaskCard[] {
     return this.tasks;
-  }
-
-  getColor(): Colors {
-    return this.color;
   }
 
   /**

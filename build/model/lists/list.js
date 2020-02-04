@@ -10,7 +10,6 @@
  * @version 2.0.0 (October 5, 2019)
  */
 exports.__esModule = true;
-var colors_1 = require("../enums/colors");
 var task_card_1 = require("../task_card");
 var List = /** @class */ (function () {
     /**
@@ -19,13 +18,8 @@ var List = /** @class */ (function () {
      * @param {string} label the label for the this list
      * @param {Colors} color the background color of this list
      */
-    function List(label, color) {
-        // if user did not define a color
-        if (color === undefined) {
-            color = colors_1.Colors.GRAY;
-        } // end if
+    function List(label) {
         this.label = label;
-        this.color = color;
         this.tasks = [];
     } // end constructor
     List.prototype.getLabel = function () {
@@ -33,9 +27,6 @@ var List = /** @class */ (function () {
     };
     List.prototype.getTasks = function () {
         return this.tasks;
-    };
-    List.prototype.getColor = function () {
-        return this.color;
     };
     /**
      * adds a new task card to the tasks field

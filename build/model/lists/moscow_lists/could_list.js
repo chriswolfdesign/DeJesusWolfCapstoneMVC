@@ -10,7 +10,6 @@
  */
 exports.__esModule = true;
 var list_1 = require("../list");
-var colors_1 = require("../../enums/colors");
 var CouldList = /** @class */ (function () {
     function CouldList() {
     }
@@ -21,7 +20,7 @@ var CouldList = /** @class */ (function () {
      * @return {List} a Could Have List
      */
     CouldList.prototype.generateList = function () {
-        return new list_1.List('Could', colors_1.Colors.ORANGE);
+        return new list_1.List('Could');
     }; // end generateList
     return CouldList;
 }()); // end CouldList

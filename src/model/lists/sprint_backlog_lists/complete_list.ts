@@ -9,7 +9,6 @@
  */
 
 import {List} from '../list';
-import {Colors} from '../../enums/colors';
 
 export class CompleteList {
   // Constructor deliberately left out
@@ -20,6 +19,6 @@ export class CompleteList {
    * @return {List} a Complete List
    */
   generateList(): List {
-    return new List('Complete', Colors.GRAY);
+    return new List('Complete');
   } // end generateList
 } // end CompleteList
