@@ -1,7 +1,7 @@
  /**
  * controller_test.js
  *
- * Unit testing for controller.ts
+ * Unit testing for Controller.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -18,7 +18,7 @@ let Board = require('../../src/model/boards/board.js').Board;
 let List = require('../../src/model/lists/list.js').List;
 let TaskCard = require('../../src/model/task_card.js').TaskCard;
 
-suite('Unit testing for controller.ts', function() {
+suite('Unit testing for Controller.ts', function() {
   let controller = null;
 
   setup(function() {

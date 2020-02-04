@@ -7,8 +7,8 @@
  * @version 2.0.0 (October 21, 2019)
  */
 
-import {List} from '../model/lists/list';
-import {TaskCard} from '../model/task_card';
+import {List} from '../model/lists/List';
+import {TaskCard} from '../model/TaskCard';
 
 export class View {
   // Intentionally no constructor

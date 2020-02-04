@@ -1,7 +1,7 @@
 /**
  * test_app.js
  *
- * Unit testing for model.ts
+ * Unit testing for Model.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -15,7 +15,7 @@ let Board = require('../../src/model/boards/board.js').Board
 let Colors = require('../../src/model/enums/colors.js').Colors
 let ListOptions = require('../../src/model/enums/list_options.js').ListOptions
 
-suite('Unit testing for model.ts', function() {
+suite('Unit testing for Model.ts', function() {
   let app = null;
 
   // Set up our app
@@ -263,6 +263,6 @@ suite('Unit testing for model.ts', function() {
     })
   });
 
-}); // end unit testing for model.ts
+}); // end unit testing for Model.ts
 
 

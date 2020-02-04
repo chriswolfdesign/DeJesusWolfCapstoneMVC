@@ -1,7 +1,7 @@
 /**
  * test_board.js
  *
- * Unit testing for board.ts
+ * Unit testing for Board.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -13,7 +13,7 @@ let Board = require('../../../src/model/boards/board.js').Board;
 let Colors = require('../../../src/model/enums/colors.js').Colors;
 let ListOptions = require('../../../src/model/enums/list_options.js').ListOptions;
 
-suite('Unit testing for board.ts', function() {
+suite('Unit testing for Board.ts', function() {
   let testBoard = null;
 
   // Set up our board
@@ -195,4 +195,4 @@ suite('Unit testing for board.ts', function() {
 
   });
 
-}); // end board.ts tests
+}); // end Board.ts tests

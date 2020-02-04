@@ -14,7 +14,7 @@
     "test_app": "mocha -u tdd -R spec test/model/app_test.js",
     "build": "tsc --watch",
     "lint": "esw . -w --ext .ts --fix",
-    "watchify": "watchify -o build/main/main_transpiled.js build/main/main.js"
+    "watchify": "watchify -o build/main/Main_transpiled.js build/main/Main.js"
   },
   "repository": {
     "type": "git",

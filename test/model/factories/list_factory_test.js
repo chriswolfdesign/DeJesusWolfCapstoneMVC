@@ -1,7 +1,7 @@
 /*
  * test_list_factory.js
  *
- * Unit testing for list_factory.ts
+ * Unit testing for ListFactory.ts
  *
  * @author Ellery De Jesus
  * @author Chris Wolf
@@ -13,7 +13,7 @@ let ListFactory = require('../../../src/model/factories/list_factory.js').ListFa
 let ListOptions = require('../../../src/model/enums/list_options.js').ListOptions;
 let Colors = require('../../../src/model/enums/colors.js').Colors;
 
-suite('Unit testing for list_factory.ts', function() {
+suite('Unit testing for ListFactory.ts', function() {
   let listFactory = null;
   let testList = null;
 
@@ -52,4 +52,4 @@ suite('Unit testing for list_factory.ts', function() {
       assert(testList.tasks.length === 0, 'Should be empty');
     }); // end ListFactory.generateList(ListOptions.WONT) test
   }); // end ListFactory.generateList tests
-}); // end unit testing for list_factory.ts
+}); // end unit testing for ListFactory.ts
