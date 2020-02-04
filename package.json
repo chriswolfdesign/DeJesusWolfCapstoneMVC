@@ -13,7 +13,8 @@
     "test_board_factory": "mocha -u tdd -R spec test/model/factories/board_factory_test.js",
     "test_app": "mocha -u tdd -R spec test/model/app_test.js",
     "build": "tsc --watch",
-    "lint": "esw . -w --ext .ts --fix"
+    "lint": "esw . -w --ext .ts --fix",
+    "watchify":  "watchify -o build/main/main_transpiled.js build/main/main.js"
   },
   "repository": {
     "type": "git",

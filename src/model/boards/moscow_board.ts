@@ -11,7 +11,7 @@
 import {Board} from './board';
 import {MoscowListOptions} from '../enums/moscow_list_options';
 import {MoscowListFactory} from '../factories/moscow_list_factory';
-import {ListOptions} from "../enums/list_options";
+import {ListOptions} from '../enums/list_options';
 
 export class MoscowBoard {
   /**

@@ -11,7 +11,7 @@
 import {Board} from './board';
 import {SprintBacklogListOptions} from '../enums/sprint_backlog_list_options';
 import {SprintBacklogListFactory} from '../factories/sprint_backlog_list_factory';
-import {ListOptions} from "../enums/list_options";
+import {ListOptions} from '../enums/list_options';
 
 export class SprintBacklogBoard {
   /**
