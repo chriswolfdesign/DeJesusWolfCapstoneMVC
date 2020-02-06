@@ -38,7 +38,7 @@ export class View {
   generateToolbar(): string {
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
-    html += '<div style=\'display: inline-block; margin-left: 320px;\'><u>Agility</u></div>';
+    html += '<div id=toolbar-text>Agility</div>';
     html += '</div>';
     return html;
   } // end generateToolbar
@@ -49,7 +49,7 @@ export class View {
    * @return {HTML} the html for the save and load buttons
    */
   generateSaveLoadButtons(): string {
-    let html = '<div style=\'display: inline-block\'>';
+    let html = '<div id=save-load-buttons>';
     html += '<button id=save> Save </button>';
     html += '<input id=file-input type=\'file\' name=\'test\'/>';
     html += '<button id=submit> Submit </button>';
@@ -65,7 +65,7 @@ export class View {
    * @return {string} the HTML for the header of the model
    */
   generateHeaderHTML(model): string  {
-    let html = '<div style=text-align:center;>';
+    let html = '<div id=header>';
     html += '<h1><u>';
     html += model.getTitle();
     html += '</u></h1></div>';
@@ -80,15 +80,14 @@ export class View {
    * @return {string} the HTML for the lists
    */
   generateListsHTML(model): string  {
-    let html = '<div style=\'height: 80vh;\'>';
+    let html = '<div class=lists>';
 
     // for every list, generate the HTML
     for(let i = 0; i < model.getBoards()[0].getLists().length; i++) {
-      html += '<div id=\'' + model.getBoards()[0].getLists()[i].getLabel() + '\' class=\'dropzone\' style='
-          + this.generateListStyle(model.getBoards()[0].getLists[i])
-        + '; position: fixed;><h1><u>' + model.getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
+      html += '<div id=\'' + model.getBoards()[0].getLists()[i].getLabel() + '\' class=\'dropzone list\'>'
+        + '<h1 class=list-header><u>' + model.getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
         this.generateIndividualListHTML(model.getBoards()[0].getLists()[i]) +
-          this.generateButtonHTML(model.getBoards()[0].getLists()[i].getLabel()) +
+          this.generateAddButtonHTML(model.getBoards()[0].getLists()[i].getLabel()) +
         '</div>';
     } // end for loop
 
@@ -141,11 +140,11 @@ export class View {
     let html = '<div id=\'' + task.getLabel() + '\' class=\'task-card draggable\'>';
 
     html += '<div>';
-    html += '<div id=' + task.getLabel() + 'Text>'; // + task.text + '</div>';
-    html += '<div style=\'text-align: left; font-size: 12pt; display: inline-block;\'><u>' + task.getLabel() + '</u></div>';
+    html += '<div id=' + task.getLabel() + 'Label>';
+    html += '<div class="task-card-label"><u>' + task.getLabel() + '</u></div>';
     html += this.generateRemoveButtonHTML(task);
     html += '</div>';
-    html += '<div id=' + task.getLabel() + 'TextField style=\'text-align: center; font-size: 14pt;\'>' + task.getText() + '</div>';
+    html += '<div class=task-card-text id=' + task.getLabel() + 'TextField>' + task.getText() + '</div>';
 
     html += '</div></div>';
 
@@ -158,56 +157,8 @@ export class View {
       '<i class=\"fa fa-trash-o\"></i></button>';
   } // end generateRemoveButtonHTML
 
-  /**
-   * generates the style for the individual list
-   *
-   * @param {List} list the list we are trying to generate style for
-   *
-   * @return {string} the HTML for the style of this
-   */
-  generateListStyle(list: List): string {
-    let style = '\'';
-    style += 'display: inline-block;';
-    style += 'vertical-align: top;';
-    style += 'min-height: 80vh;';
-    style += 'text-align: center;';
-    style += 'border: 5px solid black;';
-    style += 'border-radius: 10px;';
-    style += 'background-color: ' + this.generateListBackgroundColor(list) +
-      ';';
-    style += 'color: black;';
-    style += 'margin-left: 5px;';
-    style += 'width: 23%;';
-    style += '\'';
-    return style;
-  } // end generateListStyle
-
-  /**
-   * generates the background color based on the list's color property
-   *
-   * @param {List} list the list whose color we are calculating
-   *
-   * @return {string} string representation of the list's color
-   */
-  generateListBackgroundColor(list: List) {
-    return '#999999';
-    // let color = list.getColor();
-    // switch(color) {
-    // case Color.GREEN:
-    //   return 'green';
-    // case Color.YELLOW:
-    //   return 'yellow';
-    // case Color.ORANGE:
-    //   return 'orange';
-    // case Color.RED:
-    //   return 'red';
-    // default:
-    //   return '#AA00AA';
-    // } // end switch case
-  } // end generateListBackgroundColor
-
-  generateButtonHTML(parentID: number) {
+  generateAddButtonHTML(parentID: number) {
     let thisID = parentID + 'AddButton';
     return '<button id=\'' + thisID + '\' class=add-button>+</button>';
-  } // end generateButtonHTML
+  } // end generateAddButtonHTML
 } // end View
