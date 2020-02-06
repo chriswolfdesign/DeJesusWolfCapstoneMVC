@@ -2,25 +2,41 @@
  * GLOBALS *
  ***********/
 body {
-    background: radial-gradient(circle, rgba(213,201,39,1) 46%, rgba(173,0,255,1) 100%);
+    background: white;
     color: black;
-    font-family: Lobster-Two, cursive;
 }
 
 /*******
  * IDS *
  *******/
 #toolbar {
-    background-color: black;
+    background-color: #592C88;
     color: white;
-    width: 120%;
+    width: 97%;
     margin-left: -20px;
-    margin-top: -10px;
+    margin-top: -90px;
     padding-left: 5%;
+    padding-top: 4%;
     font-size: 18px;
     font-weight: bold;
     border-radius: 5px;
+    display: inline-block;
 }
+
+#save-load-buttons {
+    float: left;
+}
+
+#header {
+    text-align: center;
+}
+
+#toolbar-text {
+    float: right;
+    margin-right: 50%;
+    text-decoration: underline;
+}
+
 
  /***********
   * CLASSES *

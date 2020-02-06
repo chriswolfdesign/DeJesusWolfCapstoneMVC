@@ -38,7 +38,7 @@ export class View {
   generateToolbar(): string {
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
-    html += '<div style=\'display: inline-block; margin-left: 320px;\'><u>Agility</u></div>';
+    html += '<div id=toolbar-text>Agility</div>';
     html += '</div>';
     return html;
   } // end generateToolbar
@@ -49,7 +49,7 @@ export class View {
    * @return {HTML} the html for the save and load buttons
    */
   generateSaveLoadButtons(): string {
-    let html = '<div style=\'display: inline-block\'>';
+    let html = '<div id=save-load-buttons>';
     html += '<button id=save> Save </button>';
     html += '<input id=file-input type=\'file\' name=\'test\'/>';
     html += '<button id=submit> Submit </button>';
@@ -65,7 +65,7 @@ export class View {
    * @return {string} the HTML for the header of the model
    */
   generateHeaderHTML(model): string  {
-    let html = '<div style=text-align:center;>';
+    let html = '<div id=header>';
     html += '<h1><u>';
     html += model.getTitle();
     html += '</u></h1></div>';
