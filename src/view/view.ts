@@ -85,9 +85,9 @@ export class View {
     // for every list, generate the HTML
     for(let i = 0; i < model.getBoards()[0].getLists().length; i++) {
       html += '<div id=\'' + model.getBoards()[0].getLists()[i].getLabel() + '\' class=\'dropzone list\'>'
-        + '<h1><u>' + model.getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
+        + '<h1 class=list-header><u>' + model.getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
         this.generateIndividualListHTML(model.getBoards()[0].getLists()[i]) +
-          this.generateButtonHTML(model.getBoards()[0].getLists()[i].getLabel()) +
+          this.generateAddButtonHTML(model.getBoards()[0].getLists()[i].getLabel()) +
         '</div>';
     } // end for loop
 
@@ -157,33 +157,8 @@ export class View {
       '<i class=\"fa fa-trash-o\"></i></button>';
   }
 
-
-  /**
-   * generates the background color based on the list's color property
-   *
-   * @param {List} list the list whose color we are calculating
-   *
-   * @return {string} string representation of the list's color
-   */
-  generateListBackgroundColor(list: List) {
-    return '#999999';
-    // let color = list.getColor();
-    // switch(color) {
-    // case Color.GREEN:
-    //   return 'green';
-    // case Color.YELLOW:
-    //   return 'yellow';
-    // case Color.ORANGE:
-    //   return 'orange';
-    // case Color.RED:
-    //   return 'red';
-    // default:
-    //   return '#AA00AA';
-    // } // end switch case
-  } // end generateListBackgroundColor
-
-  generateButtonHTML(parentID: number) {
+  generateAddButtonHTML(parentID: number) {
     let thisID = parentID + 'AddButton';
     return '<button id=\'' + thisID + '\' class=add-button>+</button>';
-  } // end generateButtonHTML
+  } // end generateAddButtonHTML
 } // end View

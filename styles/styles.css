@@ -68,6 +68,9 @@ body {
 .add-button {
     background-color: blue;
     color: white;
+    width: 2vw;
+    height: 2vw; /* width and height are equal to make a square */
+    margin-left: 2vw;
 }
 
 .remove-button {
@@ -81,11 +84,16 @@ body {
     display: inline-block;
     vertical-align: top;
     min-height: 80vh;
-    text-align: center;
     border: 5px solid black;
     border-radius: 10px;
     background-color: #AAAAAA;
     color: black;
     margin-left: 5px;
     width: 23%;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.list-header {
+    text-align: center;
 }
