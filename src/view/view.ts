@@ -80,13 +80,12 @@ export class View {
    * @return {string} the HTML for the lists
    */
   generateListsHTML(model): string  {
-    let html = '<div style=\'height: 80vh;\'>';
+    let html = '<div class=lists>';
 
     // for every list, generate the HTML
     for(let i = 0; i < model.getBoards()[0].getLists().length; i++) {
-      html += '<div id=\'' + model.getBoards()[0].getLists()[i].getLabel() + '\' class=\'dropzone\' style='
-          + this.generateListStyle(model.getBoards()[0].getLists[i])
-        + '; position: fixed;><h1><u>' + model.getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
+      html += '<div id=\'' + model.getBoards()[0].getLists()[i].getLabel() + '\' class=\'dropzone list\'>'
+        + '<h1><u>' + model.getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
         this.generateIndividualListHTML(model.getBoards()[0].getLists()[i]) +
           this.generateButtonHTML(model.getBoards()[0].getLists()[i].getLabel()) +
         '</div>';
@@ -141,11 +140,11 @@ export class View {
     let html = '<div id=\'' + task.getLabel() + '\' class=\'task-card draggable\'>';
 
     html += '<div>';
-    html += '<div id=' + task.getLabel() + 'Text>'; // + task.text + '</div>';
-    html += '<div style=\'text-align: left; font-size: 12pt; display: inline-block;\'><u>' + task.getLabel() + '</u></div>';
+    html += '<div id=' + task.getLabel() + 'Label>';
+    html += '<div class="task-card-label"><u>' + task.getLabel() + '</u></div>';
     html += this.generateRemoveButtonHTML(task);
     html += '</div>';
-    html += '<div id=' + task.getLabel() + 'TextField style=\'text-align: center; font-size: 14pt;\'>' + task.getText() + '</div>';
+    html += '<div class=task-card-text id=' + task.getLabel() + 'TextField>' + task.getText() + '</div>';
 
     html += '</div></div>';
 
@@ -158,29 +157,6 @@ export class View {
       '<i class=\"fa fa-trash-o\"></i></button>';
   }
 
-  /**
-   * generates the style for the individual list
-   *
-   * @param {List} list the list we are trying to generate style for
-   *
-   * @return {string} the HTML for the style of this
-   */
-  generateListStyle(list: List): string {
-    let style = '\'';
-    style += 'display: inline-block;';
-    style += 'vertical-align: top;';
-    style += 'min-height: 80vh;';
-    style += 'text-align: center;';
-    style += 'border: 5px solid black;';
-    style += 'border-radius: 10px;';
-    style += 'background-color: ' + this.generateListBackgroundColor(list) +
-      ';';
-    style += 'color: black;';
-    style += 'margin-left: 5px;';
-    style += 'width: 23%;';
-    style += '\'';
-    return style;
-  } // end generateListStyle
 
   /**
    * generates the background color based on the list's color property

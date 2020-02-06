@@ -51,7 +51,18 @@ body {
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 5px;
-    font-size: 24px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.task-card-text {
+    text-align: center;
+    font-size: 14pt;
+}
+
+.task-card-label {
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
 .add-button {
@@ -64,4 +75,17 @@ body {
     color: white;
     display: inline-block;
     margin-left: 170px;
+}
+
+.list {
+    display: inline-block;
+    vertical-align: top;
+    min-height: 80vh;
+    text-align: center;
+    border: 5px solid black;
+    border-radius: 10px;
+    background-color: #AAAAAA;
+    color: black;
+    margin-left: 5px;
+    width: 23%;
 }
