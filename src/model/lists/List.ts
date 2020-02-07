@@ -9,10 +9,10 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-import {TaskCard} from '../TaskCard';
+import { TaskCard } from '../TaskCard';
 
 export class List {
-  private readonly label: string;
+  private label: string;
   private tasks: TaskCard[];
 
   /**
@@ -29,6 +29,10 @@ export class List {
   getLabel(): string {
     return this.label;
   } // end getLabel
+
+  setLabel(label: string) {
+    this.label = label;
+  }
 
   getTasks(): TaskCard[] {
     return this.tasks;
@@ -53,16 +57,16 @@ export class List {
     this.tasks.splice(cardID, 1);
   } // end removeTaskCard
 
-  /**
-   * Loads in a set of tasks into the 'tasks' attribute.
-   * @param {tasks[]} tasks lists of tasks to be loaded in
-   */
-  loadTasks(tasks: TaskCard[]): void{
+
+  loadList(list: List) {
+    this.label = list.label;
     let ntask;
     this.tasks = [];
-    for(let task of tasks){
-      ntask = new TaskCard(task.getLabel(), task.getText());
-      this.tasks.push(ntask);
-    } // end for
-  } // end loadTasks
+
+    for (let task of list.tasks) {
+      ntask = new TaskCard("", "");
+      ntask.loadTaskCard(task);
+      this.tasks.push(ntask)
+    }
+  }
 } // end List

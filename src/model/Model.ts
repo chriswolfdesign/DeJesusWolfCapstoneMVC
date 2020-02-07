@@ -9,11 +9,11 @@
  * @version 2.0.0 (October 7, 2019)
  */
 
-import {BoardFactory} from './factories/BoardFactory';
-import {Board} from './boards/Board';
-import {Controller} from '../controller/Controller';
-import {BoardOptions} from './enums/BoardOptions';
-import {ListOptions} from './enums/ListOptions';
+import { BoardFactory } from './factories/BoardFactory';
+import { Board } from './boards/Board';
+import { Controller } from '../controller/Controller';
+import { BoardOptions } from './enums/BoardOptions';
+import { ListOptions } from './enums/ListOptions';
 
 export class Model {
   private title: string;
@@ -119,14 +119,13 @@ export class Model {
    * Loads a board given to it by the controller.
    * @param {model} model board to be loaded 
    */
-  loadBoards(model: Model){
+  loadBoards(model: Model) {
     this.title = model.title;
-    let nboard;
+    let nboard: Board;
     this.boards = [];
-    for(let board of model.boards){
-      nboard = this.boardFactory.generateBoard(null);
-      nboard.title = board.getTitle();
-      nboard.loadLists(board.getLists());
+    for (let board of model.boards) {
+      nboard = this.boardFactory.generateBoard(BoardOptions.MOSCOW);
+      nboard.loadBoard(board);
       this.boards.push(nboard);
     } // end for
   } // end loadBoards

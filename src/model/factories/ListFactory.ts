@@ -9,16 +9,16 @@
  * @version 2.0.0 (October 5, 2019)
  */
 
-import {ListOptions} from '../enums/ListOptions';
-import {List} from '../lists/List';
-import {MustList} from '../lists/moscow_lists/MustList';
-import {ShouldList} from '../lists/moscow_lists/ShouldList';
-import {CouldList} from '../lists/moscow_lists/CouldList';
-import {WontList} from '../lists/moscow_lists/WontList';
-import {BacklogList} from '../lists/sprint_backlog_lists/BacklogList';
-import {InProgressList} from '../lists/sprint_backlog_lists/InProgressList';
-import {InReviewList} from '../lists/sprint_backlog_lists/InReviewList';
-import {CompleteList} from '../lists/sprint_backlog_lists/CompleteList';
+import { ListOptions } from '../enums/ListOptions';
+import { List } from '../lists/List';
+import { MustList } from '../lists/moscow_lists/MustList';
+import { ShouldList } from '../lists/moscow_lists/ShouldList';
+import { CouldList } from '../lists/moscow_lists/CouldList';
+import { WontList } from '../lists/moscow_lists/WontList';
+import { BacklogList } from '../lists/sprint_backlog_lists/BacklogList';
+import { InProgressList } from '../lists/sprint_backlog_lists/InProgressList';
+import { InReviewList } from '../lists/sprint_backlog_lists/InReviewList';
+import { CompleteList } from '../lists/sprint_backlog_lists/CompleteList';
 
 export class ListFactory {
   private mustList: MustList;
@@ -82,24 +82,24 @@ export class ListFactory {
    */
   generateList(option: ListOptions): List {
     switch (option) {
-    case ListOptions.MUST:
-      return this.mustList.generateList();
-    case ListOptions.SHOULD:
-      return this.shouldList.generateList();
-    case ListOptions.COULD:
-      return this.couldList.generateList();
-    case ListOptions.WONT:
-      return this.wontList.generateList();
-    case ListOptions.BACKLOG:
-      return this.backlogList.generateList();
-    case ListOptions.INPROGRESS:
-      return this.inProgressList.generateList();
-    case ListOptions.INREVIEW:
-      return this.inReviewList.generateList();
-    case ListOptions.COMPLETE:
-      return this.completeList.generateList();
-    default:
-      return null;
+      case ListOptions.MUST:
+        return this.mustList.generateList();
+      case ListOptions.SHOULD:
+        return this.shouldList.generateList();
+      case ListOptions.COULD:
+        return this.couldList.generateList();
+      case ListOptions.WONT:
+        return this.wontList.generateList();
+      case ListOptions.BACKLOG:
+        return this.backlogList.generateList();
+      case ListOptions.INPROGRESS:
+        return this.inProgressList.generateList();
+      case ListOptions.INREVIEW:
+        return this.inReviewList.generateList();
+      case ListOptions.COMPLETE:
+        return this.completeList.generateList();
+      default:
+        return new List("");
     } // end switch
   } // end generateList
 } // end ListFactory

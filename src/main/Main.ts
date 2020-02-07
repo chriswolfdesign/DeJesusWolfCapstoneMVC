@@ -8,13 +8,14 @@
  * @version 2.0.0 (November 3, 2019)
  */
 
-import {BoardOptions} from '../model/enums/BoardOptions';
-import {Controller} from '../controller/Controller';
+import { BoardOptions } from '../model/enums/BoardOptions';
+import { Controller } from '../controller/Controller';
+import { Model } from '../model/Model';
 import interact from 'interactjs';
 
 let controller: Controller;  // I really don't like that this is global, let's look into other options
 
-window.onload = function(): void {
+window.onload = function (): void {
 
   // ask the user which board they would like
   let decision: string = '';
@@ -90,11 +91,11 @@ function generateMoSCoWController(controller: Controller): void {
  *
  * @param controller the controller holding each of the buttons
  */
-function addClickListeners(controller: Controller): void{
+function addClickListeners(controller: Controller): void {
   // generate the add button listeners
   for (let i = 0; i < controller.getModel().getBoards()[0].getLists().length; i++) {
     let buttonID = controller.getModel().getBoards()[0].getLists()[i].getLabel() + 'AddButton';
-    document.getElementById(buttonID).addEventListener('click', function(event) {
+    document.getElementById(buttonID).addEventListener('click', function (event) {
       let newTaskID = prompt('Please enter the new task label: ');
       let newTaskText = prompt('Please enter the new task text: ');
       controller.getModel().getBoards()[0].getLists()[i].addTask(newTaskID, newTaskText);
@@ -107,19 +108,19 @@ function addClickListeners(controller: Controller): void{
     for (let j = 0; j < controller.getModel().getBoards()[0].getLists()[i].getTasks().length; j++) {
       // console.log(controller);
       let taskID = controller.getModel().getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'TextField';
-      document.getElementById(taskID).addEventListener('click', function(event) {
-        let newTaskText = prompt('Please enter the new text',controller.getModel().getBoards()[0].getLists()[i].getTasks()[j].getText());
+      document.getElementById(taskID).addEventListener('click', function (event) {
+        let newTaskText = prompt('Please enter the new text', controller.getModel().getBoards()[0].getLists()[i].getTasks()[j].getText());
         controller.editTaskText(i, j, newTaskText);
         render(controller);
       }); // end Event Listener
     } // end for each task
   } // end for each list
-  
+
   // generate the listener for removing task cards
   for (let i = 0; i < controller.getModel().getBoards()[0].getLists().length; i++) {
     for (let j = 0; j < controller.getModel().getBoards()[0].getLists()[i].getTasks().length; j++) {
       let buttonID = controller.getModel().getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'RemoveButton';
-      document.getElementById(buttonID).addEventListener('click', function(event){
+      document.getElementById(buttonID).addEventListener('click', function (event) {
         let choice = confirm('Delete this task card?');
         if (choice) {
           controller.removeTaskCard(i, j);
@@ -129,37 +130,38 @@ function addClickListeners(controller: Controller): void{
     } // end inner for loop
   } // end outer for loop
 
-  // document.getElementById("save").addEventListener('click', function(event){
-  //   var temp = controller;
-  //   controller.getModel().setController(null);
-  //   var name = prompt("Enter the file name:");
-  //   const data = JSON.stringify(controller.getModel())
-  //   const blob = new Blob([data], {type: 'text/plain'})
-  //   const e = document.createEvent('MouseEvents'),
-  //   a = document.createElement('a');
-  //   a.download = name + ".json";
-  //   a.href = window.URL.createObjectURL(blob);
-  //   a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
-  //   e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-  //   a.dispatchEvent(e);
-  //   controller.getModel().setController(temp);
-  // });
-  //
-  // document.getElementById("submit").addEventListener('click', function(event){
-  //   let file = document.getElementById("file-input").files[0];
-  //   if (file) {
-  //     var reader = new FileReader();
-  //     reader.readAsText(file, "UTF-8");
-  //     reader.onload = function (event) {
-  //       var new_model = JSON.parse(event.target.result);
-  //       controller.loadBoards(new_model);
-  //       render(controller);
-  //     };
-  //     reader.onerror = function(event){
-  //       alert("Error reading file.");
-  //     };
-  //   }
-  // });
+  document.getElementById("save").addEventListener('click', function (event) {
+    var temp = controller;
+    controller.getModel().setController(null);
+    var name = prompt("Enter the file name:");
+    const data = JSON.stringify(controller.getModel())
+    const blob = new Blob([data], { type: 'text/plain' })
+    const e = document.createEvent('MouseEvents'),
+      a = document.createElement('a');
+    a.download = name + ".json";
+    a.href = window.URL.createObjectURL(blob);
+    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+    e.initEvent('click', true, false);
+    a.dispatchEvent(e);
+    controller.getModel().setController(temp);
+  });
+
+  document.getElementById("submit").addEventListener('click', function (event) {
+    let file = (<HTMLInputElement>document.getElementById("file-input")).files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = function (event) {
+        var new_model: Model = <Model>JSON.parse((<string>event.target.result));
+        controller.loadBoards(new_model);
+        controller.getModel().setController(null);
+        render(controller);
+      };
+      reader.onerror = function (event) {
+        alert("Error reading file.");
+      };
+    }
+  });
 
 
 } // end addClickListeners
@@ -185,15 +187,15 @@ interact('.draggable').draggable({
 interact('.dropzone').dropzone({
   accept: '.draggable',
   overlap: 0.5,
-  ondrop: function(event) {
+  ondrop: function (event) {
     controller.moveTaskCard(event.target, event.relatedTarget);
     render(controller);
   }, // end ondrop
-  ondragenter: function(event) {
+  ondragenter: function (event) {
     console.log(event.target);
     event.target.style.border = '5px solid white';
   }, // end ondragenter
-  ondragleave: function(event) {
+  ondragleave: function (event) {
     event.target.style.border = '5px solid black';
   } // end ondragleave
 }); // end interact-dropzone
@@ -208,7 +210,7 @@ function dragMoveListener(event) {
   let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
   let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-  target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' +  + y +
+  target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + + y +
     'px)';
 
   target.setAttribute('data-x', x);

@@ -1,10 +1,10 @@
-import {Model} from '../model/Model';
-import {View} from '../view/view';
-import {ListOptions} from '../model/enums/ListOptions';
+import { Model } from '../model/Model';
+import { View } from '../view/view';
+import { ListOptions } from '../model/enums/ListOptions';
 
-import {BoardOptions} from '../model/enums/BoardOptions';
+import { BoardOptions } from '../model/enums/BoardOptions';
 
-export class Controller{
+export class Controller {
   private readonly model: Model;
   private view: View;
   constructor(boardName) {
@@ -161,7 +161,7 @@ export class Controller{
    */
   getTaskData(listIndex: number, taskIndex: number) {
     return [this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getLabel(),
-      this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getText()];
+    this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getText()];
   }
 
   /**
@@ -185,11 +185,11 @@ export class Controller{
   /**
    * Sets the values within model to the values loaded from a JSON file. 
    * 
-   * @param {object} model the board we are trying to load into model
+   * @param {Model} model the board we are trying to load into model
    */
 
-  loadBoards(model: object){
-    this.model.loadBoards(this.model);
+  loadBoards(model: Model) {
+    this.model.loadBoards(model);
   }
 } // end Controller
 

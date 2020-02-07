@@ -8,9 +8,9 @@
  * @version 2.0.0 (October 7, 2019)
  */
 
-import {List} from '../lists/List';
-import {ListFactory} from '../factories/ListFactory';
-import {ListOptions} from '../enums/ListOptions';
+import { List } from '../lists/List';
+import { ListFactory } from '../factories/ListFactory';
+import { ListOptions } from '../enums/ListOptions';
 
 export class Board {
   private title: string;
@@ -89,12 +89,14 @@ export class Board {
    * Loads in a list of lists into the 'lists' attribute in board.
    * @param {lists[]} lists an array of lists to load into board.
    */
-  loadLists(lists: List[]){
-    let nlist;
+  loadBoard(board: Board) {
+    let nlist: List;
     this.lists = [];
-    for(let list of lists){
-      nlist = new List(list.getLabel());
-      nlist.loadTasks(list.getTasks());
+    this.title = board.title;
+
+    for (let list of board.lists) {
+      nlist = this.listFactory.generateList(null);
+      nlist.loadList(list);
       this.lists.push(nlist);
     } // end for
   } // end loadLists

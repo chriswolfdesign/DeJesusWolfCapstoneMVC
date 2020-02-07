@@ -35,4 +35,9 @@ export class TaskCard {
   getText() {
     return this.text;
   } // end getText
+
+  loadTaskCard(taskcard: TaskCard) {
+    this.label = taskcard.label;
+    this.text = taskcard.text;
+  }
 } // end class
