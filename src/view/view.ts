@@ -25,7 +25,6 @@ export class View {
     html += this.generateToolbar();
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
-    // html += this.generateSaveLoadButtons();
     html += '</div>';
     return html;
   } // end generateHTML

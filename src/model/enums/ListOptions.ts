@@ -17,5 +17,5 @@ export enum ListOptions {
   BACKLOG = 'Backlog',
   INPROGRESS = 'InProgress',
   INREVIEW = 'InReview',
-  COMPLETE = 'Complete'
+  COMPLETE = 'Complete',
 } // end ListOptions

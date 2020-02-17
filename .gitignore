@@ -10,3 +10,4 @@
 .gitignore
 /node_modules/
 /build/
+tags
