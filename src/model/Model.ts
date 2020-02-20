@@ -7,152 +7,103 @@
  * @author Ellery De Jesus
  * @author Chris Wolf
  * @version 2.0.0 (October 7, 2019)
- * Model.ts holds and handles Boards
- * @version 3.0.0 (February 19, 2020)
- * Moved all of the fields and methods to Project.ts due to the functionality 
- * of Model changing from holding and handling Boards to holding and handling
- * Projects.
  */
 
-import { Project } from './Project';
-import { ProjectFactory } from './factories/ProjectFactory'
+import { BoardFactory } from './factories/BoardFactory';
+import { Board } from './boards/Board';
 import { Controller } from '../controller/Controller';
 import { BoardOptions } from './enums/BoardOptions';
 import { ListOptions } from './enums/ListOptions';
 
 export class Model {
-  private projects: Project[];
-  private projectFactory: ProjectFactory;
+  private title: string;
+  private boards: Board[];
+  private boardFactory: BoardFactory;
   private controller: Controller;
 
-  constructor(controller: Controller) {
-    this.projects = [];
-    this.projectFactory = new ProjectFactory();
-    this.controller = controller;
-  }
-
-
-  /** 
-   * Returns the title of a project
-   * 
-   * @param {number} projectID the ID of the project 
-   * @returns the title of the project
-   */
-  getProjectTitle(projectID: number): string {
-    return this.projects[projectID].getTitle();
-  }
-
-
   /**
-   * Generates a project.
-   * @param {string} title the title of the project being generated 
+   * Generates the foundation for the app
+   *
+   * @param {String} the title of this board
    */
-  generateProject(title: string) {
-    this.projects.push(new Project(title));
-  }
+  constructor(title) {
+    this.title = title;
+    this.boards = [];
+    this.boardFactory = new BoardFactory();
+  } // end constructor
 
-  /**
-   * Removes a project
-   * @param {number} projectID the ID of the project being removed 
-   */
-  removeProject(projectID: number) {
-    this.projects.splice(projectID, 1);
-  }
-
-  /**
-   * Adds a project that has already been created.
-   * @param {Project} project 
-   */
-  addProject(project: Project) {
-    this.projects.push(project);
-  }
-
-  /**
-   * Returns the title of a board
-   * @param projectID 
-   * @param boardID
-   */
-
-  getBoardTitle(projectID: number, boardID: number): string {
-    return this.projects[projectID].getBoardTitle(boardID);
+  getTitle(): string {
+    return this.title;
   }
 
   /**
    * Generates a board from a template based on user preference
    *
-   * @param projectID
-   * @param option 
+   * @param option
    */
-  generateBoardTemplate(projectID: number, option: BoardOptions) {
-    this.projects[projectID].generateBoardTemplate(option);
+  generateBoardTemplate(option: BoardOptions): void {
+    this.boards.push(this.boardFactory.generateBoard(option));
   } // end generateBoardTemplate
 
   /**
    * Removes a board from the list of boards.
    *
-   * @param {number} projectID the id of the Project to be removed
-   * @param {number} boardID the id of the board to be removed
+   * @param {number} boardID the id of the to be removed
    */
-  removeBoard(projectID: number, boardID: number) {
-    this.projects[projectID].removeBoard(boardID);
+  removeBoard(boardID: number): void {
+    this.boards.splice(boardID, 1);
   } // end removeBoard
 
   /**
    * Generates a list with the title and color provided in the board specified by the Controller.
    *
-   * @param {number} projectID the id of the board's Project
    * @param {number} boardID the id of the board we are trying to add a list into.
    * @param {string} label the name of the list being generated
    * @param {colors} color the color of the list being generated
    */
-  generateList(projectID: number, boardID: number, label: string): void {
-    this.projects[projectID].generateList(boardID, label);
+  generateList(boardID: number, label: string): void {
+    this.boards[boardID].addList(label);
   } // end generateList
 
   /**
    * Generates a list based on the template given, to the specified board
    *
-   * @param {number} projectID the id of the board's project
    * @param {number} boardID the id of the baord we are trying to add a list into
    * @param {option} option the type of list we are trying to create
    */
-  generateListTemplate(projectID: number, boardID: number, option: ListOptions): void {
-    this.projects[projectID].generateListTemplate(boardID, option);
+  generateListTemplate(boardID: number, option: ListOptions): void {
+    this.boards[boardID].addListTemplate(option);
   } // end generateListTemplate
 
   /**
    * Removes a list from a specified board.
-   * @param {number} projectID the ID of the board's project
    * @param {number} boardID the ID of the board from whom we want to remove a list from
    * @param {number} listID the ID of the list we are removing
    */
-  removeList(projectID: number, boardID: number, listID: number): void {
-    this.projects[projectID].removeList(boardID, listID);
+  removeList(boardID: number, listID: number): void {
+    this.boards[boardID].removeList(listID);
   } // end removeList
 
   /**
    * Generates a card within a board's list
    *
-   * @param {number} projectID
    * @param {number} boardID
    * @param {number} listID
    * @param {string} label
    * @param {string} text
    *
    */
-  generateTaskCard(projectID: number, boardID: number, listID: number, label: string, text: string): void {
-    this.projects[projectID].generateTaskCard(boardID, listID, label, text);
+  generateTaskCard(boardID: number, listID: number, label: string, text: string): void {
+    this.boards[boardID].generateTaskCard(listID, label, text);
   } // end generateTaskCard
 
   /**
    * Remove a task card from the specified list from a specified board.
-   * @param {number} projectID the ID of the board's project
-   * @param {number} boardID the ID of the list's board
    * @param {integer} listID the ID of the list we're removing a card from.
    * @param {integer} taskID the ID of the card we're removing.
    */
-  removeTaskCard(projectID: number, boardID: number, listID: number, taskID: number): void {
-    this.projects[projectID].removeTaskCard(boardID, listID, taskID);
+  removeTaskCard(listID: number, taskID: number): void {
+    this.boards[0].removeTaskCard(listID, taskID);
   } // end removeTaskCard
 
   /**
@@ -168,14 +119,18 @@ export class Model {
    * Loads a board given to it by the controller.
    * @param {model} model board to be loaded 
    */
-  loadProject(project: Project) {
-    let newProject: Project = new Project("");
-    newProject.loadProject(project);
-    this.addProject(newProject); // end for
+  loadBoards(model: Model) {
+    this.title = model.title;
+    let nboard: Board;
+    this.boards = [];
+    for (let board of model.boards) {
+      nboard = this.boardFactory.generateBoard(BoardOptions.MOSCOW);
+      nboard.loadBoard(board);
+      this.boards.push(nboard);
+    } // end for
   } // end loadBoards
 
-  getProjects(): Project[] {
-    return this.projects;
+  getBoards(): Board[] {
+    return this.boards;
   } // end getBoards
 } // end App
-
