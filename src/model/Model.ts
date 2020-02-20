@@ -171,7 +171,7 @@ export class Model {
   loadProject(project: Project) {
     let newProject: Project = new Project("");
     newProject.loadProject(project);
-    this.addProject(newProject); // end for
+    this.projects[0] = newProject; // end for
   } // end loadBoards
 
   getProjects(): Project[] {
