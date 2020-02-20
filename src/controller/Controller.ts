@@ -1,7 +1,7 @@
 import { Model } from '../model/Model';
 import { View } from '../view/view';
 import { ListOptions } from '../model/enums/ListOptions';
-
+import { Project } from '../model/Project';
 import { BoardOptions } from '../model/enums/BoardOptions';
 
 export class Controller {
@@ -19,7 +19,7 @@ export class Controller {
    * @param option which type of board the user would like
    */
   generateBoardTemplate(option: BoardOptions) {
-    this.model.generateBoardTemplate(option);
+    this.model.generateBoardTemplate(0, option);
   } // end generateBoardTemplate
 
   /**
@@ -31,7 +31,7 @@ export class Controller {
    */
   editTaskText(listIndex: number, taskIndex: number, newTaskText: string) {
     if (newTaskText !== '' && newTaskText !== null) {
-      this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].setText(newTaskText);
+      this.model.getProjects()[0].getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].setText(newTaskText);
     } // end if
   } // end editTaskText
 
@@ -41,7 +41,7 @@ export class Controller {
    * @param {string} boardID the id for the board we are removing
    */
   removeBoard(boardID: number) {
-    this.model.removeBoard(boardID);
+    this.model.removeBoard(0, boardID);
   } // end removeBoard
 
   /**
@@ -52,7 +52,7 @@ export class Controller {
    * @param color
    */
   generateList(boardID: number, label: string) {
-    this.model.generateList(boardID, label);
+    this.model.generateList(0, boardID, label);
   } // end generateList
 
   /**
@@ -62,7 +62,7 @@ export class Controller {
    * @param {string} listID the list we are removing
    */
   removeList(boardID: number, listID: number) {
-    this.model.removeList(boardID, listID);
+    this.model.removeList(0, boardID, listID);
   } // end removeList
 
   /**
@@ -72,7 +72,7 @@ export class Controller {
    * @param {ListOption} option the template we would like to src a list from
    */
   generateListTemplate(boardID: number, option: ListOptions) {
-    this.model.generateListTemplate(boardID, option);
+    this.model.generateListTemplate(0, boardID, option);
   } // end generateListTemplate
 
   /**
@@ -84,7 +84,7 @@ export class Controller {
    * @param {string} text the text for the new task card
    */
   generateTaskCard(boardID: number, listID: number, label: string, text: string) {
-    this.model.generateTaskCard(boardID, listID, label, text);
+    this.model.generateTaskCard(0, boardID, listID, label, text);
   } // end generateTaskCard
 
   /**
@@ -94,7 +94,7 @@ export class Controller {
    * @param taskID
    */
   removeTaskCard(listID: number, taskID: number) {
-    this.model.removeTaskCard(listID, taskID);
+    this.model.removeTaskCard(0, 0, listID, taskID);
   } // end removeTaskCard
 
   /**
@@ -114,7 +114,7 @@ export class Controller {
     this.removeTaskCard(taskIndices[0], taskIndices[1]);
 
     // add a new task card with the same data to the new list
-    this.model.getBoards()[0].getLists()[listIndex].addTask(tempData[0], tempData[1]);
+    this.model.getProjects()[0].getBoards()[0].getLists()[listIndex].addTask(tempData[0], tempData[1]);
   } // end moveTaskCard
 
   /**
@@ -126,8 +126,8 @@ export class Controller {
    *               -1 otherwise
    */
   findListIndex(listLabel: string) {
-    for (let i = 0; i < this.model.getBoards()[0].getLists().length; i++) {
-      if (this.model.getBoards()[0].getLists()[i].getLabel() === listLabel) {
+    for (let i = 0; i < this.model.getProjects()[0].getBoards()[0].getLists().length; i++) {
+      if (this.model.getProjects()[0].getBoards()[0].getLists()[i].getLabel() === listLabel) {
         return i;
       } // end if
     } // end for
@@ -144,9 +144,9 @@ export class Controller {
    * @return {list} -- [the list index of the task card, the task index of the task card]
    */
   getTaskIndices(taskID: string) {
-    for (let i = 0; i < this.model.getBoards()[0].getLists().length; i++) {
-      for (let j = 0; j < this.model.getBoards()[0].getLists()[i].getTasks().length; j++) {
-        if (taskID === this.model.getBoards()[0].getLists()[i].getTasks()[j].getLabel()) {
+    for (let i = 0; i < this.model.getProjects()[0].getBoards()[0].getLists().length; i++) {
+      for (let j = 0; j < this.model.getProjects()[0].getBoards()[0].getLists()[i].getTasks().length; j++) {
+        if (taskID === this.model.getProjects()[0].getBoards()[0].getLists()[i].getTasks()[j].getLabel()) {
           return [i, j];
         } // end if
       } // end inner-for
@@ -160,8 +160,8 @@ export class Controller {
    * @param taskIndex
    */
   getTaskData(listIndex: number, taskIndex: number) {
-    return [this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getLabel(),
-    this.model.getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getText()];
+    return [this.model.getProjects()[0].getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getLabel(),
+    this.model.getProjects()[0].getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getText()];
   }
 
   /**
@@ -188,8 +188,12 @@ export class Controller {
    * @param {Model} model the board we are trying to load into model
    */
 
-  loadBoards(model: Model) {
-    this.model.loadBoards(model);
+  loadProject(project: Project) {
+    this.model.loadProject(project);
+  }
+
+  generateProject(title: string) {
+    this.model.generateProject(title);
   }
 } // end Controller
 

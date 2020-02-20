@@ -7,8 +7,8 @@
  * @version 2.0.0 (October 21, 2019)
  */
 
-import {List} from '../model/lists/List';
-import {TaskCard} from '../model/TaskCard';
+import { List } from '../model/lists/List';
+import { TaskCard } from '../model/TaskCard';
 
 export class View {
   // Intentionally no constructor
@@ -63,10 +63,10 @@ export class View {
    *
    * @return {string} the HTML for the header of the model
    */
-  generateHeaderHTML(model): string  {
+  generateHeaderHTML(model): string {
     let html = '<div id=header>';
     html += '<h1><u>';
-    html += model.getTitle();
+    html += model.getBoardTitle(0, 0);
     html += '</u></h1></div>';
     return html;
   } // end generateHeaderHTML
@@ -78,15 +78,15 @@ export class View {
    *
    * @return {string} the HTML for the lists
    */
-  generateListsHTML(model): string  {
+  generateListsHTML(model): string {
     let html = '<div class=lists>';
 
     // for every list, generate the HTML
-    for(let i = 0; i < model.getBoards()[0].getLists().length; i++) {
-      html += '<div id=\'' + model.getBoards()[0].getLists()[i].getLabel() + '\' class=\'dropzone list\'>'
-        + '<h1 class=list-header><u>' + model.getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
-        this.generateIndividualListHTML(model.getBoards()[0].getLists()[i]) +
-          this.generateAddButtonHTML(model.getBoards()[0].getLists()[i].getLabel()) +
+    for (let i = 0; i < model.getProjects()[0].getBoards()[0].getLists().length; i++) {
+      html += '<div id=\'' + model.getProjects()[0].getBoards()[0].getLists()[i].getLabel() + '\' class=\'dropzone list\'>'
+        + '<h1 class=list-header><u>' + model.getProjects()[0].getBoards()[0].getLists()[i].getLabel() + '</u></h1>' +
+        this.generateIndividualListHTML(model.getProjects()[0].getBoards()[0].getLists()[i]) +
+        this.generateAddButtonHTML(model.getProjects()[0].getBoards()[0].getLists()[i].getLabel()) +
         '</div>';
     } // end for loop
 
@@ -119,7 +119,7 @@ export class View {
     let html = '<div>';
 
     // for each task card, generate the HTML
-    for(let i = 0; i < list.getTasks().length; i++) {
+    for (let i = 0; i < list.getTasks().length; i++) {
       html += this.generateIndividualTaskCardHTML(list.getTasks()[i]);
     } // end for loop
 
