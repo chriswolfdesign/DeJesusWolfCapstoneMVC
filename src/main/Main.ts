@@ -43,7 +43,7 @@ window.onload = function (): void {
 
   controller = new Controller(decision);
 
-  console.log(controller);
+  // console.log(controller);
 
   render(controller);
 
@@ -108,23 +108,25 @@ window.onload = function (): void {
  */
 function addClickListeners(controller: Controller): void {
   // generate the add button listeners
-  for (let i = 0; i < controller.getModel().getProjects().getBoards()[0].getLists().length; i++) {
-    let buttonID = controller.getModel().getProjects().getBoards()[0].getLists()[i].getLabel() + 'AddButton';
+  for (let i = 0; i < controller.getModel().getProjects().getActiveBoard().getLists().length; i++) {
+    let buttonID = controller.getModel().getProjects().getActiveBoard().getLists()[i].getLabel() + 'AddButton';
     document.getElementById(buttonID).addEventListener('click', function (event) {
       let newTaskID = prompt('Please enter the new task label: ');
       let newTaskText = prompt('Please enter the new task text: ');
-      controller.getModel().getProjects().getBoards()[0].getLists()[i].addTask(newTaskID, newTaskText);
+      // console.log(controller.getModel().getProjects().getActiveBoard().getLists()[i]);
+      controller.getModel().getProjects().getActiveBoard().getLists()[i].addTask(newTaskID, newTaskText);
+      // console.log(controller.getModel().getProjects().getActiveBoard().getLists()[i]);
       render(controller);
     }); // end Event Listener
   } // end for
 
   // generate the listeners for editting task cards
-  for (let i = 0; i < controller.getModel().getProjects().getBoards()[0].getLists().length; i++) {
-    for (let j = 0; j < controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks().length; j++) {
+  for (let i = 0; i < controller.getModel().getProjects().getActiveBoard().getLists().length; i++) {
+    for (let j = 0; j < controller.getModel().getProjects().getActiveBoard().getLists()[i].getTasks().length; j++) {
       // console.log(controller);
-      let taskID = controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'TextField';
+      let taskID = controller.getModel().getProjects().getActiveBoard().getLists()[i].getTasks()[j].getLabel() + 'TextField';
       document.getElementById(taskID).addEventListener('click', function (event) {
-        let newTaskText = prompt('Please enter the new text', controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks()[j].getText());
+        let newTaskText = prompt('Please enter the new text', controller.getModel().getProjects().getActiveBoard().getLists()[i].getTasks()[j].getText());
         controller.editTaskText(i, j, newTaskText);
         render(controller);
       }); // end Event Listener
@@ -132,9 +134,9 @@ function addClickListeners(controller: Controller): void {
   } // end for each list
 
   // generate the listener for removing task cards
-  for (let i = 0; i < controller.getModel().getProjects().getBoards()[0].getLists().length; i++) {
-    for (let j = 0; j < controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks().length; j++) {
-      let buttonID = controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'RemoveButton';
+  for (let i = 0; i < controller.getModel().getProjects().getActiveBoard().getLists().length; i++) {
+    for (let j = 0; j < controller.getModel().getProjects().getActiveBoard().getLists()[i].getTasks().length; j++) {
+      let buttonID = controller.getModel().getProjects().getActiveBoard().getLists()[i].getTasks()[j].getLabel() + 'RemoveButton';
       document.getElementById(buttonID).addEventListener('click', function (event) {
         let choice = confirm('Delete this task card?');
         if (choice) {
@@ -204,7 +206,7 @@ interact('.dropzone').dropzone({
     render(controller);
   }, // end ondrop
   ondragenter: function (event) {
-    console.log(event.target);
+    // console.log(event.target);
     event.target.style.border = '5px solid white';
   }, // end ondragenter
   ondragleave: function (event) {

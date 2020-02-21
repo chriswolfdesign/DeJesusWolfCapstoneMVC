@@ -3,6 +3,7 @@ import { View } from '../view/view';
 import { ListOptions } from '../model/enums/ListOptions';
 import { Project } from '../model/Project';
 import { BoardOptions } from '../model/enums/BoardOptions';
+import {Board} from "../model/boards/Board";
 
 export class Controller {
   private readonly model: Model;
@@ -97,7 +98,7 @@ export class Controller {
    * @param taskID
    */
   removeTaskCard(listID: number, taskID: number) {
-    this.model.removeTaskCard(0, listID, taskID);
+    this.model.removeTaskCard(this.model.getProjects().getActiveBoardIndex(), listID, taskID);
   } // end removeTaskCard
 
   /**
@@ -117,7 +118,7 @@ export class Controller {
     this.removeTaskCard(taskIndices[0], taskIndices[1]);
 
     // add a new task card with the same data to the new list
-    this.model.getProjects().getBoards()[0].getLists()[listIndex].addTask(tempData[0], tempData[1]);
+    this.model.getProjects().getActiveBoard().getLists()[listIndex].addTask(tempData[0], tempData[1]);
   } // end moveTaskCard
 
   /**
@@ -129,8 +130,8 @@ export class Controller {
    *               -1 otherwise
    */
   findListIndex(listLabel: string) {
-    for (let i = 0; i < this.model.getProjects().getBoards()[0].getLists().length; i++) {
-      if (this.model.getProjects().getBoards()[0].getLists()[i].getLabel() === listLabel) {
+    for (let i = 0; i < this.model.getProjects().getActiveBoard().getLists().length; i++) {
+      if (this.model.getProjects().getActiveBoard().getLists()[i].getLabel() === listLabel) {
         return i;
       } // end if
     } // end for
@@ -147,9 +148,9 @@ export class Controller {
    * @return {list} -- [the list index of the task card, the task index of the task card]
    */
   getTaskIndices(taskID: string) {
-    for (let i = 0; i < this.model.getProjects().getBoards()[0].getLists().length; i++) {
-      for (let j = 0; j < this.model.getProjects().getBoards()[0].getLists()[i].getTasks().length; j++) {
-        if (taskID === this.model.getProjects().getBoards()[0].getLists()[i].getTasks()[j].getLabel()) {
+    for (let i = 0; i < this.model.getProjects().getActiveBoard().getLists().length; i++) {
+      for (let j = 0; j < this.model.getProjects().getActiveBoard().getLists()[i].getTasks().length; j++) {
+        if (taskID === this.model.getProjects().getActiveBoard().getLists()[i].getTasks()[j].getLabel()) {
           return [i, j];
         } // end if
       } // end inner-for
@@ -163,8 +164,8 @@ export class Controller {
    * @param taskIndex
    */
   getTaskData(listIndex: number, taskIndex: number) {
-    return [this.model.getProjects().getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getLabel(),
-    this.model.getProjects().getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].getText()];
+    return [this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].getLabel(),
+    this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].getText()];
   }
 
   /**
