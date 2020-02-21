@@ -37,6 +37,22 @@ body {
     text-decoration: underline;
 }
 
+#appBody {
+    display: inline;
+}
+
+#currentBoard {
+    display: inline-block;
+    width: 75%;
+}
+
+#boardButtons {
+    display: inline-block;
+    width: 20%;
+    border: 5px solid black;
+    border-radius: 5px;
+    min-height: 80vh;
+}
 
  /***********
   * CLASSES *
@@ -90,7 +106,7 @@ body {
     background-color: #AAAAAA;
     color: black;
     margin-left: 5px;
-    width: 23%;
+    width: 20%;
     padding-left: 10px;
     padding-bottom: 10px;
 }

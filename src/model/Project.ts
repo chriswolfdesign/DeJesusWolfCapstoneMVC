@@ -30,7 +30,7 @@ export class Project {
     this.boardFactory = new BoardFactory();
     this.boards.push(this.boardFactory.generateBoard(BoardOptions.MOSCOW));
     this.boards.push(this.boardFactory.generateBoard(BoardOptions.SPRINT));
-    this.activeBoardIndex = 1;  // which board should display upon opening the project
+    this.activeBoardIndex = 0;  // which board should display upon opening the project
     this.nextCardNumber = 1;
   } // end constructor
 

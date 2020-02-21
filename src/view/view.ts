@@ -24,8 +24,7 @@ export class View {
   generateHTML(model): string {
     let html = '<div>';
     html += this.generateToolbar(model);
-    html += this.generateHeaderHTML(model);
-    html += this.generateListsHTML(model);
+    html += this.generateBodyHTML(model);
     html += '</div>';
     return html;
   } // end generateHTML
@@ -71,6 +70,39 @@ export class View {
     html += '</u></h1></div>';
     return html;
   } // end generateHeaderHTML
+
+  generateBodyHTML(model): string {
+    let html: string = '<div id=appBody>';
+    html += this.generateBoardButtons(model);
+    html += this.generateCurrentBoard(model);
+    html += '</div>';
+    return html;
+  }
+
+  generateBoardButtons(model): string {
+    let html: string = '<div id=boardButtons>';
+
+    let boards = model.getProjects().getBoards();
+
+    for (let i = 0; i < boards.length; i++) {
+      html += '<button class=boardButton id=board' + i + '>';
+      html += boards[i].getTitle();
+      html += '</button>'; 
+      html += '</br>';
+    }
+
+    html += '</div>';
+
+    return html;
+  }
+
+  generateCurrentBoard(model): string {
+    let html = '<div id=currentBoard>';
+    html += this.generateHeaderHTML(model);
+    html += this.generateListsHTML(model);
+    html += '</div>';
+    return html;
+  }
 
   /**
    * generates all of the lists inside of the model
