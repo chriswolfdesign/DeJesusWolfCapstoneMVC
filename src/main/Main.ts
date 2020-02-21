@@ -143,6 +143,14 @@ function addClickListeners(controller: Controller): void {
     } // end inner for loop
   } // end outer for loop
 
+  for (let i = 0; i < controller.getModel().getProjects().getBoards().length; i++) {
+    let boardID = 'board' + i.toString();
+    document.getElementById(boardID).addEventListener('click', function (event) {
+      controller.getModel().getProjects().setActiveBoardIndex(i);
+      render(controller);
+    });
+  }
+
   document.getElementById("save").addEventListener('click', function (event) {
     var temp = controller;
     var name = prompt("Enter the file name:");

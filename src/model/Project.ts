@@ -50,6 +50,10 @@ export class Project {
       return this.activeBoardIndex;
   }
 
+  setActiveBoardIndex(index: number): void {
+    this.activeBoardIndex = index;
+  }
+
   /**
    * Generates a board from a template based on user preference
    *
