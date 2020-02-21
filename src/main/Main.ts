@@ -43,11 +43,16 @@ window.onload = function (): void {
 
   controller = new Controller(decision);
 
-  // console.log(controller);
-
   render(controller);
 
 }; // end window.onload
+
+function highlightCurrentBoard(controller: Controller): void {
+  let boardID = 'board' + controller.getModel().getProjects().getActiveBoardIndex().toString();
+
+  document.getElementById(boardID).style.color = 'white';
+  document.getElementById(boardID).style.backgroundColor = 'black';
+}
 
 /**
  * sets up a basic Sprint Backlog Board
@@ -192,6 +197,7 @@ function addClickListeners(controller: Controller): void {
 function render(controller: Controller): void {
   document.getElementById('main').innerHTML = controller.generateHTML();
   addClickListeners(controller);
+  highlightCurrentBoard(controller);
 } // end render
 
 // Set up interact
@@ -210,7 +216,6 @@ interact('.dropzone').dropzone({
     render(controller);
   }, // end ondrop
   ondragenter: function (event) {
-    // console.log(event.target);
     event.target.style.border = '5px solid white';
   }, // end ondragenter
   ondragleave: function (event) {

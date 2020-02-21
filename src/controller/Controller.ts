@@ -35,7 +35,7 @@ export class Controller {
    */
   editTaskText(listIndex: number, taskIndex: number, newTaskText: string) {
     if (newTaskText !== '' && newTaskText !== null) {
-      this.model.getProjects().getBoards()[0].getLists()[listIndex].getTasks()[taskIndex].setText(newTaskText);
+      this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].setText(newTaskText);
     } // end if
   } // end editTaskText
 

@@ -126,7 +126,6 @@ export class Project {
     let words: string[] = this.title.split(' ');
     let acronym: string = '';
     words.forEach((word) => {
-      console.log(word);
       acronym += word[0].toLowerCase();
     });
 
