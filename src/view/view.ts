@@ -9,6 +9,7 @@
 
 import { List } from '../model/lists/List';
 import { TaskCard } from '../model/TaskCard';
+import { Model } from '../model/Model';
 
 export class View {
   // Intentionally no constructor
@@ -22,7 +23,7 @@ export class View {
    */
   generateHTML(model): string {
     let html = '<div>';
-    html += this.generateToolbar();
+    html += this.generateToolbar(model);
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
     html += '</div>';
@@ -34,10 +35,10 @@ export class View {
    * 
    * @return {HTML} the html for the toolbar
    */
-  generateToolbar(): string {
+  generateToolbar(model: Model): string {
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
-    html += '<div id=toolbar-text>Agility</div>';
+    html += '<div id=toolbar-text>' + model.getProjects().getTitle() + '</div>';
     html += '</div>';
     return html;
   } // end generateToolbar

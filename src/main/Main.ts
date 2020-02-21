@@ -111,11 +111,8 @@ function addClickListeners(controller: Controller): void {
   for (let i = 0; i < controller.getModel().getProjects().getActiveBoard().getLists().length; i++) {
     let buttonID = controller.getModel().getProjects().getActiveBoard().getLists()[i].getLabel() + 'AddButton';
     document.getElementById(buttonID).addEventListener('click', function (event) {
-      let newTaskID = prompt('Please enter the new task label: ');
       let newTaskText = prompt('Please enter the new task text: ');
-      // console.log(controller.getModel().getProjects().getActiveBoard().getLists()[i]);
-      controller.getModel().getProjects().getActiveBoard().getLists()[i].addTask(newTaskID, newTaskText);
-      // console.log(controller.getModel().getProjects().getActiveBoard().getLists()[i]);
+      controller.getModel().getProjects().generateTaskCard(i, newTaskText);
       render(controller);
     }); // end Event Listener
   } // end for
@@ -123,7 +120,6 @@ function addClickListeners(controller: Controller): void {
   // generate the listeners for editting task cards
   for (let i = 0; i < controller.getModel().getProjects().getActiveBoard().getLists().length; i++) {
     for (let j = 0; j < controller.getModel().getProjects().getActiveBoard().getLists()[i].getTasks().length; j++) {
-      // console.log(controller);
       let taskID = controller.getModel().getProjects().getActiveBoard().getLists()[i].getTasks()[j].getLabel() + 'TextField';
       document.getElementById(taskID).addEventListener('click', function (event) {
         let newTaskText = prompt('Please enter the new text', controller.getModel().getProjects().getActiveBoard().getLists()[i].getTasks()[j].getText());

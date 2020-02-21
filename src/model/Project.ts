@@ -17,6 +17,7 @@ export class Project {
   private boards: Board[];
   private boardFactory: BoardFactory;
   private activeBoardIndex: number;
+  private nextCardNumber: number;
 
   /**
    * Generates the foundation for the app
@@ -29,7 +30,8 @@ export class Project {
     this.boardFactory = new BoardFactory();
     this.boards.push(this.boardFactory.generateBoard(BoardOptions.MOSCOW));
     this.boards.push(this.boardFactory.generateBoard(BoardOptions.SPRINT));
-    this.activeBoardIndex = 0;  // which board should display upon opening the project
+    this.activeBoardIndex = 1;  // which board should display upon opening the project
+    this.nextCardNumber = 1;
   } // end constructor
 
   getTitle(): string {
@@ -105,9 +107,27 @@ export class Project {
    * @param {string} text
    *
    */
-  generateTaskCard(boardID: number, listID: number, label: string, text: string): void {
-    this.boards[boardID].generateTaskCard(listID, label, text);
+  generateTaskCard(listID: number, text: string)
+    : void {
+    let label: string = this.generateNextCardLabel();
+    this.getActiveBoard().generateTaskCard(listID, label, text);
+    this.nextCardNumber++;
   } // end generateTaskCard
+
+  generateNextCardLabel(): string {
+    return this.makeProjectAcronym() + this.nextCardNumber;
+  }
+
+  makeProjectAcronym(): string {
+    let words: string[] = this.title.split(' ');
+    let acronym: string = '';
+    words.forEach((word) => {
+      console.log(word);
+      acronym += word[0].toLowerCase();
+    });
+
+    return acronym;
+  }
 
   /**
    * Remove a task card from the specified list from a specified board.
