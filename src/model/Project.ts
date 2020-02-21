@@ -7,10 +7,10 @@
  */
 
 
-import { BoardFactory } from './factories/BoardFactory';
-import { Board } from './boards/Board';
-import { BoardOptions } from './enums/BoardOptions';
-import { ListOptions } from './enums/ListOptions';
+import {BoardFactory} from './factories/BoardFactory';
+import {Board} from './boards/Board';
+import {BoardOptions} from './enums/BoardOptions';
+import {ListOptions} from './enums/ListOptions';
 
 export class Project {
     private title: string;
@@ -26,6 +26,8 @@ export class Project {
         this.title = title;
         this.boards = [];
         this.boardFactory = new BoardFactory();
+        this.boards.push(this.boardFactory.generateBoard(BoardOptions.MOSCOW));
+        this.boards.push(this.boardFactory.generateBoard(BoardOptions.SPRINT));
     } // end constructor
 
     getTitle(): string {

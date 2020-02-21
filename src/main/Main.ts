@@ -18,21 +18,33 @@ let controller: Controller;  // I really don't like that this is global, let's l
 
 window.onload = function (): void {
 
-  // ask the user which board they would like
+  // // ask the user which board they would like
+  // let decision: string = '';
+  // while (decision !== 'moscow' && decision !== 'sprint') {
+  //   decision = prompt('Which board would you like? (moscow/sprint)');
+  // } // end while
+  //
+  // if (decision === 'moscow') {
+  //   controller = new Controller('MoSCoW Board');
+  //   generateMoSCoWController(controller);
+  // } else {
+  //   controller = new Controller('Sprint Backlog');
+  //   generateSprintController(controller);
+  // } // end if-else
+  //
+  // // draw the HTML to the page
+  // render(controller);
+
   let decision: string = '';
-  while (decision !== 'moscow' && decision !== 'sprint') {
-    decision = prompt('Which board would you like? (moscow/sprint)');
-  } // end while
 
-  if (decision === 'moscow') {
-    controller = new Controller('MoSCoW Board');
-    generateMoSCoWController(controller);
-  } else {
-    controller = new Controller('Sprint Backlog');
-    generateSprintController(controller);
-  } // end if-else
+  while (decision === '') {
+    decision = prompt('What is the name of your project? ');
+  }
 
-  // draw the HTML to the page
+  controller = new Controller(decision);
+
+  console.log(controller);
+
   render(controller);
 
 }; // end window.onload
@@ -42,52 +54,52 @@ window.onload = function (): void {
  *
  * @return {board} a Sprint Backlog board with predefined tasks
  */
-function generateSprintController(controller: Controller): void {
-  controller.generateProject("Test-Sprint");
-  controller.generateBoardTemplate(BoardOptions.SPRINT);
-
-  // add backlog items
-  controller.generateTaskCard(0, 0, 'BL1', 'Backlog Task 1');
-  controller.generateTaskCard(0, 0, 'BL2', 'Backlog Task 2');
-
-  // add in progress items
-  controller.generateTaskCard(0, 1, 'IP1', 'In Progress Task 1');
-  controller.generateTaskCard(0, 1, 'IP2', 'In Progress Task 2');
-
-  // add in review items
-  controller.generateTaskCard(0, 2, 'IR1', 'In Review Task 1');
-  controller.generateTaskCard(0, 2, 'IR2', 'In Review Task 2');
-
-  // add complete items
-  controller.generateTaskCard(0, 3, 'CT1', 'Complete Task 1');
-  controller.generateTaskCard(0, 3, 'CT2', 'Complete Task 2');
-} // end generateSprintController
+// function generateSprintController(controller: Controller): void {
+//   controller.generateProject("Test-Sprint");
+//   controller.generateBoardTemplate(BoardOptions.SPRINT);
+//
+//   // add backlog items
+//   controller.generateTaskCard(0, 0, 'BL1', 'Backlog Task 1');
+//   controller.generateTaskCard(0, 0, 'BL2', 'Backlog Task 2');
+//
+//   // add in progress items
+//   controller.generateTaskCard(0, 1, 'IP1', 'In Progress Task 1');
+//   controller.generateTaskCard(0, 1, 'IP2', 'In Progress Task 2');
+//
+//   // add in review items
+//   controller.generateTaskCard(0, 2, 'IR1', 'In Review Task 1');
+//   controller.generateTaskCard(0, 2, 'IR2', 'In Review Task 2');
+//
+//   // add complete items
+//   controller.generateTaskCard(0, 3, 'CT1', 'Complete Task 1');
+//   controller.generateTaskCard(0, 3, 'CT2', 'Complete Task 2');
+// } // end generateSprintController
 
 /**
  * Forces the controller to generate a MoSCoW Board demonstration
  *
  * @param controller the controller generating the board
  */
-function generateMoSCoWController(controller: Controller): void {
-  controller.generateProject("Test-MoSCoW")
-  controller.generateBoardTemplate(BoardOptions.MOSCOW);
-
-  // add Must Have Items
-  controller.generateTaskCard(0, 0, 'MT1', 'Must Task 1');
-  controller.generateTaskCard(0, 0, 'MT2', 'Must Task 2');
-
-  // add Should Have Items
-  controller.generateTaskCard(0, 1, 'ST1', 'Should Task 1');
-  controller.generateTaskCard(0, 1, 'ST2', 'Should Task 2');
-
-  // add Could Have Items
-  controller.generateTaskCard(0, 2, 'CT1', 'Could Task 1');
-  controller.generateTaskCard(0, 2, 'CT2', 'Could Task 2');
-
-  // add Wont Have Items
-  controller.generateTaskCard(0, 3, 'WT1', 'Wont Task 1');
-  controller.generateTaskCard(0, 3, 'WT2', 'Wont Task 2');
-} // end generateMoscowController
+// function generateMoSCoWController(controller: Controller): void {
+//   controller.generateProject("Test-MoSCoW")
+//   controller.generateBoardTemplate(BoardOptions.MOSCOW);
+//
+//   // add Must Have Items
+//   controller.generateTaskCard(0, 0, 'MT1', 'Must Task 1');
+//   controller.generateTaskCard(0, 0, 'MT2', 'Must Task 2');
+//
+//   // add Should Have Items
+//   controller.generateTaskCard(0, 1, 'ST1', 'Should Task 1');
+//   controller.generateTaskCard(0, 1, 'ST2', 'Should Task 2');
+//
+//   // add Could Have Items
+//   controller.generateTaskCard(0, 2, 'CT1', 'Could Task 1');
+//   controller.generateTaskCard(0, 2, 'CT2', 'Could Task 2');
+//
+//   // add Wont Have Items
+//   controller.generateTaskCard(0, 3, 'WT1', 'Wont Task 1');
+//   controller.generateTaskCard(0, 3, 'WT2', 'Wont Task 2');
+// } // end generateMoscowController
 
 /**
  * Adds the event listener to each of the buttons as they are rendered
@@ -96,23 +108,23 @@ function generateMoSCoWController(controller: Controller): void {
  */
 function addClickListeners(controller: Controller): void {
   // generate the add button listeners
-  for (let i = 0; i < controller.getModel().getProjects()[0].getBoards()[0].getLists().length; i++) {
-    let buttonID = controller.getModel().getProjects()[0].getBoards()[0].getLists()[i].getLabel() + 'AddButton';
+  for (let i = 0; i < controller.getModel().getProjects().getBoards()[0].getLists().length; i++) {
+    let buttonID = controller.getModel().getProjects().getBoards()[0].getLists()[i].getLabel() + 'AddButton';
     document.getElementById(buttonID).addEventListener('click', function (event) {
       let newTaskID = prompt('Please enter the new task label: ');
       let newTaskText = prompt('Please enter the new task text: ');
-      controller.getModel().getProjects()[0].getBoards()[0].getLists()[i].addTask(newTaskID, newTaskText);
+      controller.getModel().getProjects().getBoards()[0].getLists()[i].addTask(newTaskID, newTaskText);
       render(controller);
     }); // end Event Listener
   } // end for
 
   // generate the listeners for editting task cards
-  for (let i = 0; i < controller.getModel().getProjects()[0].getBoards()[0].getLists().length; i++) {
-    for (let j = 0; j < controller.getModel().getProjects()[0].getBoards()[0].getLists()[i].getTasks().length; j++) {
+  for (let i = 0; i < controller.getModel().getProjects().getBoards()[0].getLists().length; i++) {
+    for (let j = 0; j < controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks().length; j++) {
       // console.log(controller);
-      let taskID = controller.getModel().getProjects()[0].getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'TextField';
+      let taskID = controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'TextField';
       document.getElementById(taskID).addEventListener('click', function (event) {
-        let newTaskText = prompt('Please enter the new text', controller.getModel().getProjects()[0].getBoards()[0].getLists()[i].getTasks()[j].getText());
+        let newTaskText = prompt('Please enter the new text', controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks()[j].getText());
         controller.editTaskText(i, j, newTaskText);
         render(controller);
       }); // end Event Listener
@@ -120,9 +132,9 @@ function addClickListeners(controller: Controller): void {
   } // end for each list
 
   // generate the listener for removing task cards
-  for (let i = 0; i < controller.getModel().getProjects()[0].getBoards()[0].getLists().length; i++) {
-    for (let j = 0; j < controller.getModel().getProjects()[0].getBoards()[0].getLists()[i].getTasks().length; j++) {
-      let buttonID = controller.getModel().getProjects()[0].getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'RemoveButton';
+  for (let i = 0; i < controller.getModel().getProjects().getBoards()[0].getLists().length; i++) {
+    for (let j = 0; j < controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks().length; j++) {
+      let buttonID = controller.getModel().getProjects().getBoards()[0].getLists()[i].getTasks()[j].getLabel() + 'RemoveButton';
       document.getElementById(buttonID).addEventListener('click', function (event) {
         let choice = confirm('Delete this task card?');
         if (choice) {
@@ -136,7 +148,7 @@ function addClickListeners(controller: Controller): void {
   document.getElementById("save").addEventListener('click', function (event) {
     var temp = controller;
     var name = prompt("Enter the file name:");
-    const data = JSON.stringify(controller.getModel().getProjects()[0])
+    const data = JSON.stringify(controller.getModel().getProjects())
     const blob = new Blob([data], { type: 'text/plain' })
     const e = document.createEvent('MouseEvents'),
       a = document.createElement('a');

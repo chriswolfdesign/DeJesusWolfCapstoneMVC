@@ -21,16 +21,17 @@ import { BoardOptions } from './enums/BoardOptions';
 import { ListOptions } from './enums/ListOptions';
 
 export class Model {
-  private projects: Project[];
+  private project: Project;
   private projectFactory: ProjectFactory;
   private controller: Controller;
+  private projectName: string;
 
-  constructor(controller: Controller) {
-    this.projects = [];
+  constructor(controller, projectName) {
+    this.projectName = projectName;
+    this.project = new Project(this.projectName);
     this.projectFactory = new ProjectFactory();
     this.controller = controller;
   }
-
 
   /** 
    * Returns the title of a project
@@ -38,34 +39,34 @@ export class Model {
    * @param {number} projectID the ID of the project 
    * @returns the title of the project
    */
-  getProjectTitle(projectID: number): string {
-    return this.projects[projectID].getTitle();
-  }
+  // getProjectTitle(projectID: number): string {
+  //   return this.projects[projectID].getTitle();
+  // }
 
 
   /**
    * Generates a project.
    * @param {string} title the title of the project being generated 
    */
-  generateProject(title: string) {
-    this.projects.push(new Project(title));
-  }
+  // generateProject(title: string) {
+  //   this.projects.push(new Project(title));
+  // }
 
   /**
    * Removes a project
    * @param {number} projectID the ID of the project being removed 
    */
-  removeProject(projectID: number) {
-    this.projects.splice(projectID, 1);
-  }
+  // removeProject(projectID: number) {
+  //   this.projects.splice(projectID, 1);
+  // }
 
   /**
    * Adds a project that has already been created.
    * @param {Project} project 
    */
-  addProject(project: Project) {
-    this.projects.push(project);
-  }
+  // addProject(project: Project) {
+  //   this.projects.push(project);
+  // }
 
   /**
    * Returns the title of a board
@@ -73,8 +74,8 @@ export class Model {
    * @param boardID
    */
 
-  getBoardTitle(projectID: number, boardID: number): string {
-    return this.projects[projectID].getBoardTitle(boardID);
+  getBoardTitle(boardID: number): string {
+    return this.project.getBoardTitle(boardID);
   }
 
   /**
@@ -83,8 +84,8 @@ export class Model {
    * @param projectID
    * @param option 
    */
-  generateBoardTemplate(projectID: number, option: BoardOptions) {
-    this.projects[projectID].generateBoardTemplate(option);
+  generateBoardTemplate(option: BoardOptions) {
+    this.project.generateBoardTemplate(option);
   } // end generateBoardTemplate
 
   /**
@@ -93,8 +94,8 @@ export class Model {
    * @param {number} projectID the id of the Project to be removed
    * @param {number} boardID the id of the board to be removed
    */
-  removeBoard(projectID: number, boardID: number) {
-    this.projects[projectID].removeBoard(boardID);
+  removeBoard(boardID: number) {
+    this.project.removeBoard(boardID);
   } // end removeBoard
 
   /**
@@ -105,8 +106,8 @@ export class Model {
    * @param {string} label the name of the list being generated
    * @param {colors} color the color of the list being generated
    */
-  generateList(projectID: number, boardID: number, label: string): void {
-    this.projects[projectID].generateList(boardID, label);
+  generateList(boardID: number, label: string): void {
+    this.project.generateList(boardID, label);
   } // end generateList
 
   /**
@@ -116,8 +117,8 @@ export class Model {
    * @param {number} boardID the id of the baord we are trying to add a list into
    * @param {option} option the type of list we are trying to create
    */
-  generateListTemplate(projectID: number, boardID: number, option: ListOptions): void {
-    this.projects[projectID].generateListTemplate(boardID, option);
+  generateListTemplate(boardID: number, option: ListOptions): void {
+    this.project.generateListTemplate(boardID, option);
   } // end generateListTemplate
 
   /**
@@ -126,8 +127,8 @@ export class Model {
    * @param {number} boardID the ID of the board from whom we want to remove a list from
    * @param {number} listID the ID of the list we are removing
    */
-  removeList(projectID: number, boardID: number, listID: number): void {
-    this.projects[projectID].removeList(boardID, listID);
+  removeList(boardID: number, listID: number): void {
+    this.project.removeList(boardID, listID);
   } // end removeList
 
   /**
@@ -140,8 +141,8 @@ export class Model {
    * @param {string} text
    *
    */
-  generateTaskCard(projectID: number, boardID: number, listID: number, label: string, text: string): void {
-    this.projects[projectID].generateTaskCard(boardID, listID, label, text);
+  generateTaskCard(boardID: number, listID: number, label: string, text: string): void {
+    this.project.generateTaskCard(boardID, listID, label, text);
   } // end generateTaskCard
 
   /**
@@ -151,8 +152,8 @@ export class Model {
    * @param {integer} listID the ID of the list we're removing a card from.
    * @param {integer} taskID the ID of the card we're removing.
    */
-  removeTaskCard(projectID: number, boardID: number, listID: number, taskID: number): void {
-    this.projects[projectID].removeTaskCard(boardID, listID, taskID);
+  removeTaskCard(boardID: number, listID: number, taskID: number): void {
+    this.project.removeTaskCard(boardID, listID, taskID);
   } // end removeTaskCard
 
   /**
@@ -171,11 +172,11 @@ export class Model {
   loadProject(project: Project) {
     let newProject: Project = new Project("");
     newProject.loadProject(project);
-    this.projects[0] = newProject; // end for
+    this.project = newProject; // end for
   } // end loadBoards
 
-  getProjects(): Project[] {
-    return this.projects;
+  getProjects(): Project {
+    return this.project;
   } // end getBoards
 } // end App
 
