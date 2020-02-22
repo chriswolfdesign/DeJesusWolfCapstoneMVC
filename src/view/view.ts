@@ -37,7 +37,7 @@ export class View {
   generateToolbar(model: Model): string {
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
-    html += '<div id=toolbar-text>' + model.getProjects().getTitle() + '</div>';
+    html += '<div id=toolbar-text>Agility</div>';
     html += '</div>';
     return html;
   } // end generateToolbar
@@ -81,6 +81,8 @@ export class View {
 
   generateBoardButtons(model): string {
     let html: string = '<div id=boardButtons>';
+
+    html += '<div id=boardMenuTitle>' + model.getProjects().getTitle() + '</div>';
 
     let boards = model.getProjects().getBoards();
 
