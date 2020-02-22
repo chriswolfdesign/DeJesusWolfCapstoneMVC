@@ -142,7 +142,7 @@ export class Model {
    *
    */
   generateTaskCard(boardID: number, listID: number, label: string, text: string): void {
-    this.project.generateTaskCard(boardID, listID, label, text);
+    this.project.generateTaskCard(listID, text);
   } // end generateTaskCard
 
   /**
