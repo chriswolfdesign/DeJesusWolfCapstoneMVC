@@ -122,15 +122,26 @@ export class View {
 
     // for every list, generate the HTML
     for (let i = 0; i < model.getProjects().getActiveBoard().getLists().length; i++) {
-      html += '<div id=\'' + model.getProjects().getActiveBoard().getLists()[i].getLabel() + '\' class=\'dropzone list\'>'
-        + '<h1 class=list-header><u>' + model.getProjects().getActiveBoard().getLists()[i].getLabel() + '</u></h1>' +
+      html += '<div id=\'' + model.getProjects().getActiveBoard().getLists()[i].getLabel() + '\' class=\'dropzone list\'>' + 
+        // + '<h1 class=list-header><u>' + model.getProjects().getActiveBoard().getLists()[i].getLabel() + '</u></h1>' +
+        this.generateListHeaderHTML(model, i);
+        // this.generateAddButtonHTML(model.getProjects().getActiveBoard().getLists()[i].getLabel()) + 
         this.generateIndividualListHTML(model.getProjects().getActiveBoard().getLists()[i]) +
-        this.generateAddButtonHTML(model.getProjects().getActiveBoard().getLists()[i].getLabel()) +
+        // this.generateAddButtonHTML(model.getProjects().getActiveBoard().getLists()[i].getLabel()) +
         '</div>';
     } // end for loop
 
     return html;
   } // end generateListsHTML
+
+  generateListHeaderHTML(model : Model, index: number) : string {
+    let html = '<div class=list-header>';
+    html += '<div class=list-title>' + model.getProjects().getActiveBoard().getLists()[index].getLabel() + '</div>';
+    html += '<div class=add-button-container>' + this.generateAddButtonHTML(model.getProjects().getActiveBoard().getLists()[index].getLabel()) + '</div>';
+    html += '</div></div>';
+    return html;
+
+  }
 
   /**
    * generates the list passed in
@@ -195,7 +206,7 @@ export class View {
       '<i class=\"fa fa-trash-o\"></i></button>';
   } // end generateRemoveButtonHTML
 
-  generateAddButtonHTML(parentID: number) {
+  generateAddButtonHTML(parentID: string) {
     let thisID = parentID + 'AddButton';
     return '<button id=\'' + thisID + '\' class=add-button>+</button>';
   } // end generateAddButtonHTML

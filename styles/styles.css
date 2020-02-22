@@ -126,7 +126,17 @@ body {
 }
 
 .list-header {
+    display: inline;
+}
+
+.list-title {
+    display: inline-block;
+    font-size: 20px;
     text-align: center;
+}
+
+.add-button-container {
+    display: inline-block;
 }
 
 .boardButton {
