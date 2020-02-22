@@ -20,7 +20,7 @@ export class SprintBacklogBoard {
    * @return {Board} a SprintBacklogBoard
    */
   generateBoard(): Board {
-    let board: Board = new Board('Sprint Backlog');
+    let board: Board = new Board('Project Backlog');
     board.setListFactory(new SprintBacklogListFactory());
 
     board.addListTemplate(ListOptions.BACKLOG);
