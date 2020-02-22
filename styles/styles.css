@@ -89,6 +89,7 @@ body {
 }
 
 .add-button {
+    display: inline-block;
     background-color: blue;
     color: white;
     width: 2vw;
@@ -118,7 +119,12 @@ body {
 }
 
 .list-header {
-    text-align: center;
+    display: inline;
+}
+
+.list-label {
+    display: inline-block;
+    font-size: 30px;
 }
 
 .boardButton {

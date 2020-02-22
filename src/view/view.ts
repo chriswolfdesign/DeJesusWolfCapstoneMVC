@@ -116,10 +116,16 @@ export class View {
 
     // for every list, generate the HTML
     for (let i = 0; i < model.getProjects().getActiveBoard().getLists().length; i++) {
-      html += '<div id=\'' + model.getProjects().getActiveBoard().getLists()[i].getLabel() + '\' class=\'dropzone list\'>'
-        + '<h1 class=list-header><u>' + model.getProjects().getActiveBoard().getLists()[i].getLabel() + '</u></h1>' +
+      html += '<div id=\'' + model.getProjects().getActiveBoard().getLists()[i].getLabel() + '\' class=\'dropzone list\'>' + 
+        '<div class=list-header>' + 
+        '<h1 class=list-label><u>' + 
+        model.getProjects().getActiveBoard().getLists()[i].getLabel() + 
+        '</u></h1>' +
+        // '<h1 class=list-label><u>Hello</u></h1>' + 
+        this.generateAddButtonHTML(model.getProjects().getActiveBoard().getLists()[i].getLabel()) + 
+        '</div>' + 
         this.generateIndividualListHTML(model.getProjects().getActiveBoard().getLists()[i]) +
-        this.generateAddButtonHTML(model.getProjects().getActiveBoard().getLists()[i].getLabel()) +
+        // this.generateAddButtonHTML(model.getProjects().getActiveBoard().getLists()[i].getLabel()) +
         '</div>';
     } // end for loop
 
