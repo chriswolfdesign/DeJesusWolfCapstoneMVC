@@ -38,6 +38,14 @@ body {
     text-decoration: underline;
 }
 
+#projectHeader {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 18px;
+}
+
 #appBody {
     display: inline;
 }
