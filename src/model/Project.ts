@@ -22,7 +22,7 @@ export class Project {
   /**
    * Generates the foundation for the app
    *
-   * @param {String} the title of this board
+   * @param {String} title -- the title of this board
    */
   constructor(title) {
     this.title = title;
@@ -77,7 +77,6 @@ export class Project {
    *
    * @param {number} boardID the id of the board we are trying to add a list into.
    * @param {string} label the name of the list being generated
-   * @param {colors} color the color of the list being generated
    */
   generateList(boardID: number, label: string): void {
     this.boards[boardID].addList(label);
@@ -105,9 +104,7 @@ export class Project {
   /**
    * Generates a card within a board's list
    *
-   * @param {number} boardID
    * @param {number} listID
-   * @param {string} label
    * @param {string} text
    *
    */
@@ -118,10 +115,20 @@ export class Project {
     this.nextCardNumber++;
   } // end generateTaskCard
 
+  /**
+   * Generates the label for the next card to be created
+   *
+   * @return {string} -- the label of the card being created
+   */
   generateNextCardLabel(): string {
     return this.makeProjectAcronym() + this.nextCardNumber;
-  }
+  } // end generateNextCardLabel
 
+  /**
+   * Creates an acronym for the project
+   *
+   * @return {string} -- the acronym for the project
+   */
   makeProjectAcronym(): string {
     let words: string[] = this.title.split(' ');
     let acronym: string = '';
@@ -130,7 +137,7 @@ export class Project {
     });
 
     return acronym;
-  }
+  }  // end makeProjectAcronym
 
   /**
    * Remove a task card from the specified list from a specified board.

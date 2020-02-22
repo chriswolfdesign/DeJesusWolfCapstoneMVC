@@ -35,7 +35,7 @@ export class Board {
    */
   setListFactory(factory: ListFactory) {
     this.listFactory = factory;
-  }
+  } // end setListFactory
 
   /**
    * adds a new list to our board
@@ -50,7 +50,7 @@ export class Board {
   /**
    * Creates a task card within the specified list.
    *
-   * @param {integer} listID the list of we are trying to add a card to
+   * @param {number} listID the list of we are trying to add a card to
    * @param {string} label the label of the new task card
    * @param {string} text the text in the new task card
    */

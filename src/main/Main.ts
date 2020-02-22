@@ -16,25 +16,8 @@ import { Project } from '../model/Project';
 
 let controller: Controller;  // I really don't like that this is global, let's look into other options
 
+// Behavior when the application is started
 window.onload = function (): void {
-
-  // // ask the user which board they would like
-  // let decision: string = '';
-  // while (decision !== 'moscow' && decision !== 'sprint') {
-  //   decision = prompt('Which board would you like? (moscow/sprint)');
-  // } // end while
-  //
-  // if (decision === 'moscow') {
-  //   controller = new Controller('MoSCoW Board');
-  //   generateMoSCoWController(controller);
-  // } else {
-  //   controller = new Controller('Sprint Backlog');
-  //   generateSprintController(controller);
-  // } // end if-else
-  //
-  // // draw the HTML to the page
-  // render(controller);
-
   let decision: string = '';
 
   while (decision === '') {
@@ -47,69 +30,22 @@ window.onload = function (): void {
 
 }; // end window.onload
 
+/**
+ * Highlights the button for the board that is current open
+ *
+ * @param {Controller} controller -- the controller of the application
+ */
 function highlightCurrentBoard(controller: Controller): void {
   let boardID = 'board' + controller.getModel().getProjects().getActiveBoardIndex().toString();
 
   document.getElementById(boardID).style.color = 'white';
   document.getElementById(boardID).style.backgroundColor = 'black';
-}
-
-/**
- * sets up a basic Sprint Backlog Board
- *
- * @return {board} a Sprint Backlog board with predefined tasks
- */
-// function generateSprintController(controller: Controller): void {
-//   controller.generateProject("Test-Sprint");
-//   controller.generateBoardTemplate(BoardOptions.SPRINT);
-//
-//   // add backlog items
-//   controller.generateTaskCard(0, 0, 'BL1', 'Backlog Task 1');
-//   controller.generateTaskCard(0, 0, 'BL2', 'Backlog Task 2');
-//
-//   // add in progress items
-//   controller.generateTaskCard(0, 1, 'IP1', 'In Progress Task 1');
-//   controller.generateTaskCard(0, 1, 'IP2', 'In Progress Task 2');
-//
-//   // add in review items
-//   controller.generateTaskCard(0, 2, 'IR1', 'In Review Task 1');
-//   controller.generateTaskCard(0, 2, 'IR2', 'In Review Task 2');
-//
-//   // add complete items
-//   controller.generateTaskCard(0, 3, 'CT1', 'Complete Task 1');
-//   controller.generateTaskCard(0, 3, 'CT2', 'Complete Task 2');
-// } // end generateSprintController
-
-/**
- * Forces the controller to generate a MoSCoW Board demonstration
- *
- * @param controller the controller generating the board
- */
-// function generateMoSCoWController(controller: Controller): void {
-//   controller.generateProject("Test-MoSCoW")
-//   controller.generateBoardTemplate(BoardOptions.MOSCOW);
-//
-//   // add Must Have Items
-//   controller.generateTaskCard(0, 0, 'MT1', 'Must Task 1');
-//   controller.generateTaskCard(0, 0, 'MT2', 'Must Task 2');
-//
-//   // add Should Have Items
-//   controller.generateTaskCard(0, 1, 'ST1', 'Should Task 1');
-//   controller.generateTaskCard(0, 1, 'ST2', 'Should Task 2');
-//
-//   // add Could Have Items
-//   controller.generateTaskCard(0, 2, 'CT1', 'Could Task 1');
-//   controller.generateTaskCard(0, 2, 'CT2', 'Could Task 2');
-//
-//   // add Wont Have Items
-//   controller.generateTaskCard(0, 3, 'WT1', 'Wont Task 1');
-//   controller.generateTaskCard(0, 3, 'WT2', 'Wont Task 2');
-// } // end generateMoscowController
+} // end highlightCurrentBoard
 
 /**
  * Adds the event listener to each of the buttons as they are rendered
  *
- * @param controller the controller holding each of the buttons
+ * @param {Controller} controller -- the controller holding each of the buttons
  */
 function addClickListeners(controller: Controller): void {
   // generate the add button listeners
@@ -148,6 +84,7 @@ function addClickListeners(controller: Controller): void {
     } // end inner for loop
   } // end outer for loop
 
+  // allows us to change the active board based on user preference via click
   for (let i = 0; i < controller.getModel().getProjects().getBoards().length; i++) {
     let boardID = 'board' + i.toString();
     document.getElementById(boardID).addEventListener('click', function (event) {
@@ -156,6 +93,7 @@ function addClickListeners(controller: Controller): void {
     });
   }
 
+  // allows us to save the current instance of the project onto our local file system
   document.getElementById("save").addEventListener('click', function (event) {
     var temp = controller;
     var name = prompt("Enter the file name:");
@@ -170,6 +108,7 @@ function addClickListeners(controller: Controller): void {
     a.dispatchEvent(e);
   });
 
+  // allows us to load an instance of the project from our local file system
   document.getElementById("submit").addEventListener('click', function (event) {
     let file = (<HTMLInputElement>document.getElementById("file-input")).files[0];
     if (file) {
@@ -192,27 +131,33 @@ function addClickListeners(controller: Controller): void {
 
     render(controller);
   });
-
 } // end addClickListeners
 
+/**
+ * Allows us to toggle the visibility of the Board Menu
+ *
+ * @param {Controller} controller -- controller for the application
+ */
 function changeBoardMenuVisibility(controller: Controller) {
  if (controller.getView().getIsBoardMenuVisibile()) {
    document.getElementById('boardButtons').style.visibility = 'visible';
- } else {
+ } // end if
+ else {
    document.getElementById('boardButtons').style.visibility = 'hidden';
- }
-}
+ } // end else
+} // end changeBoardMenuVisibility
 
 function setCurrentBoardSize(controller: Controller) {
   // Update styles
   if (controller.getView().getIsBoardMenuVisibile()) {
     document.getElementById('currentBoard').style.width = '75%';
     document.getElementById('currentBoard').style.marginLeft = '45vh';
-  } else {
+  }  // end if
+  else {
     document.getElementById('currentBoard').style.width = '100%';
     document.getElementById('currentBoard').style.marginLeft = '10vh';
-  }
-}
+  } // end else
+} // end setCurrentBoardSize
 
 /**
  * Causes the HTML to be drawn, or redrawn, to the screen

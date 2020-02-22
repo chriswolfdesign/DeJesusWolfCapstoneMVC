@@ -17,6 +17,11 @@ export class Controller {
     this.view = new View();
   } // end constructor
 
+  /**
+   * getter for the view field
+   *
+   * @return {View} view -- the view for the project
+   */
   getView(): View {
     return this.view;
   }
@@ -99,7 +104,7 @@ export class Controller {
    * removes a task card from a list
    *
    * @param {number} listID the list from which we are removing a task card
-   * @param taskID
+   * @param {number} taskID -- the ID of the task card we are removing
    */
   removeTaskCard(listID: number, taskID: number) {
     this.model.removeTaskCard(this.model.getProjects().getActiveBoardIndex(), listID, taskID);
@@ -199,9 +204,5 @@ export class Controller {
   loadProject(project: Project) {
     this.model.loadProject(project);
   }
-
-  // generateProject(title: string) {
-  //   this.model.generateProject(title);
-  // }
 } // end Controller
 

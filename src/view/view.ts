@@ -18,15 +18,15 @@ export class View {
 
   constructor() {
     this.isBoardMenuVisible = true;
-  }
+  } // end constructor
 
   toggleBoardMenuVisibility(): void {
     this.isBoardMenuVisible = !this.isBoardMenuVisible;
-  }
+  } // end toggleBoardMenuVisibility
 
   getIsBoardMenuVisibile(): boolean {
     return this.isBoardMenuVisible;
-  }
+  } // end getIsBoardMenuVisibile
 
   /**
    * generates HTML based on the current model
@@ -51,7 +51,7 @@ export class View {
   generateToolbar(model: Model): string {
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
-    html += this.generateBoardMenuToggleButton();
+    html += View.generateBoardMenuToggleButton();
     html += '<div id=toolbar-text>Agility</div>';
     html += '</div>';
     return html;
@@ -87,14 +87,28 @@ export class View {
     return html;
   } // end generateHeaderHTML
 
-  generateBodyHTML(model): string {
+  /**
+   * Generates the body of the application
+   *
+   * @param {Model} model -- the data structure of the application to be displayed
+   *
+   * @return {string} -- the HTML for the body of the application
+   */
+  generateBodyHTML(model : Model): string {
     let html: string = '<div id=appBody>';
     html += this.generateBoardButtons(model);
     html += this.generateCurrentBoard(model);
     html += '</div>';
     return html;
-  }
+  } // end generateBodyHTML
 
+  /**
+   * Generates the Board Menu for the application
+   *
+   * @param {Model} model -- the data structure of the application
+   *
+   * @return {string} -- the HTML for the Board Menu
+   */
   generateBoardButtons(model): string {
     let html: string = '<div id=boardButtons>';
 
@@ -112,15 +126,22 @@ export class View {
     html += '</div>';
 
     return html;
-  }
+  } // end generateBoardButtons
 
+  /**
+   * Generates the current board the user is interacting with
+   *
+   * @param {Model} model -- the data structure of the application
+   *
+   * @return {string} -- the HTML for the current board
+   */
   generateCurrentBoard(model): string {
     let html = '<div id=currentBoard>';
     html += this.generateHeaderHTML(model);
     html += this.generateListsHTML(model);
     html += '</div>';
     return html;
-  }
+  } // end generateCurrentBoard
 
   /**
    * generates all of the lists inside of the model
@@ -207,18 +228,37 @@ export class View {
     return html;
   } // end generateIndividualTaskCardHTML
 
+  /**
+   * Generates a remove button for a task card
+   *
+   * @param {TaskCard} task -- the task card this button should remove when clicked
+   *
+   * @return {string} -- the HTML for the remove button
+   */
   generateRemoveButtonHTML(task: TaskCard) {
     let buttonID = task.getLabel() + 'RemoveButton';
     return '<button id=' + buttonID + ' class=remove-button>' +
       '<i class=\"fa fa-trash-o\"></i></button>';
   } // end generateRemoveButtonHTML
 
+  /**
+   * Generates an add task card button for a list
+   *
+   * @param {number} parentID -- the index for the list
+   *
+   * @return {string} -- the HTML for the add button
+   */
   generateAddButtonHTML(parentID: number) {
     let thisID = parentID + 'AddButton';
     return '<button id=\'' + thisID + '\' class=add-button>+</button>';
   } // end generateAddButtonHTML
 
-  private generateBoardMenuToggleButton() : string {
+  /**
+   * Generates the button that will allow us to toggle the visibility of the Board Menu
+   *
+   * @return {string} -- the HTML for the Board Menu Toggle button
+   */
+  private static generateBoardMenuToggleButton() : string {
     return '<button id=boardMenuToggleButton>Board Menu</button>';
-  }
+  } // end generateBoardMenuToggleButton
 } // end View

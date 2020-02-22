@@ -33,56 +33,19 @@ export class Model {
     this.controller = controller;
   }
 
-  /** 
-   * Returns the title of a project
-   * 
-   * @param {number} projectID the ID of the project 
-   * @returns the title of the project
-   */
-  // getProjectTitle(projectID: number): string {
-  //   return this.projects[projectID].getTitle();
-  // }
-
-
-  /**
-   * Generates a project.
-   * @param {string} title the title of the project being generated 
-   */
-  // generateProject(title: string) {
-  //   this.projects.push(new Project(title));
-  // }
-
-  /**
-   * Removes a project
-   * @param {number} projectID the ID of the project being removed 
-   */
-  // removeProject(projectID: number) {
-  //   this.projects.splice(projectID, 1);
-  // }
-
-  /**
-   * Adds a project that has already been created.
-   * @param {Project} project 
-   */
-  // addProject(project: Project) {
-  //   this.projects.push(project);
-  // }
-
   /**
    * Returns the title of a board
-   * @param projectID 
-   * @param boardID
+   * @param {number} boardID -- the index of the board we are searching for
    */
 
   getBoardTitle(boardID: number): string {
     return this.project.getBoardTitle(boardID);
-  }
+  } // end getBoardTitle
 
   /**
    * Generates a board from a template based on user preference
    *
-   * @param projectID
-   * @param option 
+   * @param {BoardOptions} option -- the type of board the user would like
    */
   generateBoardTemplate(option: BoardOptions) {
     this.project.generateBoardTemplate(option);
@@ -91,7 +54,6 @@ export class Model {
   /**
    * Removes a board from the list of boards.
    *
-   * @param {number} projectID the id of the Project to be removed
    * @param {number} boardID the id of the board to be removed
    */
   removeBoard(boardID: number) {
