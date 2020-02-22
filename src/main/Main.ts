@@ -186,8 +186,33 @@ function addClickListeners(controller: Controller): void {
     }
   });
 
+  // toggle the visibility of the board menu
+  document.getElementById('boardMenuToggleButton').addEventListener('click', function(event) {
+    controller.getView().toggleBoardMenuVisibility();
+
+    render(controller);
+  });
 
 } // end addClickListeners
+
+function changeBoardMenuVisibility(controller: Controller) {
+ if (controller.getView().getIsBoardMenuVisibile()) {
+   document.getElementById('boardButtons').style.visibility = 'visible';
+ } else {
+   document.getElementById('boardButtons').style.visibility = 'hidden';
+ }
+}
+
+function setCurrentBoardSize(controller: Controller) {
+  // Update styles
+  if (controller.getView().getIsBoardMenuVisibile()) {
+    document.getElementById('currentBoard').style.width = '75%';
+    document.getElementById('currentBoard').style.marginLeft = '45vh';
+  } else {
+    document.getElementById('currentBoard').style.width = '100%';
+    document.getElementById('currentBoard').style.marginLeft = '10vh';
+  }
+}
 
 /**
  * Causes the HTML to be drawn, or redrawn, to the screen
@@ -198,6 +223,8 @@ function render(controller: Controller): void {
   document.getElementById('main').innerHTML = controller.generateHTML();
   addClickListeners(controller);
   highlightCurrentBoard(controller);
+  changeBoardMenuVisibility(controller);
+  setCurrentBoardSize(controller);
 } // end render
 
 // Set up interact

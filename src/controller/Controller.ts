@@ -17,6 +17,10 @@ export class Controller {
     this.view = new View();
   } // end constructor
 
+  getView(): View {
+    return this.view;
+  }
+
   /**
    * calls on the model to create a new board from a template
    *

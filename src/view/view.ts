@@ -14,6 +14,20 @@ import { Model } from '../model/Model';
 export class View {
   // Intentionally no constructor
 
+  private isBoardMenuVisible: boolean;
+
+  constructor() {
+    this.isBoardMenuVisible = true;
+  }
+
+  toggleBoardMenuVisibility(): void {
+    this.isBoardMenuVisible = !this.isBoardMenuVisible;
+  }
+
+  getIsBoardMenuVisibile(): boolean {
+    return this.isBoardMenuVisible;
+  }
+
   /**
    * generates HTML based on the current model
    *
@@ -37,10 +51,12 @@ export class View {
   generateToolbar(model: Model): string {
     let html = '<div id=toolbar>';
     html += this.generateSaveLoadButtons();
+    html += this.generateBoardMenuToggleButton();
     html += '<div id=toolbar-text>Agility</div>';
     html += '</div>';
     return html;
   } // end generateToolbar
+
 
   /**
    * generates the save and load button HTML
@@ -201,4 +217,8 @@ export class View {
     let thisID = parentID + 'AddButton';
     return '<button id=\'' + thisID + '\' class=add-button>+</button>';
   } // end generateAddButtonHTML
+
+  private generateBoardMenuToggleButton() : string {
+    return '<button id=boardMenuToggleButton>Board Menu</button>';
+  }
 } // end View
