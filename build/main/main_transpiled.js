@@ -145,14 +145,15 @@ var Controller = /** @class */ (function () {
     }; // end getTaskIndices
     /**
      * Gets the data held inside the task card
+     * @param listIndex -- the list index we are looking for
+     * @param taskIndex -- the task index we are looking for
+     *
      * @return {list} -- [task card's label, task card's text]
-     * @param listIndex
-     * @param taskIndex
      */
     Controller.prototype.getTaskData = function (listIndex, taskIndex) {
         return [this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].getLabel(),
             this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].getText()];
-    };
+    }; // end getTaskData
     /**
      * getter for model
      *
@@ -176,7 +177,7 @@ var Controller = /** @class */ (function () {
      */
     Controller.prototype.loadProject = function (project) {
         this.model.loadProject(project);
-    };
+    }; // end loadProject
     return Controller;
 }()); // end Controller
 exports.Controller = Controller;
@@ -419,10 +420,13 @@ var Model = /** @class */ (function () {
         this.project = new Project_1.Project(this.projectName);
         this.projectFactory = new ProjectFactory_1.ProjectFactory();
         this.controller = controller;
-    }
+    } // end constructor
     /**
      * Returns the title of a board
+     *
      * @param {number} boardID -- the index of the board we are searching for
+     *
+     * @return {string} -- the title of the board
      */
     Model.prototype.getBoardTitle = function (boardID) {
         return this.project.getBoardTitle(boardID);
@@ -457,18 +461,19 @@ var Model = /** @class */ (function () {
     /**
      * Generates a list based on the template given, to the specified board
      *
-     * @param {number} projectID the id of the board's project
-     * @param {number} boardID the id of the baord we are trying to add a list into
-     * @param {option} option the type of list we are trying to create
+     * @param {number} projectID -- the id of the board's project
+     * @param {number} boardID -- the id of the baord we are trying to add a list into
+     * @param {option} option -- the type of list we are trying to create
      */
     Model.prototype.generateListTemplate = function (boardID, option) {
         this.project.generateListTemplate(boardID, option);
     }; // end generateListTemplate
     /**
      * Removes a list from a specified board.
-     * @param {number} projectID the ID of the board's project
-     * @param {number} boardID the ID of the board from whom we want to remove a list from
-     * @param {number} listID the ID of the list we are removing
+     *
+     * @param {number} projectID -- the ID of the board's project
+     * @param {number} boardID -- the ID of the board from whom we want to remove a list from
+     * @param {number} listID -- the ID of the list we are removing
      */
     Model.prototype.removeList = function (boardID, listID) {
         this.project.removeList(boardID, listID);
@@ -476,22 +481,21 @@ var Model = /** @class */ (function () {
     /**
      * Generates a card within a board's list
      *
-     * @param {number} projectID
-     * @param {number} boardID
-     * @param {number} listID
-     * @param {string} label
-     * @param {string} text
-     *
+     * @param {number} projectID -- the project to generate a card into
+     * @param {number} boardID -- the board to generate a card into
+     * @param {number} listID -- the list to generate a card into
+     * @param {string} label -- the label for the card being generated
+     * @param {string} text -- the text for the card being generated
      */
     Model.prototype.generateTaskCard = function (boardID, listID, label, text) {
         this.project.generateTaskCard(listID, text);
     }; // end generateTaskCard
     /**
      * Remove a task card from the specified list from a specified board.
-     * @param {number} projectID the ID of the board's project
-     * @param {number} boardID the ID of the list's board
-     * @param {integer} listID the ID of the list we're removing a card from.
-     * @param {integer} taskID the ID of the card we're removing.
+     * @param {number} projectID -- the ID of the board's project
+     * @param {number} boardID -- the ID of the list's board
+     * @param {integer} listID -- the ID of the list we're removing a card from.
+     * @param {integer} taskID -- the ID of the card we're removing.
      */
     Model.prototype.removeTaskCard = function (boardID, listID, taskID) {
         this.project.removeTaskCard(boardID, listID, taskID);
@@ -506,13 +510,18 @@ var Model = /** @class */ (function () {
     }; // end setController
     /**
      * Loads a board given to it by the controller.
-     * @param {model} model board to be loaded
+     * @param {model} model -- the board to be loaded
      */
     Model.prototype.loadProject = function (project) {
         var newProject = new Project_1.Project("");
         newProject.loadProject(project);
         this.project = newProject; // end for
     }; // end loadBoards
+    /*
+     * Getter for the project field
+     *
+     * @return {Project} -- the project we are currently working on
+     */
     Model.prototype.getProjects = function () {
         return this.project;
     }; // end getBoards
@@ -1211,6 +1220,11 @@ var List = /** @class */ (function () {
     List.prototype.removeTaskCard = function (cardID) {
         this.tasks.splice(cardID, 1);
     }; // end removeTaskCard
+    /**
+     * loads the list into the board
+     *
+     * @param {List} list -- the list to be loaded into the board
+     */
     List.prototype.loadList = function (list) {
         this.label = list.label;
         var ntask;
@@ -1220,8 +1234,8 @@ var List = /** @class */ (function () {
             ntask = new TaskCard_1.TaskCard("", "");
             ntask.loadTaskCard(task);
             this.tasks.push(ntask);
-        }
-    };
+        } // end for
+    }; // end loadList
     return List;
 }()); // end List
 exports.List = List;
@@ -1473,9 +1487,17 @@ var View = /** @class */ (function () {
     function View() {
         this.isBoardMenuVisible = true;
     } // end constructor
+    /**
+     * if the board menu is visible, hide it and vice-versa
+     */
     View.prototype.toggleBoardMenuVisibility = function () {
         this.isBoardMenuVisible = !this.isBoardMenuVisible;
     }; // end toggleBoardMenuVisibility
+    /**
+     * returns whether or not the board is currently visible
+     *
+     * @return {boolean} -- true if the board is visible, false otherwise
+     */
     View.prototype.getIsBoardMenuVisibile = function () {
         return this.isBoardMenuVisible;
     }; // end getIsBoardMenuVisibile
@@ -1563,7 +1585,7 @@ var View = /** @class */ (function () {
             html += boards[i].getTitle();
             html += '</button>';
             html += '</br>';
-        }
+        } // end for
         html += '</div>';
         return html;
     }; // end generateBoardButtons

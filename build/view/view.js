@@ -12,9 +12,17 @@ var View = /** @class */ (function () {
     function View() {
         this.isBoardMenuVisible = true;
     } // end constructor
+    /**
+     * if the board menu is visible, hide it and vice-versa
+     */
     View.prototype.toggleBoardMenuVisibility = function () {
         this.isBoardMenuVisible = !this.isBoardMenuVisible;
     }; // end toggleBoardMenuVisibility
+    /**
+     * returns whether or not the board is currently visible
+     *
+     * @return {boolean} -- true if the board is visible, false otherwise
+     */
     View.prototype.getIsBoardMenuVisibile = function () {
         return this.isBoardMenuVisible;
     }; // end getIsBoardMenuVisibile
@@ -102,7 +110,7 @@ var View = /** @class */ (function () {
             html += boards[i].getTitle();
             html += '</button>';
             html += '</br>';
-        }
+        } // end for
         html += '</div>';
         return html;
     }; // end generateBoardButtons

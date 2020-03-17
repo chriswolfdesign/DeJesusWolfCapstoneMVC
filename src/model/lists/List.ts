@@ -58,6 +58,11 @@ export class List {
   } // end removeTaskCard
 
 
+  /**
+   * loads the list into the board
+   *
+   * @param {List} list -- the list to be loaded into the board
+   */
   loadList(list: List) {
     this.label = list.label;
     let ntask;
@@ -67,6 +72,6 @@ export class List {
       ntask = new TaskCard("", "");
       ntask.loadTaskCard(task);
       this.tasks.push(ntask)
-    }
-  }
+    } // end for
+  } // end loadList
 } // end List

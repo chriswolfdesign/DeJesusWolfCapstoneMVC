@@ -31,13 +31,15 @@ export class Model {
     this.project = new Project(this.projectName);
     this.projectFactory = new ProjectFactory();
     this.controller = controller;
-  }
+  } // end constructor
 
   /**
    * Returns the title of a board
+   *
    * @param {number} boardID -- the index of the board we are searching for
+   *
+   * @return {string} -- the title of the board
    */
-
   getBoardTitle(boardID: number): string {
     return this.project.getBoardTitle(boardID);
   } // end getBoardTitle
@@ -47,7 +49,7 @@ export class Model {
    *
    * @param {BoardOptions} option -- the type of board the user would like
    */
-  generateBoardTemplate(option: BoardOptions) {
+  generateBoardTemplate(option: BoardOptions): void {
     this.project.generateBoardTemplate(option);
   } // end generateBoardTemplate
 
@@ -56,7 +58,7 @@ export class Model {
    *
    * @param {number} boardID the id of the board to be removed
    */
-  removeBoard(boardID: number) {
+  removeBoard(boardID: number): void {
     this.project.removeBoard(boardID);
   } // end removeBoard
 
@@ -75,9 +77,9 @@ export class Model {
   /**
    * Generates a list based on the template given, to the specified board
    *
-   * @param {number} projectID the id of the board's project
-   * @param {number} boardID the id of the baord we are trying to add a list into
-   * @param {option} option the type of list we are trying to create
+   * @param {number} projectID -- the id of the board's project
+   * @param {number} boardID -- the id of the baord we are trying to add a list into
+   * @param {option} option -- the type of list we are trying to create
    */
   generateListTemplate(boardID: number, option: ListOptions): void {
     this.project.generateListTemplate(boardID, option);
@@ -85,9 +87,10 @@ export class Model {
 
   /**
    * Removes a list from a specified board.
-   * @param {number} projectID the ID of the board's project
-   * @param {number} boardID the ID of the board from whom we want to remove a list from
-   * @param {number} listID the ID of the list we are removing
+   *
+   * @param {number} projectID -- the ID of the board's project
+   * @param {number} boardID -- the ID of the board from whom we want to remove a list from
+   * @param {number} listID -- the ID of the list we are removing
    */
   removeList(boardID: number, listID: number): void {
     this.project.removeList(boardID, listID);
@@ -96,12 +99,11 @@ export class Model {
   /**
    * Generates a card within a board's list
    *
-   * @param {number} projectID
-   * @param {number} boardID
-   * @param {number} listID
-   * @param {string} label
-   * @param {string} text
-   *
+   * @param {number} projectID -- the project to generate a card into
+   * @param {number} boardID -- the board to generate a card into
+   * @param {number} listID -- the list to generate a card into
+   * @param {string} label -- the label for the card being generated
+   * @param {string} text -- the text for the card being generated
    */
   generateTaskCard(boardID: number, listID: number, label: string, text: string): void {
     this.project.generateTaskCard(listID, text);
@@ -109,10 +111,10 @@ export class Model {
 
   /**
    * Remove a task card from the specified list from a specified board.
-   * @param {number} projectID the ID of the board's project
-   * @param {number} boardID the ID of the list's board
-   * @param {integer} listID the ID of the list we're removing a card from.
-   * @param {integer} taskID the ID of the card we're removing.
+   * @param {number} projectID -- the ID of the board's project
+   * @param {number} boardID -- the ID of the list's board
+   * @param {integer} listID -- the ID of the list we're removing a card from.
+   * @param {integer} taskID -- the ID of the card we're removing.
    */
   removeTaskCard(boardID: number, listID: number, taskID: number): void {
     this.project.removeTaskCard(boardID, listID, taskID);
@@ -129,14 +131,19 @@ export class Model {
 
   /**
    * Loads a board given to it by the controller.
-   * @param {model} model board to be loaded 
+   * @param {model} model -- the board to be loaded 
    */
-  loadProject(project: Project) {
+  loadProject(project: Project): void {
     let newProject: Project = new Project("");
     newProject.loadProject(project);
     this.project = newProject; // end for
   } // end loadBoards
 
+  /*
+   * Getter for the project field
+   *
+   * @return {Project} -- the project we are currently working on
+   */
   getProjects(): Project {
     return this.project;
   } // end getBoards

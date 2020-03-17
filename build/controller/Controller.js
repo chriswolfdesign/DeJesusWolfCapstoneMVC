@@ -144,14 +144,15 @@ var Controller = /** @class */ (function () {
     }; // end getTaskIndices
     /**
      * Gets the data held inside the task card
+     * @param listIndex -- the list index we are looking for
+     * @param taskIndex -- the task index we are looking for
+     *
      * @return {list} -- [task card's label, task card's text]
-     * @param listIndex
-     * @param taskIndex
      */
     Controller.prototype.getTaskData = function (listIndex, taskIndex) {
         return [this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].getLabel(),
             this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].getText()];
-    };
+    }; // end getTaskData
     /**
      * getter for model
      *
@@ -175,7 +176,7 @@ var Controller = /** @class */ (function () {
      */
     Controller.prototype.loadProject = function (project) {
         this.model.loadProject(project);
-    };
+    }; // end loadProject
     return Controller;
 }()); // end Controller
 exports.Controller = Controller;

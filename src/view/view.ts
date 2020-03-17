@@ -20,10 +20,18 @@ export class View {
     this.isBoardMenuVisible = true;
   } // end constructor
 
+  /**
+   * if the board menu is visible, hide it and vice-versa
+   */
   toggleBoardMenuVisibility(): void {
     this.isBoardMenuVisible = !this.isBoardMenuVisible;
   } // end toggleBoardMenuVisibility
 
+  /**
+   * returns whether or not the board is currently visible
+   *
+   * @return {boolean} -- true if the board is visible, false otherwise
+   */
   getIsBoardMenuVisibile(): boolean {
     return this.isBoardMenuVisible;
   } // end getIsBoardMenuVisibile
@@ -121,7 +129,7 @@ export class View {
       html += boards[i].getTitle();
       html += '</button>'; 
       html += '</br>';
-    }
+    } // end for
 
     html += '</div>';
 

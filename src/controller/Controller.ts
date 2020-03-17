@@ -168,14 +168,15 @@ export class Controller {
 
   /**
    * Gets the data held inside the task card
+   * @param listIndex -- the list index we are looking for
+   * @param taskIndex -- the task index we are looking for
+   *
    * @return {list} -- [task card's label, task card's text]
-   * @param listIndex
-   * @param taskIndex
    */
   getTaskData(listIndex: number, taskIndex: number) {
     return [this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].getLabel(),
     this.model.getProjects().getActiveBoard().getLists()[listIndex].getTasks()[taskIndex].getText()];
-  }
+  } // end getTaskData
 
   /**
    * getter for model
@@ -203,6 +204,6 @@ export class Controller {
 
   loadProject(project: Project) {
     this.model.loadProject(project);
-  }
+  } // end loadProject
 } // end Controller
 

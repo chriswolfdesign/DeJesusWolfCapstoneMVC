@@ -48,6 +48,11 @@ var List = /** @class */ (function () {
     List.prototype.removeTaskCard = function (cardID) {
         this.tasks.splice(cardID, 1);
     }; // end removeTaskCard
+    /**
+     * loads the list into the board
+     *
+     * @param {List} list -- the list to be loaded into the board
+     */
     List.prototype.loadList = function (list) {
         this.label = list.label;
         var ntask;
@@ -57,8 +62,8 @@ var List = /** @class */ (function () {
             ntask = new TaskCard_1.TaskCard("", "");
             ntask.loadTaskCard(task);
             this.tasks.push(ntask);
-        }
-    };
+        } // end for
+    }; // end loadList
     return List;
 }()); // end List
 exports.List = List;
