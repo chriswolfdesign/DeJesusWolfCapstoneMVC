@@ -5,7 +5,7 @@
 *.xml
 *.iml
 .idea
-.node_modules/*
 .vscode/tasks.json
 .gitignore
 tags
+node_modules
