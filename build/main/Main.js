@@ -144,15 +144,20 @@ function changeBoardMenuVisibility(controller) {
         document.getElementById('boardButtons').style.visibility = 'hidden';
     } // end else
 } // end changeBoardMenuVisibility
+/**
+ * Updates the size based on whether or not the board menu is visible
+ *
+ * @param {Controller} controller -- the controller holding the current board
+ */
 function setCurrentBoardSize(controller) {
     // Update styles
     if (controller.getView().getIsBoardMenuVisibile()) {
+        document.getElementById('boardButtons').style.width = '20%';
         document.getElementById('currentBoard').style.width = '75%';
-        document.getElementById('currentBoard').style.marginLeft = '45vh';
     } // end if
     else {
-        document.getElementById('currentBoard').style.width = '100%';
-        document.getElementById('currentBoard').style.marginLeft = '10vh';
+        document.getElementById('boardButtons').style.width = '5%';
+        document.getElementById('currentBoard').style.width = '90%';
     } // end else
 } // end setCurrentBoardSize
 /**
